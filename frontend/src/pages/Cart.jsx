@@ -1,0 +1,287 @@
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { 
+  ShoppingBag, Trash2, ArrowRight, Tag, X, ChevronRight, CheckCircle2 
+} from 'lucide-react';
+import { useStore } from '../store/useStore';
+
+const Cart = ({ notificationHandler }) => {
+  const navigate = useNavigate();
+  const { 
+    cart, updateCartItem, removeCartItem, cartLoading, 
+    coupon, applyCoupon, removeCoupon, couponError, fetchCart, isAuthenticated
+  } = useStore();
+
+  const [couponCode, setCouponCode] = useState('');
+  
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchCart();
+    }
+  }, [isAuthenticated]);
+
+  const handleQuantityChange = (itemId, newQuantity) => {
+    if (newQuantity <= 0) {
+      removeCartItem(itemId);
+      notificationHandler('Producto removido del carrito.', 'info');
+    } else {
+      updateCartItem(itemId, newQuantity);
+    }
+  };
+
+  const handleApplyCoupon = async (e) => {
+    e.preventDefault();
+    if (!couponCode.trim()) return;
+    const res = await applyCoupon(couponCode);
+    if (res.success) {
+      notificationHandler('¡Cupón de descuento aplicado!', 'success');
+      setCouponCode('');
+    } else {
+      notificationHandler(res.error || 'Cupón inválido.', 'error');
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    removeCoupon();
+    notificationHandler('Cupón removido.', 'info');
+  };
+
+  // Calculations
+  const subtotal = cart?.cart_total || 0;
+  
+  let discount = 0;
+  if (coupon) {
+    if (coupon.discount_type === 'percent') {
+      discount = (Number(coupon.value) / 100) * subtotal;
+    } else {
+      discount = Number(coupon.value);
+    }
+  }
+
+  // Estimated shipping based on standard Lima rate
+  const shipping = subtotal > 0 ? 8.00 : 0;
+  const total = Math.max(0, subtotal + shipping - discount);
+
+  const handleCheckoutRedirect = () => {
+    if (cart.items.length === 0) {
+      notificationHandler('Su carrito está vacío.', 'warning');
+      return;
+    }
+    navigate('/checkout');
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-16 text-center space-y-4">
+        <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto text-slate-450">
+          <ShoppingBag size={28} />
+        </div>
+        <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200">Inicia sesión para ver tu carrito</h2>
+        <p className="text-xs text-slate-400 max-w-sm mx-auto">
+          Guarda tus productos favoritos, realiza compras seguras y sigue tus pedidos en tiempo real.
+        </p>
+        <Link 
+          to="/login"
+          className="px-6 py-2.5 inline-block text-xs font-bold text-white bg-primary-500 rounded-xl hover:bg-primary-600 transition-all"
+        >
+          Iniciar Sesión
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-colors duration-300">
+      
+      {/* Page header navigation path */}
+      <div className="flex items-center gap-1.5 text-xs text-slate-400 font-semibold mb-6">
+        <Link to="/" className="hover:text-primary-500">Tienda</Link>
+        <ChevronRight size={12} />
+        <span className="text-slate-650 dark:text-slate-200">Carrito de compras</span>
+      </div>
+
+      <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-800 dark:text-slate-100 mb-8 tracking-tight">
+        Tu Carrito de Compras
+      </h1>
+
+      {cart.items?.length === 0 ? (
+        <div className="bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 rounded-3xl p-12 text-center space-y-4 shadow-sm">
+          <div className="w-16 h-16 bg-slate-50 dark:bg-dark-950/40 rounded-full flex items-center justify-center mx-auto text-slate-400">
+            <ShoppingBag size={28} />
+          </div>
+          <h3 className="text-base font-bold text-slate-800 dark:text-slate-200">Tu carrito se encuentra vacío</h3>
+          <p className="text-xs text-slate-450 max-w-xs mx-auto">Explora nuestro catálogo con Inteligencia Artificial para agregar productos.</p>
+          <Link
+            to="/"
+            className="px-6 py-2.5 inline-block text-xs font-bold text-white bg-primary-500 hover:bg-primary-600 rounded-xl shadow-md transition-all active:scale-95"
+          >
+            Explorar Productos
+          </Link>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* List of Cart Items */}
+          <div className="lg:col-span-8 bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 rounded-3xl p-4 sm:p-6 shadow-sm space-y-6">
+            <div className="flow-root">
+              <ul className="-my-6 divide-y divide-slate-100 dark:divide-dark-800/40">
+                {cart.items.map((item) => (
+                  <li key={item.id} className="py-6 flex items-center gap-4">
+                    {/* Image */}
+                    <div className="w-20 h-20 flex-shrink-0 border border-slate-200 dark:border-dark-800 rounded-xl p-2 bg-slate-50 dark:bg-dark-950/40 overflow-hidden">
+                      <img
+                        src={item.product?.primary_image || '/placeholder.png'}
+                        alt={item.product?.name}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+
+                    {/* Details */}
+                    <div className="flex-1 flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between text-sm">
+                          <Link to={`/product/${item.product?.id}`} className="font-bold text-slate-850 dark:text-slate-100 hover:text-primary-500 transition-colors">
+                            {item.product?.name}
+                          </Link>
+                          <span className="ml-4 font-extrabold text-slate-800 dark:text-slate-100">
+                            S/ {Number(item.item_total).toFixed(2)}
+                          </span>
+                        </div>
+                        <div className="mt-1 flex flex-wrap gap-2 text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+                          <span>Marca: {item.product?.brand_name || 'Generica'}</span>
+                          {item.color && (
+                            <>
+                              <span>|</span>
+                              <span>Color: {item.color}</span>
+                            </>
+                          )}
+                          {item.size && (
+                            <>
+                              <span>|</span>
+                              <span>Talla: {item.size}</span>
+                            </>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Quantity edit controls */}
+                      <div className="flex items-center justify-between mt-4">
+                        <div className="flex items-center border border-slate-200 dark:border-dark-800 rounded-lg overflow-hidden bg-slate-50 dark:bg-dark-950">
+                          <button
+                            onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                            className="px-3 py-1.5 text-slate-450 hover:bg-slate-100 dark:hover:bg-dark-800 font-bold"
+                          >
+                            -
+                          </button>
+                          <span className="px-3 py-1.5 text-xs text-slate-800 dark:text-slate-100 font-extrabold w-8 text-center select-none">
+                            {item.quantity}
+                          </span>
+                          <button
+                            onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                            className="px-3 py-1.5 text-slate-450 hover:bg-slate-100 dark:hover:bg-dark-800 font-bold"
+                          >
+                            +
+                          </button>
+                        </div>
+
+                        {/* Delete button */}
+                        <button
+                          onClick={() => handleQuantityChange(item.id, 0)}
+                          className="text-slate-400 hover:text-red-500 p-1.5 transition-colors"
+                          title="Eliminar producto"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Checkout pricing breakdowns summary */}
+          <div className="lg:col-span-4 bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 rounded-3xl p-5 shadow-sm space-y-6">
+            <h3 className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-dark-800 pb-3">
+              Resumen del Pedido
+            </h3>
+
+            {/* Price values list */}
+            <div className="space-y-3.5 text-xs text-slate-600 dark:text-slate-350">
+              <div className="flex justify-between">
+                <span>Subtotal</span>
+                <span className="font-bold text-slate-800 dark:text-slate-200">S/ {subtotal.toFixed(2)}</span>
+              </div>
+              
+              {coupon && (
+                <div className="flex justify-between text-green-500 font-semibold">
+                  <span className="flex items-center gap-1">
+                    <Tag size={12} /> Descuento ({coupon.code})
+                  </span>
+                  <span>- S/ {discount.toFixed(2)}</span>
+                </div>
+              )}
+
+              <div className="flex justify-between">
+                <span>Costo de Envío (Est.)</span>
+                <span className="font-bold text-slate-800 dark:text-slate-200">S/ {shipping.toFixed(2)}</span>
+              </div>
+
+              <div className="border-t border-slate-100 dark:border-dark-800 pt-3.5 flex justify-between text-sm font-extrabold">
+                <span className="text-slate-800 dark:text-slate-100">Total Neto</span>
+                <span className="text-base text-primary-500">S/ {total.toFixed(2)}</span>
+              </div>
+            </div>
+
+            {/* Coupon Code Input Box */}
+            <div className="border-t border-slate-100 dark:border-dark-800 pt-5">
+              {coupon ? (
+                <div className="bg-green-500/5 border border-green-200 rounded-xl p-3 flex justify-between items-center text-green-600">
+                  <div className="flex items-center gap-1.5 text-xs font-bold">
+                    <CheckCircle2 size={16} /> Cupón {coupon.code} Activo
+                  </div>
+                  <button onClick={handleRemoveCoupon} className="text-red-400 hover:text-red-500">
+                    <X size={16} />
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleApplyCoupon} className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="Código de cupón (TEC2026)"
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value)}
+                    className="flex-1 bg-slate-50 dark:bg-dark-950 border border-slate-250 dark:border-dark-800 text-slate-800 dark:text-slate-200 text-xs rounded-xl px-3 py-2.5 outline-none focus:border-primary-500 transition-colors uppercase font-semibold"
+                  />
+                  <button
+                    type="submit"
+                    className="px-4 py-2.5 bg-slate-100 dark:bg-dark-800 hover:bg-slate-200 dark:hover:bg-dark-700 text-slate-700 dark:text-slate-350 text-xs font-bold rounded-xl transition-all"
+                  >
+                    Aplicar
+                  </button>
+                </form>
+              )}
+              {couponError && (
+                <p className="text-[10px] text-red-500 font-bold mt-1.5 ml-1">{couponError}</p>
+              )}
+            </div>
+
+            {/* Checkout proceed button */}
+            <button
+              onClick={handleCheckoutRedirect}
+              disabled={cartLoading}
+              className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-primary-500 to-purple-600 hover:shadow-lg hover:shadow-primary-500/20 text-white font-bold text-xs rounded-xl transition-all shadow-md active:scale-95 uppercase tracking-wider mt-4"
+            >
+              Proceder al Pago <ArrowRight size={14} />
+            </button>
+
+          </div>
+
+        </div>
+      )}
+
+    </div>
+  );
+};
+
+export default Cart;
