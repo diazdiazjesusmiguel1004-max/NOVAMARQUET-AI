@@ -275,7 +275,7 @@ class AddressViewSet(viewsets.ModelViewSet):
 
 # --- COUPON VALIDATION ---
 class ValidateCouponView(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
         code = request.data.get('code', '').strip()
