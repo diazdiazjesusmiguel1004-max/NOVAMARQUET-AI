@@ -80,7 +80,7 @@ const Dashboard = ({ notificationHandler }) => {
   const fetchProducts = async () => {
     try {
       // If seller, only fetch their products
-      const params = user?.role === 'seller' ? { seller: user.id } : {};
+      const params = user?.role === 'seller' ? { seller: user?.id } : {};
       const res = await api.get('products/', { params });
       setProducts(res.data);
     } catch (err) {
@@ -159,10 +159,10 @@ const Dashboard = ({ notificationHandler }) => {
 
     if (user) {
       setProfileForm({
-        first_name: user.first_name || '',
-        last_name: user.last_name || '',
-        email: user.email || '',
-        phone: user.phone || ''
+        first_name: user?.first_name || '',
+        last_name: user?.last_name || '',
+        email: user?.email || '',
+        phone: user?.phone || ''
       });
     }
 
@@ -748,7 +748,7 @@ const Dashboard = ({ notificationHandler }) => {
                   Seller Panel
                 </span>
                 <span className="text-xs font-bold text-slate-400">
-                  {user.first_name || 'Mi Tienda Virtual'}
+                  {user?.first_name || 'Mi Tienda Virtual'}
                 </span>
               </div>
               <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight mt-1.5">
@@ -1053,10 +1053,10 @@ const Dashboard = ({ notificationHandler }) => {
           <div className="bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 p-6 rounded-3xl shadow-sm text-center space-y-6 h-fit">
             <div className="flex flex-col items-center">
               <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-primary-500 via-purple-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-3xl shadow-lg shadow-primary-500/20 mb-3 ring-4 ring-primary-500/10">
-                {user.username ? user.username[0].toUpperCase() : 'C'}
+                {user?.username ? user?.username[0].toUpperCase() : 'C'}
               </div>
               <h2 className="font-extrabold text-lg text-slate-800 dark:text-slate-100">
-                {user.first_name || user.username} {user.last_name || ''}
+                {user?.first_name || user?.username} {user?.last_name || ''}
               </h2>
               <span className="text-[10px] font-black uppercase text-indigo-500 bg-indigo-500/10 px-3 py-1 border border-indigo-500/20 rounded-full mt-1.5 tracking-wider flex items-center gap-1">
                 <Sparkles size={12} /> Cliente VIP Novamarquet
@@ -1117,7 +1117,7 @@ const Dashboard = ({ notificationHandler }) => {
                       </div>
                       <div className="max-w-md mx-auto space-y-2">
                         <h4 className="text-base font-extrabold text-slate-800 dark:text-slate-100">
-                          ¡Bienvenido a tu panel personal, {user.first_name || user.username}!
+                          ¡Bienvenido a tu panel personal, {user?.first_name || user?.username}!
                         </h4>
                         <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                           Aún no has realizado ninguna compra en Novamarquet. Explora nuestro catálogo con envíos garantizados a todo el Perú y aprovecha los cupones activos.
