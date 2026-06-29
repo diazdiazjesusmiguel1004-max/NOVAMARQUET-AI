@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { User, Lock, Mail, Phone, ArrowRight } from 'lucide-react';
 import { useStore } from '../store/useStore';
+import BrandLogo from '../components/BrandLogo';
 
 const Register = ({ notificationHandler }) => {
   const navigate = useNavigate();
@@ -55,9 +56,9 @@ const Register = ({ notificationHandler }) => {
     <div className="max-w-md mx-auto my-12 px-4 py-8 bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl shadow-lg transition-colors duration-300">
       
       {/* Logo banner */}
-      <div className="text-center mb-8">
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-primary-500 to-purple-600 flex items-center justify-center text-white font-extrabold shadow-md shadow-primary-500/20 mx-auto text-lg mb-2">
-          NM
+      <div className="text-center mb-8 flex flex-col items-center justify-center">
+        <div className="mb-4">
+          <BrandLogo size="lg" />
         </div>
         <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Crear Cuenta</h2>
         <p className="text-xs text-slate-400 mt-1">Regístrate en NOVAMARQUET-AI y comienza tu experiencia de compra.</p>

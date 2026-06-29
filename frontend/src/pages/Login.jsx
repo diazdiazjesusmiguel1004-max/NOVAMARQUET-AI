@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Lock, User, ArrowRight, ShieldAlert } from 'lucide-react';
 import { useStore } from '../store/useStore';
+import BrandLogo from '../components/BrandLogo';
 
 const Login = ({ notificationHandler }) => {
   const navigate = useNavigate();
@@ -24,13 +25,13 @@ const Login = ({ notificationHandler }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!username.trim() || !password.trim()) {
-      notificationHandler('Por favor completa todos los campos.', 'warning');
+      notificationHandler('Por favor ingresa usuario y contraseña', 'error');
       return;
     }
 
     const res = await login(username, password);
     if (res.success) {
-      notificationHandler('Sesión iniciada correctamente.', 'success');
+      notificationHandler('¡Sesión iniciada correctamente!', 'success');
     } else {
       notificationHandler(res.error || 'Credenciales inválidas.', 'error');
     }
@@ -40,9 +41,9 @@ const Login = ({ notificationHandler }) => {
     <div className="max-w-md mx-auto my-12 px-4 py-8 bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl shadow-lg transition-colors duration-300">
       
       {/* Brand logo title inside login */}
-      <div className="text-center mb-8">
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-primary-500 to-purple-600 flex items-center justify-center text-white font-extrabold shadow-md shadow-primary-500/20 mx-auto text-lg mb-2">
-          NM
+      <div className="text-center mb-8 flex flex-col items-center justify-center">
+        <div className="mb-4">
+          <BrandLogo size="lg" />
         </div>
         <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Iniciar Sesión</h2>
         <p className="text-xs text-slate-400 mt-1">Accede a NOVAMARQUET-AI para realizar compras seguras.</p>

@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import api from '../services/api';
+import BrandLogo from './BrandLogo';
 
 const Navbar = ({ onSearchChange }) => {
   const navigate = useNavigate();
@@ -92,14 +93,7 @@ const Navbar = ({ onSearchChange }) => {
         <div className="flex justify-between items-center h-16">
           {/* Brand Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-500 to-purple-600 flex items-center justify-center text-white font-extrabold shadow-md shadow-primary-500/25 group-hover:scale-105 transition-transform duration-200">
-                NM
-              </div>
-              <span className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-primary-500 via-purple-500 to-pink-500 bg-clip-text text-transparent group-hover:opacity-90 transition-opacity">
-                NOVAMARQUET<span className="text-slate-800 dark:text-white font-light text-sm ml-1 px-1.5 py-0.5 rounded bg-slate-100 dark:bg-dark-800 border border-slate-200 dark:border-dark-700">AI</span>
-              </span>
-            </Link>
+            <BrandLogo />
           </div>
 
           {/* Search bar */}
