@@ -85,7 +85,7 @@ Recomendado para editar código en tiempo real con recarga caliente (*hot reload
 
 ---
 
-### Modo B: Modo de Producción / Un solo puerto (1 Terminal + Túnel)
+## Modo B: Modo de Producción / Un solo puerto (1 Terminal + Túnel)
 Recomendado para abrirlo en tu celular usando datos móviles (desde fuera de tu red local) con un túnel seguro.
 
 1.  **Compila la web de React:**
