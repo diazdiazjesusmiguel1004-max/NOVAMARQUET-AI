@@ -64,7 +64,7 @@ class BrandViewSet(viewsets.ModelViewSet):
 
 # --- PRODUCTS VIEWSET ---
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.filter(is_active=True)
+    queryset = Product.objects.filter(is_active=True).select_related('brand', 'category', 'seller').prefetch_related('images', 'reviews')
     permission_classes = (IsSellerOrAdminOrReadOnly,)
     lookup_field = 'slug'
 
@@ -103,7 +103,7 @@ class ProductViewSet(viewsets.ModelViewSet):
             serializer.save()
 
     def get_queryset(self):
-        queryset = Product.objects.filter(is_active=True)
+        queryset = Product.objects.filter(is_active=True).select_related('brand', 'category', 'seller').prefetch_related('images', 'reviews')
         category_slug = self.request.query_params.get('category', None)
         brand_slug = self.request.query_params.get('brand', None)
         is_featured = self.request.query_params.get('featured', None)

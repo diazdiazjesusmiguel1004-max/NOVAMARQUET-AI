@@ -98,7 +98,9 @@ class ProductListSerializer(serializers.ModelSerializer):
         )
 
     def get_average_rating(self, obj):
-        reviews = obj.reviews.all()
+        reviews = getattr(obj, '_prefetched_objects_cache', {}).get('reviews', None)
+        if reviews is None:
+            reviews = obj.reviews.all()
         if not reviews:
             return 0.0
         total = sum([r.rating for r in reviews])
@@ -110,9 +112,15 @@ class ProductListSerializer(serializers.ModelSerializer):
         return "Novamarquet"
 
     def get_primary_image(self, obj):
-        primary = obj.images.filter(is_primary=True).first()
-        if not primary:
-            primary = obj.images.first()
+        images = getattr(obj, '_prefetched_objects_cache', {}).get('images', None)
+        if images is not None:
+            primary = next((img for img in images if img.is_primary), None)
+            if not primary and images:
+                primary = images[0]
+        else:
+            primary = obj.images.filter(is_primary=True).first()
+            if not primary:
+                primary = obj.images.first()
         if primary:
             name = primary.image.name
             if name.startswith('http://') or name.startswith('https://'):
