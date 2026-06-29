@@ -16,12 +16,9 @@ const BrandLogo = ({ showLink = true, size = 'md' }) => {
 
       {/* Typography with Amazon-style smile arrow */}
       <div className="flex flex-col justify-center">
-        <div className="flex items-baseline gap-1.5">
+        <div className="flex items-baseline">
           <span className={`font-black tracking-tight text-slate-900 dark:text-white group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-colors ${isLarge ? 'text-2xl' : 'text-xl'}`}>
             novamarquet
-          </span>
-          <span className="font-extrabold text-[11px] px-1.5 py-0.5 rounded bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-mono shadow-sm tracking-widest uppercase">
-            IA
           </span>
         </div>
         
