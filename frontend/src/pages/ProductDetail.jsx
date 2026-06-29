@@ -136,15 +136,16 @@ const ProductDetail = ({ notificationHandler }) => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-colors duration-300">
       
       {/* Back button */}
-      <button 
-        onClick={() => {
-          navigate('/');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+      <a 
+        href="/"
+        onClick={(e) => {
+          e.preventDefault();
+          window.location.href = '/';
         }}
-        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 mb-6 transition-colors bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 px-4 py-2 rounded-xl shadow-sm hover:shadow cursor-pointer"
+        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 mb-6 transition-colors bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 px-4 py-2 rounded-xl shadow-sm hover:shadow cursor-pointer select-none"
       >
         <ChevronLeft size={16} /> Volver a la Tienda
-      </button>
+      </a>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
