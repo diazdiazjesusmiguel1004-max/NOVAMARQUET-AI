@@ -42,7 +42,7 @@ const ProductCard = ({ product, onNotify }) => {
     const result = await addToCart(product.id, 1, product.colors?.[0], product.sizes?.[0]);
     if (result.success) {
       if (onNotify) onNotify('¡Producto añadido al carrito!', 'success');
-      navigate('/cart');
+      window.location.href = '/cart';
     } else {
       if (onNotify) onNotify(result.error || 'Inicia sesión para comprar', 'error');
     }
