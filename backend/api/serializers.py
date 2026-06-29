@@ -82,14 +82,32 @@ class ProductListSerializer(serializers.ModelSerializer):
     )
     primary_image = serializers.SerializerMethodField(read_only=True)
     image_url = serializers.CharField(write_only=True, required=False, allow_blank=True)
+    seller_name = serializers.SerializerMethodField(read_only=True)
+    seller_id = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.filter(role='seller'), source='seller', write_only=True, required=False, allow_null=True
+    )
+    average_rating = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Product
         fields = (
             'id', 'name', 'slug', 'sku', 'price', 'offer_price', 'current_price', 
             'stock', 'brand', 'brand_id', 'category', 'category_id', 'colors', 'sizes', 
-            'is_featured', 'primary_image', 'image_url'
+            'is_featured', 'primary_image', 'image_url', 'seller_name', 'seller_id',
+            'average_rating'
         )
+
+    def get_average_rating(self, obj):
+        reviews = obj.reviews.all()
+        if not reviews:
+            return 0.0
+        total = sum([r.rating for r in reviews])
+        return round(total / len(reviews), 1)
+
+    def get_seller_name(self, obj):
+        if obj.seller:
+            return obj.seller.first_name or obj.seller.username
+        return "Novamarquet"
 
     def get_primary_image(self, obj):
         primary = obj.images.filter(is_primary=True).first()
@@ -127,6 +145,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
     reviews = ReviewSerializer(many=True, read_only=True)
     analytic = ProductAnalyticSerializer(read_only=True)
     average_rating = serializers.SerializerMethodField()
+    seller_name = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Product
@@ -134,8 +153,13 @@ class ProductDetailSerializer(serializers.ModelSerializer):
             'id', 'name', 'slug', 'sku', 'description', 'price', 'offer_price', 
             'current_price', 'stock', 'brand', 'category', 'colors', 'sizes', 
             'is_featured', 'is_active', 'model_3d_path', 'images', 'reviews', 'analytic', 
-            'average_rating', 'created_at', 'updated_at'
+            'average_rating', 'seller_name', 'created_at', 'updated_at'
         )
+
+    def get_seller_name(self, obj):
+        if obj.seller:
+            return obj.seller.first_name or obj.seller.username
+        return "Novamarquet"
 
     def get_average_rating(self, obj):
         reviews = obj.reviews.all()
@@ -217,10 +241,15 @@ class OrderItemSerializer(serializers.ModelSerializer):
     product_name = serializers.CharField(source='product.name', read_only=True)
     product_sku = serializers.CharField(source='product.sku', read_only=True)
     product_image = serializers.SerializerMethodField()
+    seller_id = serializers.IntegerField(source='product.seller.id', read_only=True, allow_null=True)
+    seller_name = serializers.CharField(source='product.seller.first_name', read_only=True, allow_null=True)
 
     class Meta:
         model = OrderItem
-        fields = ('id', 'product', 'product_name', 'product_sku', 'product_image', 'quantity', 'price', 'color', 'size')
+        fields = (
+            'id', 'product', 'product_name', 'product_sku', 'product_image', 
+            'quantity', 'price', 'color', 'size', 'seller_id', 'seller_name'
+        )
 
     def get_product_image(self, obj):
         if obj.product:

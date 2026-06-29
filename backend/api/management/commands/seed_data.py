@@ -38,8 +38,8 @@ class Command(BaseCommand):
                 Product.objects.all().delete()
                 Brand.objects.all().delete()
                 Category.objects.all().delete()
-                # Delete users except superusers
-                User.objects.filter(is_superuser=False).delete()
+                # Delete all users
+                User.objects.all().delete()
 
                 # 2. Create Users
                 self.stdout.write("Creando roles de usuarios (Administrador, Vendedor, Cliente)...")
@@ -63,6 +63,38 @@ class Command(BaseCommand):
                     last_name='Socio',
                     phone='+51 912345678'
                 )
+
+                seller_juan = User.objects.create_user(
+                    username='juan',
+                    email='juan@novamarquet.com',
+                    password='juan123',
+                    role='seller',
+                    first_name='Tienda Juan',
+                    last_name='Market',
+                    phone='+51 911223344'
+                )
+
+                seller_pedro = User.objects.create_user(
+                    username='pedro',
+                    email='pedro@novamarquet.com',
+                    password='pedro123',
+                    role='seller',
+                    first_name='Tienda Pedro',
+                    last_name='Electro',
+                    phone='+51 922334455'
+                )
+
+                seller_carlos = User.objects.create_user(
+                    username='carlos',
+                    email='carlos@novamarquet.com',
+                    password='carlos123',
+                    role='seller',
+                    first_name='Tienda Carlos',
+                    last_name='Fashion',
+                    phone='+51 933445566'
+                )
+
+                sellers_pool = [seller_user, seller_juan, seller_pedro, seller_carlos]
 
                 client_user = User.objects.create_user(
                     username='client',
@@ -112,6 +144,7 @@ class Command(BaseCommand):
                     stock=15,
                     brand=samsung,
                     category=celulares,
+                    seller=seller_juan,
                     colors=["Titanium Gray", "Titanium Black", "Titanium Yellow"],
                     sizes=["256GB", "512GB", "1TB"],
                     is_featured=True
@@ -128,6 +161,7 @@ class Command(BaseCommand):
                     stock=10,
                     brand=apple,
                     category=celulares,
+                    seller=seller_pedro,
                     colors=["Natural Titanium", "Dark Cherry", "White Titanium"],
                     sizes=["256GB", "512GB"],
                     is_featured=True
@@ -144,6 +178,7 @@ class Command(BaseCommand):
                     stock=8,
                     brand=apple,
                     category=laptops,
+                    seller=seller_juan,
                     colors=["Space Black", "Silver"],
                     sizes=["48GB RAM", "64GB RAM"],
                     is_featured=True
@@ -160,6 +195,7 @@ class Command(BaseCommand):
                     stock=25,
                     brand=sony,
                     category=consolas,
+                    seller=seller_pedro,
                     colors=["White/Black"],
                     sizes=["Edición Standard", "Edición Digital"],
                     is_featured=True
@@ -176,6 +212,7 @@ class Command(BaseCommand):
                     stock=35,
                     brand=nike,
                     category=hombre,
+                    seller=seller_carlos,
                     colors=["Negro", "Azul Eléctrico", "Rojo Fuego"],
                     sizes=["S", "M", "L", "XL"],
                     is_featured=False
@@ -224,6 +261,7 @@ class Command(BaseCommand):
                             stock=stock,
                             brand=brand,
                             category=cat,
+                            seller=random.choice(sellers_pool),
                             colors=colors_pool,
                             sizes=sizes_pool,
                             is_featured=is_featured

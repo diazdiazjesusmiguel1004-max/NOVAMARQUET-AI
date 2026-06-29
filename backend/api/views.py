@@ -96,6 +96,12 @@ class ProductViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
+    def perform_create(self, serializer):
+        if self.request.user.role == 'seller':
+            serializer.save(seller=self.request.user)
+        else:
+            serializer.save()
+
     def get_queryset(self):
         queryset = Product.objects.filter(is_active=True)
         category_slug = self.request.query_params.get('category', None)
@@ -106,6 +112,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         search = self.request.query_params.get('search', None)
         color = self.request.query_params.get('color', None)
         size = self.request.query_params.get('size', None)
+        seller = self.request.query_params.get('seller', None)
 
         if category_slug:
             # Matches category or any of its subcategories
@@ -137,6 +144,9 @@ class ProductViewSet(viewsets.ModelViewSet):
 
         if size:
             queryset = queryset.filter(sizes__contains=size)
+
+        if seller:
+            queryset = queryset.filter(seller_id=seller)
 
         return queryset
 
@@ -277,6 +287,11 @@ class ValidateCouponView(APIView):
             return Response({"error": "Este cupón ya alcanzó el límite máximo de usos."}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(CouponSerializer(coupon).data)
+
+class CouponViewSet(viewsets.ModelViewSet):
+    queryset = Coupon.objects.all().order_by('-expiration_date')
+    serializer_class = CouponSerializer
+    permission_classes = (IsAdminOrReadOnly,)
 
 # --- ORDERS & LOGISTICS ---
 class OrderViewSet(viewsets.ModelViewSet):
@@ -568,3 +583,35 @@ class AdminDashboardView(APIView):
             "frequent_customers": list(frequent_customers),
             "recent_activity": recent_activity
         })
+
+class AdminUserListView(APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        if request.user.role != 'admin':
+            return Response({"error": "No autorizado."}, status=status.HTTP_403_FORBIDDEN)
+        users = User.objects.all().order_by('-date_joined')
+        data = [{
+            "id": u.id,
+            "username": u.username,
+            "email": u.email,
+            "first_name": u.first_name,
+            "last_name": u.last_name,
+            "role": u.role,
+            "phone": u.phone,
+            "is_active": u.is_active,
+            "date_joined": u.date_joined
+        } for u in users]
+        return Response(data)
+
+    def post(self, request):
+        if request.user.role != 'admin':
+            return Response({"error": "No autorizado."}, status=status.HTTP_403_FORBIDDEN)
+        user_id = request.data.get('user_id')
+        new_role = request.data.get('role')
+        if new_role not in ['admin', 'seller', 'client']:
+            return Response({"error": "Rol inválido."}, status=status.HTTP_400_BAD_REQUEST)
+        user = get_object_or_404(User, id=user_id)
+        user.role = new_role
+        user.save()
+        return Response({"message": f"Rol de usuario actualizado a {new_role}."})

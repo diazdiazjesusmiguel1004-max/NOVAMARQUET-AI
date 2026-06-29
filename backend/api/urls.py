@@ -8,7 +8,7 @@ from .views import (
     RegisterView, UserProfileView, CategoryViewSet, BrandViewSet,
     ProductViewSet, CartViewSet, WishlistViewSet, AddressViewSet,
     ValidateCouponView, OrderViewSet, ReviewViewSet, NotificationViewSet,
-    AdminDashboardView
+    AdminDashboardView, AdminUserListView, CouponViewSet
 )
 
 router = DefaultRouter()
@@ -19,6 +19,7 @@ router.register(r'addresses', AddressViewSet, basename='address')
 router.register(r'orders', OrderViewSet, basename='order')
 router.register(r'reviews', ReviewViewSet, basename='review')
 router.register(r'notifications', NotificationViewSet, basename='notification')
+router.register(r'coupons', CouponViewSet, basename='coupon')
 
 urlpatterns = [
     # Router endpoints
@@ -45,4 +46,5 @@ urlpatterns = [
 
     # Dashboard & Analytics
     path('dashboard/summary/', AdminDashboardView.as_view(), name='dashboard-summary'),
+    path('dashboard/users/', AdminUserListView.as_view(), name='admin-users'),
 ]
