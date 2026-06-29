@@ -48,6 +48,7 @@ class Product(models.Model):
     stock = models.IntegerField(default=0)
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, blank=True, related_name='products')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products')
+    seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='products', limit_choices_to={'role': 'seller'})
     colors = models.JSONField(default=list, blank=True, help_text="List of available colors (e.g. ['Red', 'Blue'])")
     sizes = models.JSONField(default=list, blank=True, help_text="List of available sizes (e.g. ['S', 'M', 'L'])")
     is_featured = models.BooleanField(default=False)
