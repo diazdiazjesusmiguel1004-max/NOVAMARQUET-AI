@@ -70,12 +70,18 @@ const ProductDetail = ({ notificationHandler }) => {
   }, [slug]);
 
   const handleAddToCart = async () => {
+    if (!isAuthenticated) {
+      notificationHandler('Debe iniciar sesión para agregar productos al carrito.', 'warning');
+      navigate('/login');
+      return;
+    }
     const res = await addToCart(product.id, quantity, selectedColor, selectedSize);
     if (res.success) {
-      notificationHandler('¡Producto agregado al carrito! Redirigiendo...', 'success');
+      notificationHandler('¡Producto agregado al carrito!', 'success');
       navigate('/cart');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      notificationHandler(res.error || 'Debe iniciar sesión para comprar.', 'error');
+      notificationHandler(res.error || 'No se pudo agregar el producto.', 'error');
     }
   };
 

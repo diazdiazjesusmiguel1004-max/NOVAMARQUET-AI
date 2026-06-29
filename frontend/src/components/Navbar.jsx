@@ -192,13 +192,14 @@ const Navbar = ({ onSearchChange }) => {
             </Link>
 
             {/* Shopping Cart Link */}
-            <button
+            <Link
+              to="/cart"
               onClick={() => {
                 setShowNotifications(false);
                 setShowProfile(false);
-                navigate('/cart');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-dark-800 text-slate-600 dark:text-slate-300 relative transition-all active:scale-95 cursor-pointer"
+              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-dark-800 text-slate-600 dark:text-slate-300 relative transition-all active:scale-95 cursor-pointer inline-flex items-center justify-center"
               title="Carrito de compras"
             >
               <ShoppingBag size={20} className="pointer-events-none" />
@@ -207,7 +208,7 @@ const Navbar = ({ onSearchChange }) => {
                   {cart.items.reduce((sum, item) => sum + item.quantity, 0)}
                 </span>
               )}
-            </button>
+            </Link>
 
             {/* Notifications panel toggle */}
             <div className="relative">
@@ -377,15 +378,16 @@ const Navbar = ({ onSearchChange }) => {
               </Link>
             )}
 
-            <button
+            <Link
+              to="/cart"
               onClick={() => {
                 setIsOpen(false);
-                navigate('/cart');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="flex items-center gap-2 p-2 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-dark-900 w-full text-left font-medium cursor-pointer"
             >
               <ShoppingBag size={16} /> Carrito ({cart?.items?.length || 0})
-            </button>
+            </Link>
 
             <Link
               to="/wishlist"
