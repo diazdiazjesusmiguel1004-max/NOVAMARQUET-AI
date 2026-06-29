@@ -77,8 +77,7 @@ const ProductDetail = ({ notificationHandler }) => {
     }
     const res = await addToCart(product.id, quantity, selectedColor, selectedSize);
     if (res.success) {
-      notificationHandler('¡Producto agregado al carrito!', 'success');
-      window.location.href = '/cart';
+      notificationHandler('¡Producto agregado al carrito de compras!', 'success');
     } else {
       notificationHandler(res.error || 'No se pudo agregar el producto.', 'error');
     }
