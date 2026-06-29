@@ -192,18 +192,22 @@ const Navbar = ({ onSearchChange }) => {
             </Link>
 
             {/* Shopping Cart Link */}
-            <Link
-              to="/cart"
-              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-dark-800 text-slate-600 dark:text-slate-300 relative transition-all active:scale-95"
+            <button
+              onClick={() => {
+                setShowNotifications(false);
+                setShowProfile(false);
+                navigate('/cart');
+              }}
+              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-dark-800 text-slate-600 dark:text-slate-300 relative transition-all active:scale-95 cursor-pointer"
               title="Carrito de compras"
             >
-              <ShoppingBag size={20} />
+              <ShoppingBag size={20} className="pointer-events-none" />
               {cart?.items?.length > 0 && (
-                <span className="absolute top-0 right-0 w-5 h-5 text-[10px] font-bold text-white bg-primary-500 rounded-full flex items-center justify-center border border-white dark:border-dark-900 animate-pulse">
+                <span className="absolute top-0 right-0 w-5 h-5 text-[10px] font-bold text-white bg-primary-500 rounded-full flex items-center justify-center border border-white dark:border-dark-900 animate-pulse pointer-events-none">
                   {cart.items.reduce((sum, item) => sum + item.quantity, 0)}
                 </span>
               )}
-            </Link>
+            </button>
 
             {/* Notifications panel toggle */}
             <div className="relative">
@@ -373,13 +377,15 @@ const Navbar = ({ onSearchChange }) => {
               </Link>
             )}
 
-            <Link
-              to="/cart"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2 p-2 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-dark-900"
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                navigate('/cart');
+              }}
+              className="flex items-center gap-2 p-2 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-dark-900 w-full text-left font-medium cursor-pointer"
             >
               <ShoppingBag size={16} /> Carrito ({cart?.items?.length || 0})
-            </Link>
+            </button>
 
             <Link
               to="/wishlist"
