@@ -232,7 +232,24 @@ export const useStore = create((set, get) => ({
     } else {
       document.body.classList.remove('dark');
     }
-  }
+  },
+
+  // --- COMPARE STATE ---
+  compareList: [],
+  toggleCompare: (product) => {
+    const list = get().compareList;
+    const exists = list.some(p => p.id === product.id);
+    if (exists) {
+      set({ compareList: list.filter(p => p.id !== product.id) });
+    } else {
+      if (list.length >= 4) {
+        return { success: false, error: 'Puedes comparar un máximo de 4 productos.' };
+      }
+      set({ compareList: [...list, product] });
+    }
+    return { success: true };
+  },
+  clearCompare: () => set({ compareList: [] })
 }));
 
 // Listen to logout event dispatched from axios config (in case refresh token expires)

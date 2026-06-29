@@ -10,6 +10,8 @@ import Orders from './pages/Orders';
 import OrderTracking from './pages/OrderTracking';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Compare from './pages/Compare';
+import CompareShelf from './components/CompareShelf';
 import { useStore } from './store/useStore';
 import { AlertCircle, CheckCircle, Info, X } from 'lucide-react';
 
@@ -52,19 +54,25 @@ function App() {
         {/* Global sticky navigation */}
         <Navbar />
 
+        {/* Floating comparison shelf */}
+        <CompareShelf />
+
         {/* Core Pages Content view */}
         <main className="flex-grow pb-16">
           <Routes>
             <Route path="/" element={<Home notificationHandler={showToast} />} />
+            <Route path="/categoria/:categorySlug" element={<Home notificationHandler={showToast} />} />
             <Route path="/product/:slug" element={<ProductDetail notificationHandler={showToast} />} />
             <Route path="/cart" element={<Cart notificationHandler={showToast} />} />
             <Route path="/checkout" element={<Checkout notificationHandler={showToast} />} />
             <Route path="/orders" element={<Orders notificationHandler={showToast} />} />
             <Route path="/order-tracking" element={<OrderTracking notificationHandler={showToast} />} />
             <Route path="/order-tracking/:tracking_number" element={<OrderTracking notificationHandler={showToast} />} />
+            <Route path="/comparar" element={<Compare notificationHandler={showToast} />} />
             
             {/* Admin/Seller Dashboard */}
             <Route path="/dashboard" element={<Dashboard notificationHandler={showToast} />} />
+            <Route path="/mi-cuenta" element={<Dashboard notificationHandler={showToast} />} />
             
             {/* Auth */}
             <Route path="/login" element={<Login notificationHandler={showToast} />} />
