@@ -72,7 +72,8 @@ const ProductDetail = ({ notificationHandler }) => {
   const handleAddToCart = async () => {
     const res = await addToCart(product.id, quantity, selectedColor, selectedSize);
     if (res.success) {
-      notificationHandler('¡Producto agregado al carrito de compras!', 'success');
+      notificationHandler('¡Producto agregado al carrito! Redirigiendo...', 'success');
+      navigate('/cart');
     } else {
       notificationHandler(res.error || 'Debe iniciar sesión para comprar.', 'error');
     }
@@ -131,9 +132,15 @@ const ProductDetail = ({ notificationHandler }) => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-colors duration-300">
       
       {/* Back button */}
-      <Link to="/" className="inline-flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-primary-500 mb-6 transition-colors">
+      <button 
+        onClick={() => {
+          navigate('/');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-primary-500 dark:hover:text-primary-400 mb-6 transition-colors bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 px-4 py-2 rounded-xl shadow-sm hover:shadow cursor-pointer"
+      >
         <ChevronLeft size={16} /> Volver a la Tienda
-      </Link>
+      </button>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         

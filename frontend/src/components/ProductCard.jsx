@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Heart, Star, Sparkles, ArrowRightLeft } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 const ProductCard = ({ product, onNotify }) => {
+  const navigate = useNavigate();
   const { toggleWishlist, wishlist, addToCart, toggleCompare, compareList } = useStore();
   const isWishlisted = wishlist?.products?.some(p => p.id === product.id);
   const isCompared = compareList.some(p => p.id === product.id);
@@ -41,6 +42,7 @@ const ProductCard = ({ product, onNotify }) => {
     const result = await addToCart(product.id, 1, product.colors?.[0], product.sizes?.[0]);
     if (result.success) {
       if (onNotify) onNotify('¡Producto añadido al carrito!', 'success');
+      navigate('/cart');
     } else {
       if (onNotify) onNotify(result.error || 'Inicia sesión para comprar', 'error');
     }
