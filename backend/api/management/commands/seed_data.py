@@ -231,10 +231,10 @@ class Command(BaseCommand):
                     (hogar, "Hogar Nova", [80, 1200], [samsung, sony], ["Estándar"], ["Blanco", "Gris"])
                 ]
 
-                self.stdout.write("Generando 100 productos programáticos por categoría (Total: 800)...")
+                self.stdout.write("Generando 8 productos selectos por categoría...")
                 
                 for cat, name_prefix, price_range, brands_pool, sizes_pool, colors_pool in categories_list:
-                    for i in range(1, 101):
+                    for i in range(1, 9):
                         brand = random.choice(brands_pool)
                         sku = f"PROD-{cat.slug[:3].upper()}-{brand.slug[:3].upper()}-{i:03d}"
                         name = f"{name_prefix} {brand.name} X-{i}"
