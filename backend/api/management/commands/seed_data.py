@@ -310,18 +310,38 @@ class Command(BaseCommand):
                     value=10.00,
                     expiration_date=timezone.now() + timezone.timedelta(days=180),
                     active=True,
-                    max_uses=200,
-                    used_count=18
+                    max_uses=500,
+                    used_count=0
                 )
                 
                 Coupon.objects.create(
                     code="NOVAMARKET50",
                     discount_type="fixed",
                     value=50.00,
-                    expiration_date=timezone.now() + timezone.timedelta(days=90),
+                    expiration_date=timezone.now() + timezone.timedelta(days=180),
                     active=True,
-                    max_uses=100,
-                    used_count=5
+                    max_uses=500,
+                    used_count=0
+                )
+
+                Coupon.objects.create(
+                    code="NOVAMARQUET10",
+                    discount_type="percent",
+                    value=10.00,
+                    expiration_date=timezone.now() + timezone.timedelta(days=180),
+                    active=True,
+                    max_uses=500,
+                    used_count=0
+                )
+
+                Coupon.objects.create(
+                    code="DESCUENTO15",
+                    discount_type="percent",
+                    value=15.00,
+                    expiration_date=timezone.now() + timezone.timedelta(days=180),
+                    active=True,
+                    max_uses=500,
+                    used_count=0
                 )
 
                 # 7. Create Addresses

@@ -278,10 +278,10 @@ class ValidateCouponView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request):
-        code = request.data.get('code', '').strip().upper()
-        coupon = Coupon.objects.filter(code=code, active=True, expiration_date__gt=timezone.now()).first()
+        code = request.data.get('code', '').strip()
+        coupon = Coupon.objects.filter(code__iexact=code, active=True, expiration_date__gt=timezone.now()).first()
         if not coupon:
-            return Response({"error": "Cupón inválido o expirado."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "Cupón inválido o no disponible."}, status=status.HTTP_400_BAD_REQUEST)
         
         if coupon.used_count >= coupon.max_uses:
             return Response({"error": "Este cupón ya alcanzó el límite máximo de usos."}, status=status.HTTP_400_BAD_REQUEST)

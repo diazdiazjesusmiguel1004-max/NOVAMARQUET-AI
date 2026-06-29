@@ -234,32 +234,63 @@ const Cart = ({ notificationHandler }) => {
             </div>
 
             {/* Coupon Code Input Box */}
-            <div className="border-t border-slate-100 dark:border-dark-800 pt-5">
+            <div className="border-t border-slate-100 dark:border-dark-800 pt-5 space-y-3">
               {coupon ? (
-                <div className="bg-green-500/5 border border-green-200 rounded-xl p-3 flex justify-between items-center text-green-600">
+                <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-3 flex justify-between items-center text-green-600 dark:text-green-400">
                   <div className="flex items-center gap-1.5 text-xs font-bold">
                     <CheckCircle2 size={16} /> Cupón {coupon.code} Activo
                   </div>
-                  <button onClick={handleRemoveCoupon} className="text-red-400 hover:text-red-500">
+                  <button onClick={handleRemoveCoupon} className="text-red-400 hover:text-red-500 p-1">
                     <X size={16} />
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleApplyCoupon} className="flex gap-2">
-                  <input
-                    type="text"
-                    placeholder="Código de cupón (TEC2026)"
-                    value={couponCode}
-                    onChange={(e) => setCouponCode(e.target.value)}
-                    className="flex-1 bg-slate-50 dark:bg-dark-950 border border-slate-250 dark:border-dark-800 text-slate-800 dark:text-slate-200 text-xs rounded-xl px-3 py-2.5 outline-none focus:border-primary-500 transition-colors uppercase font-semibold"
-                  />
-                  <button
-                    type="submit"
-                    className="px-4 py-2.5 bg-slate-100 dark:bg-dark-800 hover:bg-slate-200 dark:hover:bg-dark-700 text-slate-700 dark:text-slate-350 text-xs font-bold rounded-xl transition-all"
-                  >
-                    Aplicar
-                  </button>
-                </form>
+                <>
+                  <form onSubmit={handleApplyCoupon} className="flex gap-2">
+                    <input
+                      type="text"
+                      placeholder="Código de cupón (TEC2026)"
+                      value={couponCode}
+                      onChange={(e) => setCouponCode(e.target.value)}
+                      className="flex-1 bg-slate-50 dark:bg-dark-950 border border-slate-250 dark:border-dark-800 text-slate-800 dark:text-slate-200 text-xs rounded-xl px-3 py-2.5 outline-none focus:border-primary-500 transition-colors uppercase font-semibold"
+                    />
+                    <button
+                      type="submit"
+                      className="px-4 py-2.5 bg-gradient-to-r from-primary-500 to-purple-600 hover:opacity-90 text-white text-xs font-bold rounded-xl transition-all shadow-sm active:scale-95"
+                    >
+                      Aplicar
+                    </button>
+                  </form>
+
+                  {/* Available Coupons Chips */}
+                  <div className="space-y-1.5 pt-1">
+                    <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
+                      Cupones Disponibles (Click para aplicar):
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {[
+                        { code: 'TEC2026', label: '10% OFF' },
+                        { code: 'NOVAMARKET50', label: 'S/ 50 OFF' },
+                        { code: 'NOVAMARQUET10', label: '10% OFF' },
+                        { code: 'DESCUENTO15', label: '15% OFF' }
+                      ].map((c) => (
+                        <button
+                          key={c.code}
+                          type="button"
+                          onClick={() => {
+                            setCouponCode(c.code);
+                            applyCoupon(c.code).then(res => {
+                              if (res.success) notificationHandler(`¡Cupón ${c.code} aplicado!`, 'success');
+                            });
+                          }}
+                          className="px-2.5 py-1 text-[10px] font-bold rounded-lg bg-primary-500/10 hover:bg-primary-500/20 text-primary-600 dark:text-primary-400 border border-primary-500/20 transition-all active:scale-95 flex items-center gap-1"
+                        >
+                          <Tag size={10} /> {c.code} <span className="opacity-70">({c.label})</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </>
               )}
               {couponError && (
                 <p className="text-[10px] text-red-500 font-bold mt-1.5 ml-1">{couponError}</p>
