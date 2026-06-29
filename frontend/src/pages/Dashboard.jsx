@@ -1052,15 +1052,27 @@ const Dashboard = ({ notificationHandler }) => {
           {/* Left Column Profile Sidebar */}
           <div className="bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 p-6 rounded-3xl shadow-sm text-center space-y-6 h-fit">
             <div className="flex flex-col items-center">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-primary-500 to-purple-600 flex items-center justify-center text-white font-extrabold text-3xl shadow-lg shadow-primary-500/15 mb-3">
-                {user.username[0].toUpperCase()}
+              <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-primary-500 via-purple-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-3xl shadow-lg shadow-primary-500/20 mb-3 ring-4 ring-primary-500/10">
+                {user.username ? user.username[0].toUpperCase() : 'C'}
               </div>
               <h2 className="font-extrabold text-lg text-slate-800 dark:text-slate-100">
-                {user.first_name} {user.last_name}
+                {user.first_name || user.username} {user.last_name || ''}
               </h2>
-              <span className="text-[10px] font-black uppercase text-indigo-500 bg-indigo-500/10 px-2.5 py-0.5 border border-indigo-500/20 rounded-full mt-1 tracking-wider">
-                Cliente Premium
+              <span className="text-[10px] font-black uppercase text-indigo-500 bg-indigo-500/10 px-3 py-1 border border-indigo-500/20 rounded-full mt-1.5 tracking-wider flex items-center gap-1">
+                <Sparkles size={12} /> Cliente VIP Novamarquet
               </span>
+            </div>
+
+            {/* Account Quick Stats Chips */}
+            <div className="grid grid-cols-2 gap-2 text-left pt-2 border-t border-slate-100 dark:border-dark-800">
+              <div className="bg-slate-50 dark:bg-dark-950 p-3 rounded-2xl border border-slate-100 dark:border-dark-850">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Compras</span>
+                <span className="text-sm font-extrabold text-slate-800 dark:text-slate-100">{orders.length}</span>
+              </div>
+              <div className="bg-slate-50 dark:bg-dark-950 p-3 rounded-2xl border border-slate-100 dark:border-dark-850">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Favoritos</span>
+                <span className="text-sm font-extrabold text-primary-500">{wishlist?.products?.length || 0}</span>
+              </div>
             </div>
 
             <div className="border-t border-slate-100 dark:border-dark-800 pt-4 flex flex-col gap-1.5">
@@ -1092,14 +1104,50 @@ const Dashboard = ({ notificationHandler }) => {
             {/* Tab: Customer Orders (Mis Pedidos) */}
             {activeTab === 'customer_orders' && (
               <div className="space-y-6">
-                <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-5 shadow-sm">
-                  <h3 className="text-sm font-bold text-slate-850 dark:text-slate-200 uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 dark:border-dark-800">
-                    Historial de Compras y Envío
+                <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-6 shadow-sm">
+                  <h3 className="text-sm font-bold text-slate-850 dark:text-slate-200 uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 dark:border-dark-800 flex items-center justify-between">
+                    <span>Historial de Compras y Seguimiento</span>
+                    <span className="text-xs font-semibold text-slate-400 font-mono">Total: {orders.length} pedidos</span>
                   </h3>
 
                   {orders.length === 0 ? (
-                    <div className="p-8 text-center text-slate-400 text-xs">
-                      No has realizado ninguna compra todavía.
+                    <div className="py-12 px-6 text-center space-y-5 bg-gradient-to-b from-slate-50/50 to-white dark:from-dark-950/30 dark:to-dark-900 rounded-3xl border border-dashed border-slate-200 dark:border-dark-800">
+                      <div className="w-16 h-16 rounded-3xl bg-primary-500/10 text-primary-500 flex items-center justify-center mx-auto shadow-inner">
+                        <ShoppingBag size={32} className="animate-bounce" />
+                      </div>
+                      <div className="max-w-md mx-auto space-y-2">
+                        <h4 className="text-base font-extrabold text-slate-800 dark:text-slate-100">
+                          ¡Bienvenido a tu panel personal, {user.first_name || user.username}!
+                        </h4>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                          Aún no has realizado ninguna compra en Novamarquet. Explora nuestro catálogo con envíos garantizados a todo el Perú y aprovecha los cupones activos.
+                        </p>
+                      </div>
+
+                      <div className="pt-2 flex flex-wrap justify-center gap-3">
+                        <button
+                          onClick={() => navigate('/')}
+                          className="px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-600 hover:shadow-lg hover:shadow-primary-500/25 text-white text-xs font-extrabold rounded-2xl transition-all shadow-md active:scale-95 flex items-center gap-2"
+                        >
+                          <ShoppingBag size={15} /> Explorar Productos de la Tienda
+                        </button>
+                      </div>
+
+                      {/* Feature highlights */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 max-w-lg mx-auto text-left border-t border-slate-100 dark:border-dark-800/80">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-slate-600 dark:text-slate-400">
+                          <Truck size={14} className="text-primary-500 flex-shrink-0" />
+                          <span>Envío Rápido 24-48h</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-slate-600 dark:text-slate-400">
+                          <CheckCircle size={14} className="text-green-500 flex-shrink-0" />
+                          <span>Compra Protegida</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-slate-600 dark:text-slate-400">
+                          <Tag size={14} className="text-purple-500 flex-shrink-0" />
+                          <span>Cupones de Descuento</span>
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     <div className="space-y-6">
@@ -1175,8 +1223,20 @@ const Dashboard = ({ notificationHandler }) => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {addresses.length === 0 ? (
-                    <div className="p-8 text-center text-slate-400 text-xs col-span-2">
-                      No has guardado ninguna dirección.
+                    <div className="py-10 px-6 text-center space-y-4 bg-white dark:bg-dark-900 rounded-3xl border border-dashed border-slate-200 dark:border-dark-800 col-span-2">
+                      <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center mx-auto">
+                        <MapPin size={24} />
+                      </div>
+                      <div className="space-y-1 max-w-sm mx-auto">
+                        <h4 className="text-sm font-extrabold text-slate-800 dark:text-slate-100">Sin direcciones registradas</h4>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">Guarda tus lugares frecuentes (Casa, Trabajo) para agilizar tus compras en Novamarquet.</p>
+                      </div>
+                      <button
+                        onClick={() => setShowAddressModal(true)}
+                        className="px-5 py-2.5 bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold rounded-xl shadow-md active:scale-95 transition-all inline-flex items-center gap-1.5"
+                      >
+                        <Plus size={14} /> Registrar mi Primera Dirección
+                      </button>
                     </div>
                   ) : (
                     addresses.map((a) => (
