@@ -147,12 +147,12 @@ const OrderTracking = ({ notificationHandler }) => {
                   
                   {/* Step 1: Confirmed */}
                   {[
-                    { id: 'confirmed', title: 'Pedido Confirmado', desc: 'Tu compra ha sido verificada y registrada correctamente.', icon: CheckCircle2 },
-                    { id: 'preparing', title: 'Preparando Pedido', desc: 'Estamos empaquetando tus productos en el centro de despacho.', icon: Package },
-                    { id: 'packed', title: 'Listo para despacho', desc: 'El producto ha sido embalado y espera recojo del transportista.', icon: Package },
-                    { id: 'shipped', title: 'Enviado / En ruta', desc: 'El paquete se encuentra en tránsito terrestre a la agencia de tu localidad.', icon: Truck },
-                    { id: 'in_transit', title: 'En reparto', desc: 'El repartidor local tiene tu paquete y lo entregará hoy en tu domicilio.', icon: Truck },
-                    { id: 'delivered', title: 'Entregado con éxito', desc: 'El producto ha sido entregado en la dirección de destino.', icon: CheckCircle2 }
+                    { id: 'confirmed', title: 'Pedido Recibido', desc: 'Tu pedido ha sido recibido y registrado en nuestro sistema.', icon: CheckCircle2 },
+                    { id: 'preparing', title: 'Pago Aprobado', desc: 'Tu pago ha sido validado y aprobado exitosamente.', icon: CheckCircle2 },
+                    { id: 'packed', title: 'Preparando Pedido', desc: 'Estamos empaquetando tus productos en el almacén del vendedor.', icon: Package },
+                    { id: 'shipped', title: 'Despachado / Enviado', desc: 'El paquete ha sido entregado a la empresa de transporte.', icon: Truck },
+                    { id: 'in_transit', title: 'En Tránsito', desc: 'El paquete se encuentra en camino a tu domicilio.', icon: Truck },
+                    { id: 'delivered', title: 'Entregado', desc: 'El producto ha sido entregado con éxito.', icon: CheckCircle2 }
                   ].map((step, idx) => {
                     const status = getStepStatus(step.id);
                     const isCompleted = status === 'completed';

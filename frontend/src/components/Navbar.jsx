@@ -5,6 +5,7 @@ import {
   Search, ShieldAlert, BarChart3, Menu, X, CheckSquare
 } from 'lucide-react';
 import { useStore } from '../store/useStore';
+import api from '../services/api';
 
 const Navbar = ({ onSearchChange }) => {
   const navigate = useNavigate();
@@ -17,6 +18,45 @@ const Navbar = ({ onSearchChange }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [searchVal, setSearchVal] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [loadingSuggestions, setLoadingSuggestions] = useState(false);
+
+  // Debounced Search Suggestions Trigger
+  useEffect(() => {
+    const delayDebounce = setTimeout(async () => {
+      if (searchVal.trim().length >= 3) {
+        setLoadingSuggestions(true);
+        try {
+          const res = await api.get(`products/?search=${encodeURIComponent(searchVal)}`);
+          setSuggestions(res.data.slice(0, 6)); // limit to top 6
+          setShowSuggestions(true);
+        } catch (err) {
+          console.error("Error fetching search suggestions:", err);
+        } finally {
+          setLoadingSuggestions(false);
+        }
+      } else {
+        setSuggestions([]);
+        setShowSuggestions(false);
+      }
+    }, 300);
+
+    return () => clearTimeout(delayDebounce);
+  }, [searchVal]);
+
+  // Click Away handler
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      const searchContainer = document.getElementById('search-container');
+      const mobileSearchContainer = document.getElementById('mobile-search-container');
+      if (searchContainer && !searchContainer.contains(e.target)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, []);
 
   // Fetch notifications on mount if authenticated
   useEffect(() => {
@@ -63,15 +103,67 @@ const Navbar = ({ onSearchChange }) => {
           </div>
 
           {/* Search bar */}
-          <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-md mx-8 relative">
+          <form onSubmit={handleSearchSubmit} className="hidden md:flex flex-1 max-w-md mx-8 relative" id="search-container">
             <input
               type="text"
               placeholder="Buscar marcas, celulares, laptops..."
               value={searchVal}
+              onFocus={() => { if (searchVal.trim().length >= 3) setShowSuggestions(true); }}
               onChange={(e) => setSearchVal(e.target.value)}
               className="w-full bg-slate-100/80 dark:bg-dark-950/60 border border-slate-200 dark:border-dark-800 text-slate-800 dark:text-slate-100 rounded-full px-5 py-2 pl-12 text-sm outline-none focus:border-primary-500 focus:bg-white dark:focus:bg-dark-900 transition-all focus:ring-2 focus:ring-primary-500/15"
             />
             <Search className="absolute left-4 top-2.5 text-slate-400" size={18} />
+
+            {/* Autocomplete Overlay */}
+            {showSuggestions && (suggestions.length > 0 || loadingSuggestions) && (
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-2xl shadow-2xl z-50 overflow-hidden py-2 animate-in fade-in duration-150">
+                {loadingSuggestions ? (
+                  <div className="px-4 py-3 text-xs text-slate-400 dark:text-slate-500">
+                    Cargando sugerencias...
+                  </div>
+                ) : (
+                  <>
+                    <div className="px-4 py-1.5 text-[9px] font-bold text-slate-450 dark:text-slate-500 uppercase tracking-wider">
+                      Sugerencias de Productos
+                    </div>
+                    <div className="max-h-72 overflow-y-auto divide-y divide-slate-100 dark:divide-dark-850">
+                      {suggestions.map((product) => (
+                        <div
+                          key={product.id}
+                          onClick={() => {
+                            navigate(`/product/${product.slug}`);
+                            setShowSuggestions(false);
+                            setSearchVal('');
+                          }}
+                          className="flex items-center gap-3 px-4 py-2 hover:bg-slate-50 dark:hover:bg-dark-950 transition-colors cursor-pointer text-left"
+                        >
+                          <img
+                            src={product.primary_image || '/placeholder.jpg'}
+                            alt={product.name}
+                            className="w-10 h-10 object-contain rounded bg-slate-50 dark:bg-dark-950/20 p-1 border border-slate-100 dark:border-dark-800"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src = 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100&auto=format&fit=crop&q=60';
+                            }}
+                          />
+                          <div className="flex-grow min-w-0">
+                            <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
+                              {product.name}
+                            </p>
+                            <span className="text-[10px] font-semibold text-slate-450 uppercase">
+                              {product.brand?.name || 'Producto'} · {product.category || 'Categoría'}
+                            </span>
+                          </div>
+                          <span className="text-xs font-black text-slate-850 dark:text-white flex-shrink-0">
+                            S/ {product.current_price}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
           </form>
 
           {/* Navigation Controls */}
@@ -213,21 +305,23 @@ const Navbar = ({ onSearchChange }) => {
                     </span>
                   </div>
 
-                  <Link 
-                    to="/wishlist" 
-                    onClick={() => setShowProfile(false)}
-                    className="flex items-center gap-2 px-4 py-2 text-xs text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-dark-800 transition-colors"
-                  >
-                    <Heart size={14} /> Favoritos
-                  </Link>
-
-                  <Link 
-                    to="/orders" 
-                    onClick={() => setShowProfile(false)}
-                    className="flex items-center gap-2 px-4 py-2 text-xs text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-dark-800 transition-colors"
-                  >
-                    <ShoppingBag size={14} /> Mis Compras
-                  </Link>
+                  {user?.role === 'client' ? (
+                    <Link 
+                      to="/mi-cuenta" 
+                      onClick={() => setShowProfile(false)}
+                      className="flex items-center gap-2 px-4 py-2 text-xs text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-dark-800 transition-colors"
+                    >
+                      <UserIcon size={14} /> Mi Cuenta
+                    </Link>
+                  ) : (
+                    <Link 
+                      to="/dashboard" 
+                      onClick={() => setShowProfile(false)}
+                      className="flex items-center gap-2 px-4 py-2 text-xs text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-dark-800 transition-colors"
+                    >
+                      <BarChart3 size={14} /> Panel de Control
+                    </Link>
+                  )}
 
                   <button
                     onClick={handleLogoutClick}
