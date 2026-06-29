@@ -197,7 +197,7 @@ const Navbar = ({ onSearchChange }) => {
               onClick={() => {
                 setShowNotifications(false);
                 setShowProfile(false);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                navigate('/cart');
               }}
               className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-dark-800 text-slate-600 dark:text-slate-300 relative transition-all active:scale-95 cursor-pointer inline-flex items-center justify-center"
               title="Carrito de compras"
