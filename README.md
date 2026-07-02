@@ -1,4 +1,4 @@
-# 🛍️ NOVAMARQUET-AI - E-Commerce Industrial con Analíticas 3D y Logística
+#  NOVAMARQUET-AI - E-Commerce Industrial con Analíticas 3D y Logística
 
 Bienvenido a **NOVAMARQUET-AI**, una plataforma de comercio electrónico de nivel empresarial diseñada con un backend robusto en **Django REST Framework** y un frontend modular e interactivo en **React (Vite) + Tailwind CSS v4**.
 
@@ -6,7 +6,7 @@ El proyecto cuenta con autenticación segura por tokens (JWT), pasarelas de pago
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+##  Tecnologías Utilizadas
 
 *   **Backend:** Python 3.x, Django 5.x, Django REST Framework, Simple JWT, Pillow (Gestión de imágenes).
 *   **Frontend:** React 19, Vite, Tailwind CSS v4, Zustand (Gestor de estados), Chart.js (Visualización de datos).
@@ -14,7 +14,7 @@ El proyecto cuenta con autenticación segura por tokens (JWT), pasarelas de pago
 
 ---
 
-## 🚀 Guía de Instalación y Configuración
+##  Guía de Instalación y Configuración
 
 Sigue estos pasos detallados para clonar y ejecutar el proyecto en tu máquina local sin errores.
 
