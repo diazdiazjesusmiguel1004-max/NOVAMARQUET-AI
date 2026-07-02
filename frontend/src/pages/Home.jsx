@@ -293,36 +293,43 @@ const Home = ({ notificationHandler }) => {
                 </h2>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-[10px] font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded uppercase tracking-wider hidden sm:inline-block">
+                <span className="text-[10px] font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded uppercase tracking-wider">
                   Descuentos del 10% al 30%
                 </span>
-                <div className="flex items-center gap-1.5">
-                  <button
-                    onClick={() => scrollOffers('left')}
-                    className="p-1.5 rounded-lg bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 text-slate-600 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-500 transition-colors shadow-sm hover:shadow active:scale-95 cursor-pointer"
-                    title="Deslizar izquierda"
-                  >
-                    <ChevronLeft size={15} />
-                  </button>
-                  <button
-                    onClick={() => scrollOffers('right')}
-                    className="p-1.5 rounded-lg bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 text-slate-600 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-500 transition-colors shadow-sm hover:shadow active:scale-95 cursor-pointer"
-                    title="Deslizar derecha"
-                  >
-                    <ChevronRight size={15} />
-                  </button>
-                </div>
               </div>
             </div>
             {discountProducts.length === 0 ? (
               <div className="p-8 text-center text-xs text-slate-400">No hay ofertas disponibles.</div>
             ) : (
-              <div ref={offersScrollRef} className="flex overflow-x-auto gap-6 pb-4 pt-1 snap-x no-scrollbar select-none scroll-smooth">
-                {discountProducts.map((product) => (
-                  <div key={product.id} className="w-[280px] flex-shrink-0 snap-start">
-                    <ProductCard product={product} onNotify={notificationHandler} />
-                  </div>
-                ))}
+              <div className="relative group">
+                {/* Botón Izquierdo Flotante en el Centro */}
+                <button
+                  onClick={() => scrollOffers('left')}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-white/95 dark:bg-dark-900/95 border border-slate-200 dark:border-dark-800 text-slate-700 dark:text-slate-350 hover:bg-primary-500 hover:text-white hover:border-primary-500 shadow-xl transition-all duration-300 active:scale-90 cursor-pointer flex items-center justify-center opacity-0 group-hover:opacity-100 focus:opacity-100"
+                  title="Deslizar izquierda"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+
+                {/* Botón Derecho Flotante en el Centro */}
+                <button
+                  onClick={() => scrollOffers('right')}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-white/95 dark:bg-dark-900/95 border border-slate-200 dark:border-dark-800 text-slate-700 dark:text-slate-350 hover:bg-primary-500 hover:text-white hover:border-primary-500 shadow-xl transition-all duration-300 active:scale-90 cursor-pointer flex items-center justify-center opacity-0 group-hover:opacity-100 focus:opacity-100"
+                  title="Deslizar derecha"
+                >
+                  <ChevronRight size={18} />
+                </button>
+
+                <div 
+                  ref={offersScrollRef} 
+                  className="flex overflow-x-auto gap-6 pb-4 pt-1 snap-x no-scrollbar select-none scroll-smooth px-1"
+                >
+                  {discountProducts.map((product) => (
+                    <div key={product.id} className="w-[280px] flex-shrink-0 snap-start">
+                      <ProductCard product={product} onNotify={notificationHandler} />
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
