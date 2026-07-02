@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { 
   BarChart3, ShieldAlert, ShoppingBag, Eye, CheckCircle, RefreshCw, 
   Plus, Trash2, Save, X, Search, Box, Tag, Users, CreditCard, 
-  MapPin, User, Lock, Clock, ArrowRightLeft, Sparkles, Percent, Truck, Wallet, Heart
+  MapPin, User, Lock, Clock, ArrowRightLeft, ArrowRight, Sparkles, Percent, Truck, Wallet, Heart
 } from 'lucide-react';
 import api from '../services/api';
 import { useStore } from '../store/useStore';
