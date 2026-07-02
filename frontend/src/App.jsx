@@ -59,7 +59,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col bg-white text-slate-900 dark:bg-dark-955 dark:text-slate-100 transition-colors duration-300">
+      <div className="min-h-screen flex flex-col bg-white text-slate-900 dark:bg-white dark:text-slate-900 transition-colors duration-300">
         
         {/* Global sticky navigation */}
         <Navbar />

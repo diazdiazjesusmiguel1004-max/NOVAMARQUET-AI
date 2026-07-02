@@ -180,7 +180,7 @@ const Home = ({ notificationHandler }) => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-dark-950 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-0 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-white -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-0 transition-colors duration-300">
       
       {/* ─── CASE A: DEFAULT HOMEPAGE (AMAZON STYLE) ─── */}
       {!isBrowsingCatalog && (
@@ -203,7 +203,7 @@ const Home = ({ notificationHandler }) => {
                 )}
                 
                 {/* Bottom gradient overlay to transition to light gray bg */}
-                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white dark:from-dark-950 to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white dark:from-white to-transparent z-10 pointer-events-none" />
 
                 <div className="max-w-xl z-20 space-y-3">
                   <span className="bg-amber-500 text-slate-950 font-black text-[9px] uppercase tracking-widest px-2.5 py-0.5 rounded">
@@ -246,11 +246,11 @@ const Home = ({ notificationHandler }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-30 -mt-16 sm:-mt-44 max-w-7xl mx-auto px-1 sm:px-4">
             
             {/* Card 1: Laptops */}
-            <div className="bg-white dark:bg-dark-900 p-5 shadow-sm rounded-none border border-slate-200/50 dark:border-dark-800 flex flex-col justify-between h-[360px]">
-              <h3 className="font-extrabold text-base text-slate-900 dark:text-white leading-tight">
+            <div className="bg-white p-5 shadow-sm rounded-none border border-slate-200/50 flex flex-col justify-between h-[360px]">
+              <h3 className="font-extrabold text-base text-slate-900 leading-tight">
                 Laptops de Alto Rendimiento
               </h3>
-              <div className="my-3 h-52 w-full bg-slate-50 dark:bg-dark-950 overflow-hidden flex items-center justify-center">
+              <div className="my-3 h-52 w-full bg-slate-50 overflow-hidden flex items-center justify-center">
                 <img 
                   src={products.find(p => p.category_slug === 'laptops' || p.category?.toLowerCase() === 'laptops')?.primary_image || 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=500'} 
                   alt="Laptops" 
@@ -259,18 +259,18 @@ const Home = ({ notificationHandler }) => {
               </div>
               <button 
                 onClick={() => setSelectedCategory('laptops')}
-                className="text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 text-left hover:underline cursor-pointer"
+                className="text-xs font-bold text-blue-600 hover:text-blue-700 text-left hover:underline cursor-pointer"
               >
                 Ver todas las laptops
               </button>
             </div>
 
             {/* Card 2: Celulares */}
-            <div className="bg-white dark:bg-dark-900 p-5 shadow-sm rounded-none border border-slate-200/50 dark:border-dark-800 flex flex-col justify-between h-[360px]">
-              <h3 className="font-extrabold text-base text-slate-900 dark:text-white leading-tight">
+            <div className="bg-white p-5 shadow-sm rounded-none border border-slate-200/50 flex flex-col justify-between h-[360px]">
+              <h3 className="font-extrabold text-base text-slate-900 leading-tight">
                 Celulares Inteligentes
               </h3>
-              <div className="my-3 h-52 w-full bg-slate-50 dark:bg-dark-955 overflow-hidden flex items-center justify-center">
+              <div className="my-3 h-52 w-full bg-slate-50 overflow-hidden flex items-center justify-center">
                 <img 
                   src={products.find(p => p.category_slug === 'celulares' || p.category?.toLowerCase() === 'celulares')?.primary_image || 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500'} 
                   alt="Celulares" 
@@ -279,18 +279,18 @@ const Home = ({ notificationHandler }) => {
               </div>
               <button 
                 onClick={() => setSelectedCategory('celulares')}
-                className="text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 text-left hover:underline cursor-pointer"
+                className="text-xs font-bold text-blue-600 hover:text-blue-700 text-left hover:underline cursor-pointer"
               >
                 Explorar celulares
               </button>
             </div>
 
             {/* Card 3: Consolas */}
-            <div className="bg-white dark:bg-dark-900 p-5 shadow-sm rounded-none border border-slate-200/50 dark:border-dark-800 flex flex-col justify-between h-[360px]">
-              <h3 className="font-extrabold text-base text-slate-900 dark:text-white leading-tight">
+            <div className="bg-white p-5 shadow-sm rounded-none border border-slate-200/50 flex flex-col justify-between h-[360px]">
+              <h3 className="font-extrabold text-base text-slate-900 leading-tight">
                 Consolas y Gaming
               </h3>
-              <div className="my-3 h-52 w-full bg-slate-50 dark:bg-dark-950 overflow-hidden flex items-center justify-center">
+              <div className="my-3 h-52 w-full bg-slate-50 overflow-hidden flex items-center justify-center">
                 <img 
                   src={products.find(p => p.category_slug === 'consolas' || p.category?.toLowerCase() === 'consolas')?.primary_image || 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=500'} 
                   alt="Consolas" 
@@ -299,18 +299,18 @@ const Home = ({ notificationHandler }) => {
               </div>
               <button 
                 onClick={() => setSelectedCategory('consolas')}
-                className="text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 text-left hover:underline cursor-pointer"
+                className="text-xs font-bold text-blue-600 hover:text-blue-700 text-left hover:underline cursor-pointer"
               >
                 Ver videojuegos y consolas
               </button>
             </div>
 
             {/* Card 4: Hogar */}
-            <div className="bg-white dark:bg-dark-900 p-5 shadow-sm rounded-none border border-slate-200/50 dark:border-dark-800 flex flex-col justify-between h-[360px]">
-              <h3 className="font-extrabold text-base text-slate-900 dark:text-white leading-tight">
+            <div className="bg-white p-5 shadow-sm rounded-none border border-slate-200/50 flex flex-col justify-between h-[360px]">
+              <h3 className="font-extrabold text-base text-slate-900 leading-tight">
                 Hogar y Confort
               </h3>
-              <div className="my-3 h-52 w-full bg-slate-50 dark:bg-dark-950 overflow-hidden flex items-center justify-center">
+              <div className="my-3 h-52 w-full bg-slate-50 overflow-hidden flex items-center justify-center">
                 <img 
                   src={products.find(p => p.category_slug === 'hogar' || p.category?.toLowerCase() === 'hogar')?.primary_image || 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500'} 
                   alt="Hogar" 
@@ -319,7 +319,7 @@ const Home = ({ notificationHandler }) => {
               </div>
               <button 
                 onClick={() => setSelectedCategory('hogar')}
-                className="text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 text-left hover:underline cursor-pointer"
+                className="text-xs font-bold text-blue-600 hover:text-blue-700 text-left hover:underline cursor-pointer"
               >
                 Explorar Hogar Nova
               </button>
@@ -329,11 +329,11 @@ const Home = ({ notificationHandler }) => {
           <div className="max-w-7xl mx-auto space-y-6 px-1 sm:px-4">
             
             {/* 3. Ofertas del Día Horizontal Scroll (White Card Amazon style) */}
-            <div className="bg-white dark:bg-dark-900 border border-slate-200/50 dark:border-dark-800 p-6 shadow-sm">
-              <div className="flex items-center justify-between border-b pb-4 mb-4 dark:border-dark-800">
+            <div className="bg-white border border-slate-200/50 p-6 shadow-sm">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
                 <div className="flex items-center gap-2">
                   <Flame size={20} className="text-red-500 animate-pulse" />
-                  <h2 className="text-lg font-black text-slate-800 dark:text-white tracking-tight">
+                  <h2 className="text-lg font-black text-slate-800 tracking-tight">
                     Super Ofertas del Día
                   </h2>
                 </div>
@@ -351,7 +351,7 @@ const Home = ({ notificationHandler }) => {
                   {/* Botón Izquierdo Flotante */}
                   <button
                     onClick={() => scrollOffers('left')}
-                    className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-white/95 dark:bg-dark-900/95 border border-slate-200 dark:border-dark-800 text-slate-700 dark:text-slate-300 hover:bg-primary-500 hover:text-white hover:border-primary-500 shadow-xl transition-all duration-300 active:scale-90 cursor-pointer flex items-center justify-center opacity-0 group-hover:opacity-100 focus:opacity-100"
+                    className="absolute left-1 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-white/95 border border-slate-200 text-slate-700 hover:bg-primary-500 hover:text-white hover:border-primary-500 shadow-xl transition-all duration-300 active:scale-90 cursor-pointer flex items-center justify-center opacity-0 group-hover:opacity-100 focus:opacity-100"
                     title="Deslizar izquierda"
                   >
                     <ChevronLeft size={18} />
@@ -360,7 +360,7 @@ const Home = ({ notificationHandler }) => {
                   {/* Botón Derecho Flotante */}
                   <button
                     onClick={() => scrollOffers('right')}
-                    className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-white/95 dark:bg-dark-900/95 border border-slate-200 dark:border-dark-800 text-slate-700 dark:text-slate-300 hover:bg-primary-500 hover:text-white hover:border-primary-500 shadow-xl transition-all duration-300 active:scale-90 cursor-pointer flex items-center justify-center opacity-0 group-hover:opacity-100 focus:opacity-100"
+                    className="absolute right-1 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-white/95 border border-slate-200 text-slate-700 hover:bg-primary-500 hover:text-white hover:border-primary-500 shadow-xl transition-all duration-300 active:scale-90 cursor-pointer flex items-center justify-center opacity-0 group-hover:opacity-100 focus:opacity-100"
                     title="Deslizar derecha"
                   >
                     <ChevronRight size={18} />
@@ -402,10 +402,10 @@ const Home = ({ notificationHandler }) => {
             </div>
 
             {/* 5. Los Más Vendidos (White Card Grid) */}
-            <div className="bg-white dark:bg-dark-900 border border-slate-200/50 dark:border-dark-800 p-6 shadow-sm space-y-4">
-              <div className="flex items-center gap-2 border-b pb-3 mb-2 dark:border-dark-800">
+            <div className="bg-white border border-slate-200/50 p-6 shadow-sm space-y-4">
+              <div className="flex items-center gap-2 border-b border-slate-100 pb-3 mb-2">
                 <Trophy size={18} className="text-amber-500" />
-                <h2 className="text-lg font-black text-slate-800 dark:text-white tracking-tight">
+                <h2 className="text-lg font-black text-slate-800 tracking-tight">
                   Los Más Vendidos en Novamarquet
                 </h2>
               </div>
@@ -421,10 +421,10 @@ const Home = ({ notificationHandler }) => {
             </div>
 
             {/* 6. Recomendados para Ti */}
-            <div className="bg-white dark:bg-dark-900 border border-slate-200/50 dark:border-dark-800 p-6 shadow-sm space-y-4">
-              <div className="flex items-center gap-2 border-b pb-3 mb-2 dark:border-dark-800">
+            <div className="bg-white border border-slate-200/50 p-6 shadow-sm space-y-4">
+              <div className="flex items-center gap-2 border-b border-slate-100 pb-3 mb-2">
                 <Sparkles size={18} className="text-purple-500" />
-                <h2 className="text-lg font-black text-slate-800 dark:text-white tracking-tight">
+                <h2 className="text-lg font-black text-slate-800 tracking-tight">
                   Recomendados Para Ti
                 </h2>
               </div>
@@ -436,8 +436,8 @@ const Home = ({ notificationHandler }) => {
             </div>
 
             {/* 7. Marcas Aliadas */}
-            <div className="bg-white dark:bg-dark-900 border border-slate-200/50 dark:border-dark-800 p-6 shadow-sm space-y-4">
-              <div className="text-center pb-2 border-b dark:border-dark-800">
+            <div className="bg-white border border-slate-200/50 p-6 shadow-sm space-y-4">
+              <div className="text-center pb-2 border-b border-slate-100">
                 <h3 className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                   Marcas Oficiales e Independientes
                 </h3>
