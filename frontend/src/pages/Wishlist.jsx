@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Heart, ShoppingBag, Trash2, ArrowRight, Star } from 'lucide-react';
+import { Heart, ShoppingBag, Trash2, ArrowRight, Star, ChevronRight } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 const Wishlist = ({ notificationHandler }) => {
@@ -61,28 +61,22 @@ const Wishlist = ({ notificationHandler }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-colors duration-300">
       
+      {/* Breadcrumbs */}
+      <div className="flex items-center gap-1.5 text-xs text-slate-400 dark:text-slate-500 font-semibold mb-6">
+        <Link to="/" className="hover:text-primary-500 transition-colors">Tienda</Link>
+        <ChevronRight size={12} />
+        {fromDashboard && (
+          <>
+            <Link to="/mi-cuenta" className="hover:text-primary-500 transition-colors">Mi Perfil</Link>
+            <ChevronRight size={12} />
+          </>
+        )}
+        <span className="text-slate-650 dark:text-slate-200">Lista de favoritos</span>
+      </div>
+
       {/* Title Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 pb-4 border-b border-slate-200/50 dark:border-dark-850">
         <div>
-          {fromDashboard ? (
-            <div className="flex items-center gap-3">
-              <Link 
-                to="/mi-cuenta" 
-                className="text-[10px] uppercase tracking-wider font-extrabold text-slate-450 hover:text-primary-500 transition-colors bg-slate-100 dark:bg-dark-900 border border-slate-200 dark:border-dark-800 px-3 py-1.5 rounded-xl flex items-center gap-1"
-              >
-                ← Volver a Mi Perfil
-              </Link>
-            </div>
-          ) : (
-            <div className="flex items-center gap-3">
-              <Link 
-                to="/" 
-                className="text-[10px] uppercase tracking-wider font-extrabold text-slate-450 hover:text-primary-500 transition-colors bg-slate-100 dark:bg-dark-900 border border-slate-200 dark:border-dark-800 px-3 py-1.5 rounded-xl flex items-center gap-1"
-              >
-                ← Volver a la Tienda
-              </Link>
-            </div>
-          )}
           <div className="flex items-center gap-2 mt-4">
             <Heart size={20} className="text-red-500 fill-red-500 animate-pulse" />
             <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">
