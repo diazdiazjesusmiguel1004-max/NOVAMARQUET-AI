@@ -72,10 +72,18 @@ const Orders = ({ notificationHandler }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-colors duration-300">
       
-      <div className="flex items-center gap-1.5 text-xs text-slate-400 font-semibold mb-6">
-        <Link to="/" className="hover:text-primary-500">Tienda</Link>
-        <ChevronRight size={12} />
-        <span className="text-slate-650 dark:text-slate-200">Mis Compras</span>
+      <div className="flex justify-between items-center flex-wrap gap-3 mb-6">
+        <div className="flex items-center gap-1.5 text-xs text-slate-400 font-semibold">
+          <Link to="/" className="hover:text-primary-500">Tienda</Link>
+          <ChevronRight size={12} />
+          <span className="text-slate-650 dark:text-slate-200">Mis Compras</span>
+        </div>
+        <Link 
+          to="/mi-cuenta" 
+          className="text-[10px] uppercase tracking-wider font-extrabold text-slate-450 hover:text-primary-500 transition-colors bg-slate-100 dark:bg-dark-900 border border-slate-200 dark:border-dark-800 px-3 py-1.5 rounded-xl flex items-center gap-1"
+        >
+          ← Volver a Mi Perfil
+        </Link>
       </div>
 
       <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-800 dark:text-slate-100 mb-8 tracking-tight">

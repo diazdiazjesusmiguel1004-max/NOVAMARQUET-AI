@@ -61,7 +61,15 @@ const Wishlist = ({ notificationHandler }) => {
       {/* Title Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 pb-4 border-b border-slate-200/50 dark:border-dark-850">
         <div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <Link 
+              to="/mi-cuenta" 
+              className="text-[10px] uppercase tracking-wider font-extrabold text-slate-450 hover:text-primary-500 transition-colors bg-slate-100 dark:bg-dark-900 border border-slate-200 dark:border-dark-800 px-3 py-1.5 rounded-xl flex items-center gap-1"
+            >
+              ← Volver a Mi Perfil
+            </Link>
+          </div>
+          <div className="flex items-center gap-2 mt-4">
             <Heart size={20} className="text-red-500 fill-red-500 animate-pulse" />
             <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">
               Lista de Favoritos
