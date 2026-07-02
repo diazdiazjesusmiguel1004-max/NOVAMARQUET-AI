@@ -455,7 +455,7 @@ const Dashboard = ({ notificationHandler }) => {
                   Admin Console
                 </span>
               </div>
-              <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight mt-1.5">
+              <h1 className="text-3xl font-black text-slate-800  tracking-tight mt-1.5">
                 NOVAMARQUET-AI Control Hub
               </h1>
               <p className="text-xs text-slate-450 mt-1">
@@ -464,7 +464,7 @@ const Dashboard = ({ notificationHandler }) => {
             </div>
 
             {/* Tab Selector */}
-            <div className="flex flex-wrap bg-slate-100 dark:bg-dark-950 p-1.5 rounded-2xl border border-slate-200/50 dark:border-dark-800">
+            <div className="flex flex-wrap bg-slate-100  p-1.5 rounded-2xl border border-slate-200/50 ">
               {[
                 { id: 'analytics', label: 'Dashboard Stats', icon: BarChart3 },
                 { id: 'users', label: 'Usuarios', icon: Users },
@@ -477,8 +477,8 @@ const Dashboard = ({ notificationHandler }) => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl transition-all ${
                     activeTab === tab.id
-                      ? 'bg-white dark:bg-dark-900 text-slate-800 dark:text-slate-100 shadow-md'
-                      : 'text-slate-450 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+                      ? 'bg-white  text-slate-800  shadow-md'
+                      : 'text-slate-450  hover:text-slate-700 '
                   }`}
                 >
                   <tab.icon size={13} /> {tab.label}
@@ -494,13 +494,13 @@ const Dashboard = ({ notificationHandler }) => {
 
           {/* Tab Content 2: Users */}
           {activeTab === 'users' && (
-            <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-5 shadow-sm overflow-x-auto">
-              <h3 className="text-sm font-bold text-slate-850 dark:text-slate-200 uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 dark:border-dark-800">
+            <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm overflow-x-auto">
+              <h3 className="text-sm font-bold text-slate-850  uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 ">
                 Gestión de Roles de Usuario
               </h3>
               <table className="w-full text-left text-xs min-w-[700px]">
                 <thead>
-                  <tr className="border-b border-slate-200 dark:border-dark-800 text-slate-400 font-semibold">
+                  <tr className="border-b border-slate-200  text-slate-400 font-semibold">
                     <th className="py-2.5">ID</th>
                     <th className="py-2.5">Usuario</th>
                     <th className="py-2.5">Email</th>
@@ -509,12 +509,12 @@ const Dashboard = ({ notificationHandler }) => {
                     <th className="py-2.5 text-right">Rol en la Plataforma</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 dark:divide-dark-850/60 text-slate-750 dark:text-slate-350">
+                <tbody className="divide-y divide-slate-100  text-slate-750 ">
                   {usersList.map((u) => (
-                    <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-dark-955/20 transition-all">
+                    <tr key={u.id} className="hover:bg-slate-50  transition-all">
                       <td className="py-3 font-mono font-bold text-slate-400">{u.id}</td>
                       <td className="py-3">
-                        <span className="font-bold text-slate-800 dark:text-slate-200">{u.username}</span>
+                        <span className="font-bold text-slate-800 ">{u.username}</span>
                         <p className="text-[10px] text-slate-400">{u.first_name} {u.last_name}</p>
                       </td>
                       <td className="py-3">{u.email}</td>
@@ -526,7 +526,7 @@ const Dashboard = ({ notificationHandler }) => {
                         <select
                           value={u.role}
                           onChange={(e) => handleUserRoleChange(u.id, e.target.value)}
-                          className="bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 text-[11px] rounded-xl px-2 py-1 outline-none font-semibold text-slate-700 dark:text-slate-300 focus:border-primary-500"
+                          className="bg-slate-50  border border-slate-200  text-[11px] rounded-xl px-2 py-1 outline-none font-semibold text-slate-700  focus:border-primary-500"
                         >
                           <option value="client">Cliente</option>
                           <option value="seller">Vendedor (Socio)</option>
@@ -543,7 +543,7 @@ const Dashboard = ({ notificationHandler }) => {
           {/* Tab Content 3: Products */}
           {activeTab === 'products' && (
             <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-3xl p-5 shadow-sm">
+              <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm">
                 <div className="relative flex-grow max-w-md">
                   <Search size={16} className="absolute left-3.5 top-3.5 text-slate-400" />
                   <input
@@ -551,7 +551,7 @@ const Dashboard = ({ notificationHandler }) => {
                     placeholder="Buscar por nombre o SKU..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 text-xs bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-2xl outline-none focus:border-primary-500 dark:text-slate-200"
+                    className="w-full pl-10 pr-4 py-2.5 text-xs bg-slate-50  border border-slate-200  rounded-2xl outline-none focus:border-primary-500 "
                   />
                 </div>
                 <button
@@ -562,10 +562,10 @@ const Dashboard = ({ notificationHandler }) => {
                 </button>
               </div>
 
-              <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-5 shadow-sm overflow-x-auto">
+              <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm overflow-x-auto">
                 <table className="w-full text-left text-xs min-w-[800px]">
                   <thead>
-                    <tr className="border-b border-slate-200 dark:border-dark-800 text-slate-400 font-semibold">
+                    <tr className="border-b border-slate-200  text-slate-400 font-semibold">
                       <th className="py-2.5">Miniatura</th>
                       <th className="py-2.5">Nombre & SKU</th>
                       <th className="py-2.5 w-24">Vendedor</th>
@@ -576,7 +576,7 @@ const Dashboard = ({ notificationHandler }) => {
                       <th className="py-2.5 text-right">Acciones</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 dark:divide-dark-800/40 text-slate-700 dark:text-slate-355">
+                  <tbody className="divide-y divide-slate-100  text-slate-700 ">
                     {filteredProducts.map((p) => {
                       const edited = editingProduct[p.id] || {};
                       const priceVal = edited.price !== undefined ? edited.price : p.price;
@@ -585,23 +585,23 @@ const Dashboard = ({ notificationHandler }) => {
                       const hasUnsaved = edited.price !== undefined || edited.offer_price !== undefined || edited.stock !== undefined;
 
                       return (
-                        <tr key={p.id} className="hover:bg-slate-50 dark:hover:bg-dark-955/20 transition-all">
+                        <tr key={p.id} className="hover:bg-slate-50  transition-all">
                           <td className="py-3">
-                            <img src={p.primary_image || '/placeholder.jpg'} alt={p.name} className="w-10 h-10 object-contain rounded bg-slate-50 dark:bg-dark-950 p-1 border" />
+                            <img src={p.primary_image || '/placeholder.jpg'} alt={p.name} className="w-10 h-10 object-contain rounded bg-slate-50  p-1 border" />
                           </td>
                           <td className="py-3 pr-2">
-                            <p className="font-bold text-slate-800 dark:text-slate-150 line-clamp-1 max-w-[200px]">{p.name}</p>
+                            <p className="font-bold text-slate-800  line-clamp-1 max-w-[200px]">{p.name}</p>
                             <span className="text-[10px] text-slate-400 font-mono">SKU: {p.sku}</span>
                           </td>
                           <td className="py-3 text-indigo-500 font-semibold">{p.seller_name}</td>
                           <td className="py-3">
-                            <input type="number" step="0.01" value={priceVal} onChange={(e) => handleInlineChange(p.id, 'price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-lg outline-none focus:border-primary-500" />
+                            <input type="number" step="0.01" value={priceVal} onChange={(e) => handleInlineChange(p.id, 'price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500" />
                           </td>
                           <td className="py-3">
-                            <input type="number" step="0.01" value={offerVal} onChange={(e) => handleInlineChange(p.id, 'offer_price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-lg outline-none focus:border-primary-500 text-purple-500" />
+                            <input type="number" step="0.01" value={offerVal} onChange={(e) => handleInlineChange(p.id, 'offer_price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500 text-purple-500" />
                           </td>
                           <td className="py-3">
-                            <input type="number" value={stockVal} onChange={(e) => handleInlineChange(p.id, 'stock', e.target.value)} className="w-16 px-2 py-1 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-lg outline-none focus:border-primary-500" />
+                            <input type="number" value={stockVal} onChange={(e) => handleInlineChange(p.id, 'stock', e.target.value)} className="w-16 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500" />
                           </td>
                           <td className="py-3 text-center">
                             <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${Number(stockVal) > 0 ? 'bg-green-150 text-green-700' : 'bg-red-150 text-red-700'}`}>
@@ -610,8 +610,8 @@ const Dashboard = ({ notificationHandler }) => {
                           </td>
                           <td className="py-3 text-right">
                             <div className="flex justify-end gap-2">
-                              <button onClick={() => handleUpdateProduct(p)} disabled={!hasUnsaved} className={`p-2 rounded-xl transition-all ${hasUnsaved ? 'bg-purple-500 text-white hover:bg-purple-600' : 'bg-slate-105 text-slate-400 dark:bg-dark-850 dark:text-slate-650 cursor-not-allowed'}`}><Save size={13} /></button>
-                              <button onClick={() => handleDeleteProduct(p)} className="p-2 rounded-xl bg-red-50 dark:bg-red-950/20 text-red-500 hover:bg-red-100"><Trash2 size={13} /></button>
+                              <button onClick={() => handleUpdateProduct(p)} disabled={!hasUnsaved} className={`p-2 rounded-xl transition-all ${hasUnsaved ? 'bg-purple-500 text-white hover:bg-purple-600' : 'bg-slate-105 text-slate-400   cursor-not-allowed'}`}><Save size={13} /></button>
+                              <button onClick={() => handleDeleteProduct(p)} className="p-2 rounded-xl bg-red-50  text-red-500 hover:bg-red-100"><Trash2 size={13} /></button>
                             </div>
                           </td>
                         </tr>
@@ -625,13 +625,13 @@ const Dashboard = ({ notificationHandler }) => {
 
           {/* Tab Content 4: Orders & Logistics */}
           {activeTab === 'orders' && (
-            <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-5 shadow-sm overflow-x-auto">
-              <h3 className="text-sm font-bold text-slate-850 dark:text-slate-200 uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 dark:border-dark-800">
+            <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm overflow-x-auto">
+              <h3 className="text-sm font-bold text-slate-850  uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 ">
                 Logística Global de Envíos
               </h3>
               <table className="w-full text-left text-xs min-w-[750px]">
                 <thead>
-                  <tr className="border-b border-slate-200 dark:border-dark-800 text-slate-400 font-semibold">
+                  <tr className="border-b border-slate-200  text-slate-400 font-semibold">
                     <th className="py-2.5">Código Tracking</th>
                     <th className="py-2.5">Dirección Destinatario</th>
                     <th className="py-2.5">Fecha Pedido</th>
@@ -641,18 +641,18 @@ const Dashboard = ({ notificationHandler }) => {
                     <th className="py-2.5 text-right">Actualizar Logística</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 dark:divide-dark-850/60 text-slate-750 dark:text-slate-350">
+                <tbody className="divide-y divide-slate-100  text-slate-750 ">
                   {orders.map((o) => (
-                    <tr key={o.id} className="hover:bg-slate-50 dark:hover:bg-dark-955/20">
-                      <td className="py-3 font-mono font-bold text-slate-800 dark:text-white">{o.tracking_number}</td>
+                    <tr key={o.id} className="hover:bg-slate-50 ">
+                      <td className="py-3 font-mono font-bold text-slate-800 ">{o.tracking_number}</td>
                       <td className="py-3">
-                        <p className="font-bold text-slate-750 dark:text-slate-200">{o.address_details?.street_address}</p>
+                        <p className="font-bold text-slate-750 ">{o.address_details?.street_address}</p>
                         <p className="text-[10px] text-slate-400">{o.address_details?.district}, {o.address_details?.province}</p>
                       </td>
                       <td className="py-3 text-slate-450">{new Date(o.created_at).toLocaleDateString()}</td>
                       <td className="py-3 font-extrabold">S/ {Number(o.total).toFixed(2)}</td>
                       <td className="py-3">
-                        <span className="capitalize font-bold text-slate-600 dark:text-slate-400 block">{o.payment_method}</span>
+                        <span className="capitalize font-bold text-slate-600  block">{o.payment_method}</span>
                         <span className={`px-2 py-0.5 rounded text-[9px] font-black mt-0.5 inline-block ${o.payment_status === 'paid' ? 'bg-green-105 text-green-700' : 'bg-orange-105 text-orange-700'}`}>
                           {o.payment_status === 'paid' ? 'PAGADO' : 'PENDIENTE'}
                         </span>
@@ -670,7 +670,7 @@ const Dashboard = ({ notificationHandler }) => {
                         <select
                           value={o.status}
                           onChange={(e) => handleUpdateLogistics(o.id, e.target.value)}
-                          className="bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 text-[11px] rounded-xl px-2 py-1 outline-none font-semibold text-slate-700 dark:text-slate-300 focus:border-primary-500"
+                          className="bg-slate-50  border border-slate-200  text-[11px] rounded-xl px-2 py-1 outline-none font-semibold text-slate-700  focus:border-primary-500"
                         >
                           <option value="pending">Pendiente</option>
                           <option value="processing">Procesando</option>
@@ -691,7 +691,7 @@ const Dashboard = ({ notificationHandler }) => {
           {/* Tab Content 5: Coupons */}
           {activeTab === 'coupons' && (
             <div className="space-y-6">
-              <div className="flex justify-between items-center bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-3xl p-5 shadow-sm">
+              <div className="flex justify-between items-center bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm">
                 <span className="text-xs text-slate-450 font-bold">Cupones de Descuento Activos</span>
                 <button
                   onClick={() => setShowCouponModal(true)}
@@ -701,10 +701,10 @@ const Dashboard = ({ notificationHandler }) => {
                 </button>
               </div>
 
-              <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-5 shadow-sm overflow-x-auto">
+              <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm overflow-x-auto">
                 <table className="w-full text-left text-xs min-w-[650px]">
                   <thead>
-                    <tr className="border-b border-slate-200 dark:border-dark-800 text-slate-400 font-semibold">
+                    <tr className="border-b border-slate-200  text-slate-400 font-semibold">
                       <th className="py-2.5">Código</th>
                       <th className="py-2.5">Tipo Descuento</th>
                       <th className="py-2.5">Valor</th>
@@ -713,10 +713,10 @@ const Dashboard = ({ notificationHandler }) => {
                       <th className="py-2.5 text-right">Acciones</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 dark:divide-dark-850/60 text-slate-750 dark:text-slate-350">
+                  <tbody className="divide-y divide-slate-100  text-slate-750 ">
                     {coupons.map((c) => (
-                      <tr key={c.id} className="hover:bg-slate-50 dark:hover:bg-dark-955/20 transition-all">
-                        <td className="py-3 font-mono font-bold text-slate-800 dark:text-white uppercase tracking-wider">{c.code}</td>
+                      <tr key={c.id} className="hover:bg-slate-50  transition-all">
+                        <td className="py-3 font-mono font-bold text-slate-800  uppercase tracking-wider">{c.code}</td>
                         <td className="py-3 capitalize">{c.discount_type === 'percent' ? 'Porcentaje (%)' : 'Monto Fijo (S/)'}</td>
                         <td className="py-3 font-extrabold">{c.discount_type === 'percent' ? `${c.value}%` : `S/ ${c.value}`}</td>
                         <td className="py-3 text-slate-400">{new Date(c.expiration_date).toLocaleDateString()}</td>
@@ -726,7 +726,7 @@ const Dashboard = ({ notificationHandler }) => {
                           </span>
                         </td>
                         <td className="py-3 text-right">
-                          <button onClick={() => handleDeleteCoupon(c.id)} className="p-2 rounded-xl bg-red-50 dark:bg-red-950/20 text-red-500 hover:bg-red-100 transition-colors"><Trash2 size={13} /></button>
+                          <button onClick={() => handleDeleteCoupon(c.id)} className="p-2 rounded-xl bg-red-50  text-red-500 hover:bg-red-100 transition-colors"><Trash2 size={13} /></button>
                         </td>
                       </tr>
                     ))}
@@ -757,7 +757,7 @@ const Dashboard = ({ notificationHandler }) => {
                   {user?.first_name || 'Mi Tienda Virtual'}
                 </span>
               </div>
-              <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight mt-1.5">
+              <h1 className="text-3xl font-black text-slate-800  tracking-tight mt-1.5">
                 Consola del Vendedor
               </h1>
               <p className="text-xs text-slate-450 mt-1">
@@ -766,7 +766,7 @@ const Dashboard = ({ notificationHandler }) => {
             </div>
 
             {/* Tab Selector */}
-            <div className="flex flex-wrap bg-slate-100 dark:bg-dark-950 p-1.5 rounded-2xl border border-slate-200/50 dark:border-dark-800">
+            <div className="flex flex-wrap bg-slate-100  p-1.5 rounded-2xl border border-slate-200/50 ">
               {[
                 { id: 'seller_analytics', label: 'Resumen Financiero', icon: Wallet },
                 { id: 'seller_products', label: 'Mis Productos & Stock', icon: Box },
@@ -777,8 +777,8 @@ const Dashboard = ({ notificationHandler }) => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-1.5 px-4 py-2 text-xs font-bold rounded-xl transition-all ${
                     activeTab === tab.id
-                      ? 'bg-white dark:bg-dark-900 text-slate-800 dark:text-slate-100 shadow-md'
-                      : 'text-slate-450 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+                      ? 'bg-white  text-slate-800  shadow-md'
+                      : 'text-slate-450  hover:text-slate-700 '
                   }`}
                 >
                   <tab.icon size={13} /> {tab.label}
@@ -795,10 +795,10 @@ const Dashboard = ({ notificationHandler }) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 
                 {/* Total Sales */}
-                <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 p-5 rounded-2xl shadow-sm flex items-center justify-between">
+                <div className="bg-white  border border-slate-200  p-5 rounded-2xl shadow-sm flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Ingresos Brutos</span>
-                    <span className="text-2xl font-black text-slate-800 dark:text-white mt-1 block">
+                    <span className="text-[10px] font-bold text-slate-400  uppercase tracking-wider block">Ingresos Brutos</span>
+                    <span className="text-2xl font-black text-slate-800  mt-1 block">
                       S/ {sellerMetrics.totalRevenue.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
@@ -808,10 +808,10 @@ const Dashboard = ({ notificationHandler }) => {
                 </div>
 
                 {/* Net Earnings */}
-                <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 p-5 rounded-2xl shadow-sm flex items-center justify-between">
+                <div className="bg-white  border border-slate-200  p-5 rounded-2xl shadow-sm flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Ganancias Netas (90%)</span>
-                    <span className="text-2xl font-black text-slate-800 dark:text-white mt-1 block text-indigo-500">
+                    <span className="text-[10px] font-bold text-slate-400  uppercase tracking-wider block">Ganancias Netas (90%)</span>
+                    <span className="text-2xl font-black text-slate-800  mt-1 block text-indigo-500">
                       S/ {sellerMetrics.netEarnings.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
@@ -821,23 +821,23 @@ const Dashboard = ({ notificationHandler }) => {
                 </div>
 
                 {/* Platform Fee */}
-                <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 p-5 rounded-2xl shadow-sm flex items-center justify-between">
+                <div className="bg-white  border border-slate-200  p-5 rounded-2xl shadow-sm flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Tarifa Plataforma (10%)</span>
-                    <span className="text-2xl font-black text-slate-800 dark:text-white mt-1 block text-slate-400">
+                    <span className="text-[10px] font-bold text-slate-400  uppercase tracking-wider block">Tarifa Plataforma (10%)</span>
+                    <span className="text-2xl font-black text-slate-800  mt-1 block text-slate-400">
                       S/ {sellerMetrics.commission.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
-                  <div className="p-3 rounded-xl bg-slate-100 dark:bg-dark-800 text-slate-500">
+                  <div className="p-3 rounded-xl bg-slate-100  text-slate-500">
                     <CreditCard size={22} />
                   </div>
                 </div>
 
                 {/* Units Sold */}
-                <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 p-5 rounded-2xl shadow-sm flex items-center justify-between">
+                <div className="bg-white  border border-slate-200  p-5 rounded-2xl shadow-sm flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Unidades Vendidas</span>
-                    <span className="text-2xl font-black text-slate-800 dark:text-white mt-1 block">
+                    <span className="text-[10px] font-bold text-slate-400  uppercase tracking-wider block">Unidades Vendidas</span>
+                    <span className="text-2xl font-black text-slate-800  mt-1 block">
                       {sellerMetrics.unitsSold} u.
                     </span>
                   </div>
@@ -849,8 +849,8 @@ const Dashboard = ({ notificationHandler }) => {
               </div>
 
               {/* Stock Warning Warnings */}
-              <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 p-5 rounded-2xl shadow-sm">
-                <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider mb-4 flex items-center gap-1.5">
+              <div className="bg-white  border border-slate-200  p-5 rounded-2xl shadow-sm">
+                <h4 className="text-xs font-bold text-slate-800  uppercase tracking-wider mb-4 flex items-center gap-1.5">
                   ⚠️ Estado de Alerta de mi Stock
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -864,12 +864,12 @@ const Dashboard = ({ notificationHandler }) => {
                         key={item.id} 
                         className={`p-3.5 border rounded-xl flex items-center justify-between shadow-sm transition-colors ${
                           item.stock === 0
-                            ? 'border-red-200 bg-red-500/5 dark:border-red-950 dark:bg-red-950/10'
-                            : 'border-orange-200 bg-orange-500/5 dark:border-orange-950 dark:bg-orange-950/10'
+                            ? 'border-red-200 bg-red-500/5  '
+                            : 'border-orange-200 bg-orange-500/5  '
                         }`}
                       >
                         <div>
-                          <p className="text-xs font-bold text-slate-800 dark:text-slate-200">{item.name}</p>
+                          <p className="text-xs font-bold text-slate-800 ">{item.name}</p>
                           <p className="text-[10px] text-slate-400 font-mono mt-0.5">SKU: {item.sku} | Cat: {item.category}</p>
                         </div>
                         <div className="text-right">
@@ -893,7 +893,7 @@ const Dashboard = ({ notificationHandler }) => {
             <div className="space-y-6">
               
               {/* Product Controls */}
-              <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-3xl p-5 shadow-sm">
+              <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm">
                 <div className="relative flex-grow max-w-md">
                   <Search size={16} className="absolute left-3.5 top-3.5 text-slate-400" />
                   <input
@@ -901,7 +901,7 @@ const Dashboard = ({ notificationHandler }) => {
                     placeholder="Buscar en mis productos por nombre o SKU..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 text-xs bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-2xl outline-none focus:border-primary-500 dark:text-slate-200"
+                    className="w-full pl-10 pr-4 py-2.5 text-xs bg-slate-50  border border-slate-200  rounded-2xl outline-none focus:border-primary-500 "
                   />
                 </div>
                 
@@ -914,10 +914,10 @@ const Dashboard = ({ notificationHandler }) => {
               </div>
 
               {/* Product list */}
-              <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-5 shadow-sm overflow-x-auto">
+              <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm overflow-x-auto">
                 <table className="w-full text-left text-xs min-w-[750px]">
                   <thead>
-                    <tr className="border-b border-slate-200 dark:border-dark-800 text-slate-400 font-semibold">
+                    <tr className="border-b border-slate-200  text-slate-400 font-semibold">
                       <th className="py-2.5">Miniatura</th>
                       <th className="py-2.5">Nombre & SKU</th>
                       <th className="py-2.5 w-24">Precio (S/)</th>
@@ -927,7 +927,7 @@ const Dashboard = ({ notificationHandler }) => {
                       <th className="py-2.5 text-right">Acciones</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 dark:divide-dark-800/40 text-slate-700 dark:text-slate-350">
+                  <tbody className="divide-y divide-slate-100  text-slate-700 ">
                     {filteredProducts.map((product) => {
                       const edited = editingProduct[product.id] || {};
                       const priceVal = edited.price !== undefined ? edited.price : product.price;
@@ -936,22 +936,22 @@ const Dashboard = ({ notificationHandler }) => {
                       const hasChanges = edited.price !== undefined || edited.offer_price !== undefined || edited.stock !== undefined;
 
                       return (
-                        <tr key={product.id} className="hover:bg-slate-50 dark:hover:bg-dark-955/20 transition-all">
+                        <tr key={product.id} className="hover:bg-slate-50  transition-all">
                           <td className="py-3">
-                            <img src={product.primary_image || '/placeholder.jpg'} alt={product.name} className="w-10 h-10 object-contain rounded bg-slate-50 dark:bg-dark-950 p-1 border" />
+                            <img src={product.primary_image || '/placeholder.jpg'} alt={product.name} className="w-10 h-10 object-contain rounded bg-slate-50  p-1 border" />
                           </td>
                           <td className="py-3 pr-2">
-                            <p className="font-bold text-slate-800 dark:text-slate-200 line-clamp-1 max-w-[250px]">{product.name}</p>
+                            <p className="font-bold text-slate-800  line-clamp-1 max-w-[250px]">{product.name}</p>
                             <span className="text-[10px] text-slate-400 font-mono">SKU: {product.sku}</span>
                           </td>
                           <td className="py-3">
-                            <input type="number" step="0.01" value={priceVal} onChange={(e) => handleInlineChange(product.id, 'price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-lg outline-none focus:border-primary-500 font-semibold" />
+                            <input type="number" step="0.01" value={priceVal} onChange={(e) => handleInlineChange(product.id, 'price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500 font-semibold" />
                           </td>
                           <td className="py-3">
-                            <input type="number" step="0.01" value={offerVal} onChange={(e) => handleInlineChange(product.id, 'offer_price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-lg outline-none focus:border-primary-500 font-semibold text-purple-650" />
+                            <input type="number" step="0.01" value={offerVal} onChange={(e) => handleInlineChange(product.id, 'offer_price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500 font-semibold text-purple-650" />
                           </td>
                           <td className="py-3">
-                            <input type="number" value={stockVal} onChange={(e) => handleInlineChange(product.id, 'stock', e.target.value)} className="w-16 px-2 py-1 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-lg outline-none focus:border-primary-500 font-semibold" />
+                            <input type="number" value={stockVal} onChange={(e) => handleInlineChange(product.id, 'stock', e.target.value)} className="w-16 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500 font-semibold" />
                           </td>
                           <td className="py-3 text-center">
                             <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${Number(stockVal) > 0 ? 'bg-green-105 text-green-700' : 'bg-red-105 text-red-700'}`}>
@@ -960,8 +960,8 @@ const Dashboard = ({ notificationHandler }) => {
                           </td>
                           <td className="py-3 text-right">
                             <div className="flex justify-end gap-2">
-                              <button onClick={() => handleUpdateProduct(product)} disabled={!hasChanges} className={`p-2 rounded-xl transition-all ${hasChanges ? 'bg-purple-500 text-white hover:bg-purple-600' : 'bg-slate-100 text-slate-400 dark:bg-dark-850 dark:text-slate-650 cursor-not-allowed'}`}><Save size={13} /></button>
-                              <button onClick={() => handleDeleteProduct(product)} className="p-2 rounded-xl bg-red-50 dark:bg-red-950/20 text-red-500 hover:bg-red-100"><Trash2 size={13} /></button>
+                              <button onClick={() => handleUpdateProduct(product)} disabled={!hasChanges} className={`p-2 rounded-xl transition-all ${hasChanges ? 'bg-purple-500 text-white hover:bg-purple-600' : 'bg-slate-100 text-slate-400   cursor-not-allowed'}`}><Save size={13} /></button>
+                              <button onClick={() => handleDeleteProduct(product)} className="p-2 rounded-xl bg-red-50  text-red-500 hover:bg-red-100"><Trash2 size={13} /></button>
                             </div>
                           </td>
                         </tr>
@@ -975,13 +975,13 @@ const Dashboard = ({ notificationHandler }) => {
 
           {/* Tab 3: Seller Orders */}
           {activeTab === 'seller_orders' && (
-            <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-5 shadow-sm overflow-x-auto">
-              <h3 className="text-sm font-bold text-slate-850 dark:text-slate-200 uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 dark:border-dark-800">
+            <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm overflow-x-auto">
+              <h3 className="text-sm font-bold text-slate-850  uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 ">
                 Logística de mis Ventas
               </h3>
               <table className="w-full text-left text-xs min-w-[700px]">
                 <thead>
-                  <tr className="border-b border-slate-200 dark:border-dark-800 text-slate-400 font-semibold">
+                  <tr className="border-b border-slate-200  text-slate-400 font-semibold">
                     <th className="py-2.5">Código Rastro</th>
                     <th className="py-2.5">Productos Vendidos</th>
                     <th className="py-2.5">Destino Envío</th>
@@ -991,21 +991,21 @@ const Dashboard = ({ notificationHandler }) => {
                     <th className="py-2.5 text-right">Gestionar Despacho</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 dark:divide-dark-850/60 text-slate-750 dark:text-slate-350">
+                <tbody className="divide-y divide-slate-100  text-slate-750 ">
                   {sellerMetrics.sellerOrders.map((o) => (
-                    <tr key={o.id} className="hover:bg-slate-50 dark:hover:bg-dark-955/20">
-                      <td className="py-4 font-mono font-bold text-slate-800 dark:text-white">{o.tracking_number}</td>
+                    <tr key={o.id} className="hover:bg-slate-50 ">
+                      <td className="py-4 font-mono font-bold text-slate-800 ">{o.tracking_number}</td>
                       <td className="py-4 pr-3">
                         <div className="space-y-1">
                           {o.seller_items.map((item, idx) => (
-                            <p key={idx} className="font-semibold text-slate-800 dark:text-slate-200">
+                            <p key={idx} className="font-semibold text-slate-800 ">
                               {item.quantity} x {item.product_name} ({item.color || 'Único'}, {item.size || 'Único'})
                             </p>
                           ))}
                         </div>
                       </td>
                       <td className="py-4 text-slate-500">
-                        <p className="font-semibold text-slate-750 dark:text-slate-200">{o.address_details?.street_address}</p>
+                        <p className="font-semibold text-slate-750 ">{o.address_details?.street_address}</p>
                         <p className="text-[10px] text-slate-400">{o.address_details?.district}, {o.address_details?.province}</p>
                       </td>
                       <td className="py-4 font-bold text-indigo-500">S/ {o.seller_subtotal.toFixed(2)}</td>
@@ -1027,7 +1027,7 @@ const Dashboard = ({ notificationHandler }) => {
                         <select
                           value={o.status}
                           onChange={(e) => handleUpdateLogistics(o.id, e.target.value)}
-                          className="bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 text-[11px] rounded-xl px-2 py-1 outline-none font-semibold text-slate-700 dark:text-slate-300 focus:border-primary-500"
+                          className="bg-slate-50  border border-slate-200  text-[11px] rounded-xl px-2 py-1 outline-none font-semibold text-slate-700  focus:border-primary-500"
                         >
                           <option value="pending">Pendiente</option>
                           <option value="processing">Procesando</option>
@@ -1056,12 +1056,12 @@ const Dashboard = ({ notificationHandler }) => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           
           {/* Left Column Profile Sidebar */}
-          <div className="bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 p-6 rounded-3xl shadow-sm text-center space-y-6 h-fit">
+          <div className="bg-white  border border-slate-200/80  p-6 rounded-3xl shadow-sm text-center space-y-6 h-fit">
             <div className="flex flex-col items-center">
               <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-primary-500 via-purple-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-3xl shadow-lg shadow-primary-500/20 mb-3 ring-4 ring-primary-500/10">
                 {user?.username ? user?.username[0].toUpperCase() : 'C'}
               </div>
-              <h2 className="font-extrabold text-lg text-slate-800 dark:text-slate-100">
+              <h2 className="font-extrabold text-lg text-slate-800 ">
                 {user?.first_name || user?.username} {user?.last_name || ''}
               </h2>
               <span className="text-[10px] font-black uppercase text-indigo-500 bg-indigo-500/10 px-3 py-1 border border-indigo-500/20 rounded-full mt-1.5 tracking-wider flex items-center gap-1">
@@ -1070,24 +1070,24 @@ const Dashboard = ({ notificationHandler }) => {
             </div>
 
             {/* Account Quick Stats Chips */}
-            <div className="grid grid-cols-2 gap-2 text-left pt-2 border-t border-slate-100 dark:border-dark-800">
+            <div className="grid grid-cols-2 gap-2 text-left pt-2 border-t border-slate-100 ">
               <button 
                 onClick={() => navigate('/orders')}
-                className="bg-slate-50 dark:bg-dark-950 p-3 rounded-2xl border border-slate-100 dark:border-dark-850 text-left hover:border-indigo-500/30 transition-all cursor-pointer group"
+                className="bg-slate-50  p-3 rounded-2xl border border-slate-100  text-left hover:border-indigo-500/30 transition-all cursor-pointer group"
               >
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block group-hover:text-indigo-500 transition-colors">Compras</span>
-                <span className="text-sm font-extrabold text-slate-800 dark:text-slate-100">{orders.length}</span>
+                <span className="text-sm font-extrabold text-slate-800 ">{orders.length}</span>
               </button>
               <button 
                 onClick={() => navigate('/wishlist', { state: { fromDashboard: true } })}
-                className="bg-slate-50 dark:bg-dark-950 p-3 rounded-2xl border border-slate-100 dark:border-dark-850 text-left hover:border-red-500/30 transition-all cursor-pointer group"
+                className="bg-slate-50  p-3 rounded-2xl border border-slate-100  text-left hover:border-red-500/30 transition-all cursor-pointer group"
               >
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block group-hover:text-red-500 transition-colors">Favoritos</span>
                 <span className="text-sm font-extrabold text-primary-500">{wishlist?.products?.length || 0}</span>
               </button>
             </div>
 
-            <div className="border-t border-slate-100 dark:border-dark-800 pt-4 flex flex-col gap-1.5">
+            <div className="border-t border-slate-100  pt-4 flex flex-col gap-1.5">
               {[
                 { id: 'customer_orders', label: 'Mis Compras y Rastros', icon: ShoppingBag },
                 { id: 'customer_addresses', label: 'Mis Direcciones', icon: MapPin },
@@ -1109,7 +1109,7 @@ const Dashboard = ({ notificationHandler }) => {
                   className={`flex items-center gap-3 px-4 py-2.5 text-xs font-semibold rounded-xl text-left transition-all ${
                     activeTab === tab.id
                       ? 'bg-primary-500 text-white shadow-md shadow-primary-500/15'
-                      : 'text-slate-655 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-dark-950'
+                      : 'text-slate-655  hover:bg-slate-50 '
                   }`}
                 >
                   <tab.icon size={15} /> {tab.label}
@@ -1124,22 +1124,22 @@ const Dashboard = ({ notificationHandler }) => {
             {/* Tab: Customer Orders (Mis Pedidos) */}
             {activeTab === 'customer_orders' && (
               <div className="space-y-6">
-                <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-6 shadow-sm">
-                  <h3 className="text-sm font-bold text-slate-850 dark:text-slate-200 uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 dark:border-dark-800 flex items-center justify-between">
+                <div className="bg-white  border border-slate-200  rounded-3xl p-6 shadow-sm">
+                  <h3 className="text-sm font-bold text-slate-850  uppercase tracking-wider mb-6 pb-3 border-b border-slate-100  flex items-center justify-between">
                     <span>Historial de Compras y Seguimiento</span>
                     <span className="text-xs font-semibold text-slate-400 font-mono">Total: {orders.length} pedidos</span>
                   </h3>
 
                   {orders.length === 0 ? (
-                    <div className="py-12 px-6 text-center space-y-5 bg-gradient-to-b from-slate-50/50 to-white dark:from-dark-950/30 dark:to-dark-900 rounded-3xl border border-dashed border-slate-200 dark:border-dark-800">
+                    <div className="py-12 px-6 text-center space-y-5 bg-gradient-to-b from-slate-50/50 to-white   rounded-3xl border border-dashed border-slate-200 ">
                       <div className="w-16 h-16 rounded-3xl bg-primary-500/10 text-primary-500 flex items-center justify-center mx-auto shadow-inner">
                         <ShoppingBag size={32} className="animate-bounce" />
                       </div>
                       <div className="max-w-md mx-auto space-y-2">
-                        <h4 className="text-base font-extrabold text-slate-800 dark:text-slate-100">
+                        <h4 className="text-base font-extrabold text-slate-800 ">
                           ¡Bienvenido a tu panel personal, {user?.first_name || user?.username}!
                         </h4>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                        <p className="text-xs text-slate-500  leading-relaxed">
                           Aún no has realizado ninguna compra en Novamarquet. Explora nuestro catálogo con envíos garantizados a todo el Perú y aprovecha los cupones activos.
                         </p>
                       </div>
@@ -1154,16 +1154,16 @@ const Dashboard = ({ notificationHandler }) => {
                       </div>
 
                       {/* Feature highlights */}
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 max-w-lg mx-auto text-left border-t border-slate-100 dark:border-dark-800/80">
-                        <div className="flex items-center gap-2 text-[10px] font-bold text-slate-600 dark:text-slate-400">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 max-w-lg mx-auto text-left border-t border-slate-100 ">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-slate-600 ">
                           <Truck size={14} className="text-primary-500 flex-shrink-0" />
                           <span>Envío Rápido 24-48h</span>
                         </div>
-                        <div className="flex items-center gap-2 text-[10px] font-bold text-slate-600 dark:text-slate-400">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-slate-600 ">
                           <CheckCircle size={14} className="text-green-500 flex-shrink-0" />
                           <span>Compra Protegida</span>
                         </div>
-                        <div className="flex items-center gap-2 text-[10px] font-bold text-slate-600 dark:text-slate-400">
+                        <div className="flex items-center gap-2 text-[10px] font-bold text-slate-600 ">
                           <Tag size={14} className="text-purple-500 flex-shrink-0" />
                           <span>Cupones de Descuento</span>
                         </div>
@@ -1172,13 +1172,13 @@ const Dashboard = ({ notificationHandler }) => {
                   ) : (
                     <div className="space-y-6">
                       {orders.map((o) => (
-                        <div key={o.id} className="border border-slate-200/80 dark:border-dark-800 rounded-2xl p-5 space-y-4 bg-slate-50/20 dark:bg-dark-950/10">
+                        <div key={o.id} className="border border-slate-200/80  rounded-2xl p-5 space-y-4 bg-slate-50/20 ">
                           
                           {/* Order metadata header */}
-                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-slate-100 dark:border-dark-800 text-xs">
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-slate-100  text-xs">
                             <div>
                               <p className="font-bold text-slate-500">Número de Seguimiento:</p>
-                              <span className="font-mono font-black text-slate-800 dark:text-white text-sm">{o.tracking_number}</span>
+                              <span className="font-mono font-black text-slate-800  text-sm">{o.tracking_number}</span>
                             </div>
                             <div className="text-left sm:text-right">
                               <p className="text-slate-400 font-bold">Total Facturado:</p>
@@ -1197,7 +1197,7 @@ const Dashboard = ({ notificationHandler }) => {
                           {/* Order items lists */}
                           <div className="space-y-2">
                             {o.items?.map(item => (
-                              <div key={item.id} className="flex justify-between items-center text-xs text-slate-700 dark:text-slate-350">
+                              <div key={item.id} className="flex justify-between items-center text-xs text-slate-700 ">
                                 <span className="font-bold truncate max-w-sm">{item.product_name}</span>
                                 <span>{item.quantity} u. · S/ {Number(item.price).toFixed(2)}</span>
                               </div>
@@ -1205,7 +1205,7 @@ const Dashboard = ({ notificationHandler }) => {
                           </div>
 
                           {/* Small Visual timeline track preview */}
-                          <div className="bg-white dark:bg-dark-900 border border-slate-200/50 dark:border-dark-850 p-4 rounded-xl flex items-center justify-between">
+                          <div className="bg-white  border border-slate-200/50  p-4 rounded-xl flex items-center justify-between">
                             <span className="text-[10px] font-bold text-slate-450 uppercase">Estado Actual:</span>
                             <span className={`px-2.5 py-0.5 rounded text-[10px] font-black uppercase ${
                               o.status === 'delivered' ? 'bg-green-105 text-green-700' :
@@ -1231,7 +1231,7 @@ const Dashboard = ({ notificationHandler }) => {
             {/* Tab: Customer Addresses (Mis Direcciones) */}
             {activeTab === 'customer_addresses' && (
               <div className="space-y-6">
-                <div className="flex justify-between items-center bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 p-5 rounded-3xl shadow-sm">
+                <div className="flex justify-between items-center bg-white  border border-slate-200  p-5 rounded-3xl shadow-sm">
                   <span className="text-xs text-slate-450 font-bold">Direcciones Registradas de Despacho</span>
                   <button
                     onClick={() => setShowAddressModal(true)}
@@ -1243,13 +1243,13 @@ const Dashboard = ({ notificationHandler }) => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {addresses.length === 0 ? (
-                    <div className="py-10 px-6 text-center space-y-4 bg-white dark:bg-dark-900 rounded-3xl border border-dashed border-slate-200 dark:border-dark-800 col-span-2">
+                    <div className="py-10 px-6 text-center space-y-4 bg-white  rounded-3xl border border-dashed border-slate-200  col-span-2">
                       <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center mx-auto">
                         <MapPin size={24} />
                       </div>
                       <div className="space-y-1 max-w-sm mx-auto">
-                        <h4 className="text-sm font-extrabold text-slate-800 dark:text-slate-100">Sin direcciones registradas</h4>
-                        <p className="text-xs text-slate-500 dark:text-slate-400">Guarda tus lugares frecuentes (Casa, Trabajo) para agilizar tus compras en Novamarquet.</p>
+                        <h4 className="text-sm font-extrabold text-slate-800 ">Sin direcciones registradas</h4>
+                        <p className="text-xs text-slate-500 ">Guarda tus lugares frecuentes (Casa, Trabajo) para agilizar tus compras en Novamarquet.</p>
                       </div>
                       <button
                         onClick={() => setShowAddressModal(true)}
@@ -1260,21 +1260,21 @@ const Dashboard = ({ notificationHandler }) => {
                     </div>
                   ) : (
                     addresses.map((a) => (
-                      <div key={a.id} className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 p-5 rounded-2xl shadow-sm space-y-3.5 relative">
+                      <div key={a.id} className="bg-white  border border-slate-200  p-5 rounded-2xl shadow-sm space-y-3.5 relative">
                         <div className="flex justify-between items-start">
                           <div>
-                            <span className="font-bold text-xs text-slate-800 dark:text-white uppercase tracking-wider block">
+                            <span className="font-bold text-xs text-slate-800  uppercase tracking-wider block">
                               {a.title} {a.is_default && <span className="text-[9px] font-black text-green-500 bg-green-550/10 px-1.5 rounded ml-1.5">Por defecto</span>}
                             </span>
-                            <p className="text-xs text-slate-700 dark:text-slate-350 font-semibold mt-2">{a.street_address}</p>
+                            <p className="text-xs text-slate-700  font-semibold mt-2">{a.street_address}</p>
                             <p className="text-[11px] text-slate-450 mt-0.5">{a.district}, {a.province} - {a.department}</p>
                             <p className="text-[10px] text-slate-400 mt-2 font-mono">Contacto: {a.phone}</p>
                           </div>
                         </div>
-                        <div className="flex justify-end pt-3 border-t border-slate-100 dark:border-dark-800">
+                        <div className="flex justify-end pt-3 border-t border-slate-100 ">
                           <button
                             onClick={() => handleDeleteAddress(a.id)}
-                            className="p-1.5 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 transition-all"
+                            className="p-1.5 rounded-lg text-red-500 hover:bg-red-50  transition-all"
                             title="Eliminar dirección"
                           >
                             <Trash2 size={13} />
@@ -1289,22 +1289,22 @@ const Dashboard = ({ notificationHandler }) => {
 
             {/* Tab: Customer Wishlist (Favoritos) */}
             {activeTab === 'customer_wishlist' && (
-              <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-6 shadow-sm space-y-6">
-                <h3 className="text-sm font-bold text-slate-850 dark:text-slate-200 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-dark-800 flex items-center justify-between">
+              <div className="bg-white  border border-slate-200  rounded-3xl p-6 shadow-sm space-y-6">
+                <h3 className="text-sm font-bold text-slate-850  uppercase tracking-wider pb-3 border-b border-slate-100  flex items-center justify-between">
                   <span>Mi Lista de Favoritos</span>
                   <span className="text-xs font-mono text-slate-400">({wishlist?.products?.length || 0} guardados)</span>
                 </h3>
 
                 {(!wishlist?.products || wishlist.products.length === 0) ? (
-                  <div className="py-12 px-6 text-center space-y-5 bg-gradient-to-b from-slate-50/50 to-white dark:from-dark-950/30 dark:to-dark-900 rounded-3xl border border-dashed border-slate-200 dark:border-dark-800">
+                  <div className="py-12 px-6 text-center space-y-5 bg-gradient-to-b from-slate-50/50 to-white   rounded-3xl border border-dashed border-slate-200 ">
                     <div className="w-16 h-16 rounded-3xl bg-red-500/10 text-red-500 flex items-center justify-center mx-auto shadow-inner">
-                      <Heart size={32} className="fill-red-100 dark:fill-red-950/20 text-red-500 animate-pulse" />
+                      <Heart size={32} className="fill-red-100  text-red-500 animate-pulse" />
                     </div>
                     <div className="max-w-md mx-auto space-y-2">
-                      <h4 className="text-base font-extrabold text-slate-800 dark:text-slate-100">
+                      <h4 className="text-base font-extrabold text-slate-800 ">
                         Tu lista está esperando
                       </h4>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                      <p className="text-xs text-slate-500  leading-relaxed">
                         No has añadido ningún producto como favorito todavía. Explora la tienda y dale click al corazón en cualquier producto para guardarlo aquí.
                       </p>
                     </div>
@@ -1321,10 +1321,10 @@ const Dashboard = ({ notificationHandler }) => {
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {wishlist.products.map((p) => (
-                      <div key={p.id} className="p-4 rounded-2xl border border-slate-150 dark:border-dark-800 bg-slate-50/30 dark:bg-dark-950/10 flex gap-4 hover:shadow-md transition-all duration-300 relative group">
+                      <div key={p.id} className="p-4 rounded-2xl border border-slate-150  bg-slate-50/30  flex gap-4 hover:shadow-md transition-all duration-300 relative group">
                         
                         {/* Image Preview Container */}
-                        <div className="w-20 h-20 bg-white dark:bg-dark-950 rounded-xl overflow-hidden flex-shrink-0 border dark:border-dark-800 relative">
+                        <div className="w-20 h-20 bg-white  rounded-xl overflow-hidden flex-shrink-0 border  relative">
                           <img src={p.primary_image || '/placeholder.jpg'} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                         </div>
 
@@ -1332,14 +1332,14 @@ const Dashboard = ({ notificationHandler }) => {
                         <div className="flex-1 flex flex-col justify-between min-w-0">
                           <div>
                             <div className="flex justify-between items-start gap-1">
-                              <Link to={`/product/${p.slug}`} className="font-bold text-slate-800 dark:text-white hover:text-primary-500 text-xs line-clamp-1">
+                              <Link to={`/product/${p.slug}`} className="font-bold text-slate-800  hover:text-primary-500 text-xs line-clamp-1">
                                 {p.name}
                               </Link>
                               
                               {/* Trash Delete button */}
                               <button
                                 onClick={() => toggleWishlist(p.id)}
-                                className="text-slate-400 hover:text-red-500 p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-dark-900 transition-colors flex-shrink-0 cursor-pointer"
+                                className="text-slate-400 hover:text-red-500 p-1 rounded-lg hover:bg-slate-100  transition-colors flex-shrink-0 cursor-pointer"
                                 title="Eliminar de favoritos"
                               >
                                 <Trash2 size={13} />
@@ -1349,8 +1349,8 @@ const Dashboard = ({ notificationHandler }) => {
                             <p className="text-[10px] text-slate-400 mt-0.5">{p.brand_name || p.brand?.name || 'Genérico'} · {p.category}</p>
                           </div>
 
-                          <div className="flex items-center justify-between pt-2 mt-2 border-t dark:border-dark-850">
-                            <span className="font-extrabold text-xs text-slate-800 dark:text-slate-100">S/ {Number(p.current_price || p.price).toFixed(2)}</span>
+                          <div className="flex items-center justify-between pt-2 mt-2 border-t ">
+                            <span className="font-extrabold text-xs text-slate-800 ">S/ {Number(p.current_price || p.price).toFixed(2)}</span>
                             
                             {/* Add to Cart Trigger */}
                             <button
@@ -1380,29 +1380,29 @@ const Dashboard = ({ notificationHandler }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 {/* Profile Form */}
-                <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 p-5 rounded-3xl shadow-sm space-y-4">
-                  <h3 className="text-xs font-bold text-slate-450 dark:text-slate-500 uppercase tracking-widest pb-2 border-b">Datos Personales</h3>
+                <div className="bg-white  border border-slate-200  p-5 rounded-3xl shadow-sm space-y-4">
+                  <h3 className="text-xs font-bold text-slate-450  uppercase tracking-widest pb-2 border-b">Datos Personales</h3>
                   
                   <form onSubmit={handleUpdateProfile} className="space-y-3.5 text-xs">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
-                        <label className="font-semibold text-slate-650 dark:text-slate-355">Nombre</label>
-                        <input type="text" value={profileForm.first_name} onChange={(e) => setProfileForm({ ...profileForm, first_name: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-xl outline-none focus:border-primary-500 text-slate-800 dark:text-slate-250 font-bold" />
+                        <label className="font-semibold text-slate-650 ">Nombre</label>
+                        <input type="text" value={profileForm.first_name} onChange={(e) => setProfileForm({ ...profileForm, first_name: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800  font-bold" />
                       </div>
                       <div className="flex flex-col gap-1.5">
-                        <label className="font-semibold text-slate-650 dark:text-slate-355">Apellido</label>
-                        <input type="text" value={profileForm.last_name} onChange={(e) => setProfileForm({ ...profileForm, last_name: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-xl outline-none focus:border-primary-500 text-slate-800 dark:text-slate-250 font-bold" />
+                        <label className="font-semibold text-slate-650 ">Apellido</label>
+                        <input type="text" value={profileForm.last_name} onChange={(e) => setProfileForm({ ...profileForm, last_name: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800  font-bold" />
                       </div>
                     </div>
                     
                     <div className="flex flex-col gap-1.5">
-                      <label className="font-semibold text-slate-650 dark:text-slate-355">Correo Electrónico</label>
-                      <input type="email" value={profileForm.email} onChange={(e) => setProfileForm({ ...profileForm, email: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-xl outline-none focus:border-primary-500 text-slate-800 dark:text-slate-250 font-bold" />
+                      <label className="font-semibold text-slate-650 ">Correo Electrónico</label>
+                      <input type="email" value={profileForm.email} onChange={(e) => setProfileForm({ ...profileForm, email: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800  font-bold" />
                     </div>
 
                     <div className="flex flex-col gap-1.5">
-                      <label className="font-semibold text-slate-650 dark:text-slate-355">Teléfono Movil</label>
-                      <input type="text" value={profileForm.phone} onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-xl outline-none focus:border-primary-500 text-slate-800 dark:text-slate-250 font-bold" />
+                      <label className="font-semibold text-slate-650 ">Teléfono Movil</label>
+                      <input type="text" value={profileForm.phone} onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800  font-bold" />
                     </div>
 
                     <button type="submit" className="w-full py-2.5 text-xs font-bold text-white bg-primary-500 hover:bg-primary-600 rounded-xl shadow-md transition-all active:scale-95">
@@ -1412,23 +1412,23 @@ const Dashboard = ({ notificationHandler }) => {
                 </div>
 
                 {/* Password Form */}
-                <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 p-5 rounded-3xl shadow-sm space-y-4">
-                  <h3 className="text-xs font-bold text-slate-450 dark:text-slate-500 uppercase tracking-widest pb-2 border-b">Seguridad de Acceso</h3>
+                <div className="bg-white  border border-slate-200  p-5 rounded-3xl shadow-sm space-y-4">
+                  <h3 className="text-xs font-bold text-slate-450  uppercase tracking-widest pb-2 border-b">Seguridad de Acceso</h3>
                   
                   <form onSubmit={handleUpdatePassword} className="space-y-3.5 text-xs">
                     <div className="flex flex-col gap-1.5">
-                      <label className="font-semibold text-slate-650 dark:text-slate-355">Contraseña Actual</label>
-                      <input type="password" required value={passwordForm.current} onChange={(e) => setPasswordForm({ ...passwordForm, current: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-xl outline-none focus:border-primary-500 text-slate-800 dark:text-slate-250" />
+                      <label className="font-semibold text-slate-650 ">Contraseña Actual</label>
+                      <input type="password" required value={passwordForm.current} onChange={(e) => setPasswordForm({ ...passwordForm, current: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800 " />
                     </div>
 
                     <div className="flex flex-col gap-1.5">
-                      <label className="font-semibold text-slate-650 dark:text-slate-355">Nueva Contraseña</label>
-                      <input type="password" required value={passwordForm.new} onChange={(e) => setPasswordForm({ ...passwordForm, new: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-xl outline-none focus:border-primary-500 text-slate-800 dark:text-slate-250" />
+                      <label className="font-semibold text-slate-650 ">Nueva Contraseña</label>
+                      <input type="password" required value={passwordForm.new} onChange={(e) => setPasswordForm({ ...passwordForm, new: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800 " />
                     </div>
 
                     <div className="flex flex-col gap-1.5">
-                      <label className="font-semibold text-slate-650 dark:text-slate-355">Confirmar Nueva Contraseña</label>
-                      <input type="password" required value={passwordForm.confirm} onChange={(e) => setPasswordForm({ ...passwordForm, confirm: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-xl outline-none focus:border-primary-500 text-slate-800 dark:text-slate-250" />
+                      <label className="font-semibold text-slate-650 ">Confirmar Nueva Contraseña</label>
+                      <input type="password" required value={passwordForm.confirm} onChange={(e) => setPasswordForm({ ...passwordForm, confirm: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800 " />
                     </div>
 
                     <button type="submit" className="w-full py-2.5 text-xs font-bold text-white bg-indigo-500 hover:bg-indigo-650 rounded-xl shadow-md transition-all active:scale-95">
@@ -1442,13 +1442,13 @@ const Dashboard = ({ notificationHandler }) => {
 
             {/* Tab: Customer Payments (Mis Pagos) */}
             {activeTab === 'customer_transactions' && (
-              <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-5 shadow-sm overflow-x-auto">
-                <h3 className="text-sm font-bold text-slate-850 dark:text-slate-200 uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 dark:border-dark-800">
+              <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm overflow-x-auto">
+                <h3 className="text-sm font-bold text-slate-850  uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 ">
                   Historial de Pagos y Transacciones
                 </h3>
                 <table className="w-full text-left text-xs min-w-[600px]">
                   <thead>
-                    <tr className="border-b border-slate-200 dark:border-dark-800 text-slate-400 font-semibold">
+                    <tr className="border-b border-slate-200  text-slate-400 font-semibold">
                       <th className="py-2.5">Nº Seguimiento Pedido</th>
                       <th className="py-2.5">Medio de Pago</th>
                       <th className="py-2.5">Fecha</th>
@@ -1456,13 +1456,13 @@ const Dashboard = ({ notificationHandler }) => {
                       <th className="py-2.5 text-right">Filtro Estado</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 dark:divide-dark-850/60 text-slate-750 dark:text-slate-350">
+                  <tbody className="divide-y divide-slate-100  text-slate-750 ">
                     {orders.map((o) => (
-                      <tr key={o.id} className="hover:bg-slate-50 dark:hover:bg-dark-955/20 transition-all">
-                        <td className="py-3 font-mono font-bold text-slate-800 dark:text-white">{o.tracking_number}</td>
+                      <tr key={o.id} className="hover:bg-slate-50  transition-all">
+                        <td className="py-3 font-mono font-bold text-slate-800 ">{o.tracking_number}</td>
                         <td className="py-3 capitalize">{o.payment_method}</td>
                         <td className="py-3 text-slate-450">{new Date(o.created_at).toLocaleDateString()}</td>
-                        <td className="py-3 font-extrabold text-slate-800 dark:text-white">S/ {Number(o.total).toFixed(2)}</td>
+                        <td className="py-3 font-extrabold text-slate-800 ">S/ {Number(o.total).toFixed(2)}</td>
                         <td className="py-3 text-right">
                           <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${o.payment_status === 'paid' ? 'bg-green-105 text-green-700' : 'bg-orange-105 text-orange-700'}`}>
                             {o.payment_status === 'paid' ? 'COMPLETADO' : 'PENDIENTE'}
@@ -1485,54 +1485,54 @@ const Dashboard = ({ notificationHandler }) => {
       {/* ─── MODAL ADD/EDIT PRODUCT (ADMIN & SELLER) ─── */}
       {/* ──────────────────────────────────────────────────────── */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-slate-900/60 dark:bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-200 text-xs">
-            <div className="flex justify-between items-center px-6 py-4 border-b dark:border-dark-800">
-              <h3 className="font-bold text-slate-800 dark:text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+        <div className="fixed inset-0 bg-slate-900/60  backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white  border border-slate-200  rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-200 text-xs">
+            <div className="flex justify-between items-center px-6 py-4 border-b ">
+              <h3 className="font-bold text-slate-800  uppercase tracking-wider flex items-center gap-1.5">
                 <Box className="text-primary-500" size={16} /> Subir Nuevo Producto
               </h3>
-              <button onClick={() => setShowAddModal(false)} className="text-slate-450 hover:text-slate-600 dark:hover:text-slate-200"><X size={18} /></button>
+              <button onClick={() => setShowAddModal(false)} className="text-slate-450 hover:text-slate-600 "><X size={18} /></button>
             </div>
 
             <form onSubmit={handleAddProduct} className="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
               <div className="flex flex-col gap-1.5">
-                <label className="font-semibold text-slate-650 dark:text-slate-355">Nombre del Producto</label>
-                <input type="text" required placeholder="Ej. Celular Samsung S25 Ultra" value={newProduct.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 dark:text-slate-200" />
+                <label className="font-semibold text-slate-650 ">Nombre del Producto</label>
+                <input type="text" required placeholder="Ej. Celular Samsung S25 Ultra" value={newProduct.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 " />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-650 dark:text-slate-355">Precio Regular (S/)</label>
-                  <input type="number" step="0.01" required placeholder="Ej. 4999.00" value={newProduct.price} onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 dark:text-slate-200" />
+                  <label className="font-semibold text-slate-650 ">Precio Regular (S/)</label>
+                  <input type="number" step="0.01" required placeholder="Ej. 4999.00" value={newProduct.price} onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 " />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-650 dark:text-slate-355">Precio Promoción (S/)</label>
-                  <input type="number" step="0.01" placeholder="Opcional" value={newProduct.offer_price} onChange={(e) => setNewProduct({ ...newProduct, offer_price: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 dark:text-slate-200 text-purple-500" />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-650 dark:text-slate-355">Stock Disponible</label>
-                  <input type="number" required placeholder="Ej. 10" value={newProduct.stock} onChange={(e) => setNewProduct({ ...newProduct, stock: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 dark:text-slate-200" />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-650 dark:text-slate-355">SKU</label>
-                  <input type="text" placeholder="Vacío para autogenerar" value={newProduct.sku} onChange={(e) => setNewProduct({ ...newProduct, sku: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 dark:text-slate-200 font-mono" />
+                  <label className="font-semibold text-slate-650 ">Precio Promoción (S/)</label>
+                  <input type="number" step="0.01" placeholder="Opcional" value={newProduct.offer_price} onChange={(e) => setNewProduct({ ...newProduct, offer_price: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500  text-purple-500" />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-650 dark:text-slate-355">Categoría</label>
-                  <select required value={newProduct.category_id} onChange={(e) => setNewProduct({ ...newProduct, category_id: e.target.value })} className="px-3 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 dark:text-slate-200">
+                  <label className="font-semibold text-slate-650 ">Stock Disponible</label>
+                  <input type="number" required placeholder="Ej. 10" value={newProduct.stock} onChange={(e) => setNewProduct({ ...newProduct, stock: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 " />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="font-semibold text-slate-650 ">SKU</label>
+                  <input type="text" placeholder="Vacío para autogenerar" value={newProduct.sku} onChange={(e) => setNewProduct({ ...newProduct, sku: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500  font-mono" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className="font-semibold text-slate-650 ">Categoría</label>
+                  <select required value={newProduct.category_id} onChange={(e) => setNewProduct({ ...newProduct, category_id: e.target.value })} className="px-3 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 ">
                     <option value="">Seleccionar...</option>
                     {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-650 dark:text-slate-355">Marca</label>
-                  <select value={newProduct.brand_id} onChange={(e) => setNewProduct({ ...newProduct, brand_id: e.target.value })} className="px-3 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 dark:text-slate-200">
+                  <label className="font-semibold text-slate-650 ">Marca</label>
+                  <select value={newProduct.brand_id} onChange={(e) => setNewProduct({ ...newProduct, brand_id: e.target.value })} className="px-3 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 ">
                     <option value="">Seleccionar...</option>
                     {brands.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}
                   </select>
@@ -1540,17 +1540,17 @@ const Dashboard = ({ notificationHandler }) => {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="font-semibold text-slate-650 dark:text-slate-355">Imagen del Producto (URL)</label>
-                <input type="text" placeholder="https://images.unsplash.com/..." value={newProduct.image_url} onChange={(e) => setNewProduct({ ...newProduct, image_url: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 dark:text-slate-200 font-mono text-[10px]" />
+                <label className="font-semibold text-slate-650 ">Imagen del Producto (URL)</label>
+                <input type="text" placeholder="https://images.unsplash.com/..." value={newProduct.image_url} onChange={(e) => setNewProduct({ ...newProduct, image_url: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500  font-mono text-[10px]" />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="font-semibold text-slate-650 dark:text-slate-355">Descripción</label>
-                <textarea placeholder="Detalles técnicos..." value={newProduct.description} onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })} className="px-3.5 py-2 h-16 bg-slate-50 dark:bg-dark-955 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 dark:text-slate-200 resize-none" />
+                <label className="font-semibold text-slate-650 ">Descripción</label>
+                <textarea placeholder="Detalles técnicos..." value={newProduct.description} onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })} className="px-3.5 py-2 h-16 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500  resize-none" />
               </div>
 
-              <div className="flex justify-end gap-3 pt-3 border-t dark:border-dark-800">
-                <button type="button" onClick={() => setShowAddModal(false)} className="px-4 py-2 border dark:border-dark-800 rounded-xl font-bold hover:bg-slate-50 text-slate-500">Cancelar</button>
+              <div className="flex justify-end gap-3 pt-3 border-t ">
+                <button type="button" onClick={() => setShowAddModal(false)} className="px-4 py-2 border  rounded-xl font-bold hover:bg-slate-50 text-slate-500">Cancelar</button>
                 <button type="submit" className="px-5 py-2 bg-primary-500 text-white rounded-xl font-bold active:scale-95">Crear Producto</button>
               </div>
             </form>
@@ -1563,46 +1563,46 @@ const Dashboard = ({ notificationHandler }) => {
       {/* ─── MODAL ADD COUPON (ADMIN) ─── */}
       {/* ──────────────────────────────────────────────────────── */}
       {showCouponModal && (
-        <div className="fixed inset-0 bg-slate-900/60 dark:bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in-95 duration-200 text-xs">
-            <div className="flex justify-between items-center px-6 py-4 border-b dark:border-dark-800">
-              <h3 className="font-bold text-slate-850 dark:text-slate-100 uppercase tracking-wider">Crear Cupón de Descuento</h3>
+        <div className="fixed inset-0 bg-slate-900/60  backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white  border border-slate-200  rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in-95 duration-200 text-xs">
+            <div className="flex justify-between items-center px-6 py-4 border-b ">
+              <h3 className="font-bold text-slate-850  uppercase tracking-wider">Crear Cupón de Descuento</h3>
               <button onClick={() => setShowCouponModal(false)} className="text-slate-450 hover:text-slate-600"><X size={18} /></button>
             </div>
 
             <form onSubmit={handleAddCoupon} className="p-6 space-y-4">
               <div className="flex flex-col gap-1.5">
-                <label className="font-semibold text-slate-650 dark:text-slate-355">Código del Cupón</label>
-                <input type="text" required placeholder="E.g. PROMO2026" value={newCoupon.code} onChange={(e) => setNewCoupon({ ...newCoupon, code: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 font-bold uppercase" />
+                <label className="font-semibold text-slate-650 ">Código del Cupón</label>
+                <input type="text" required placeholder="E.g. PROMO2026" value={newCoupon.code} onChange={(e) => setNewCoupon({ ...newCoupon, code: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 font-bold uppercase" />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-650 dark:text-slate-355">Tipo</label>
-                  <select value={newCoupon.discount_type} onChange={(e) => setNewCoupon({ ...newCoupon, discount_type: e.target.value })} className="px-3 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-855 rounded-xl outline-none focus:border-primary-500">
+                  <label className="font-semibold text-slate-650 ">Tipo</label>
+                  <select value={newCoupon.discount_type} onChange={(e) => setNewCoupon({ ...newCoupon, discount_type: e.target.value })} className="px-3 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500">
                     <option value="percent">Porcentaje (%)</option>
                     <option value="fixed">Monto Fijo (S/)</option>
                   </select>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-650 dark:text-slate-355">Valor Descuento</label>
-                  <input type="number" required placeholder="Ej. 15" value={newCoupon.value} onChange={(e) => setNewCoupon({ ...newCoupon, value: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 font-bold text-primary-500" />
+                  <label className="font-semibold text-slate-650 ">Valor Descuento</label>
+                  <input type="number" required placeholder="Ej. 15" value={newCoupon.value} onChange={(e) => setNewCoupon({ ...newCoupon, value: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 font-bold text-primary-500" />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-655 dark:text-slate-355">Duración (Días)</label>
-                  <input type="number" required placeholder="E.g. 30" value={newCoupon.expiration_days} onChange={(e) => setNewCoupon({ ...newCoupon, expiration_days: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500" />
+                  <label className="font-semibold text-slate-655 ">Duración (Días)</label>
+                  <input type="number" required placeholder="E.g. 30" value={newCoupon.expiration_days} onChange={(e) => setNewCoupon({ ...newCoupon, expiration_days: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500" />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-655 dark:text-slate-355">Usos Máximos</label>
-                  <input type="number" required placeholder="E.g. 100" value={newCoupon.max_uses} onChange={(e) => setNewCoupon({ ...newCoupon, max_uses: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500" />
+                  <label className="font-semibold text-slate-655 ">Usos Máximos</label>
+                  <input type="number" required placeholder="E.g. 100" value={newCoupon.max_uses} onChange={(e) => setNewCoupon({ ...newCoupon, max_uses: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500" />
                 </div>
               </div>
 
-              <div className="flex justify-end gap-3 pt-3 border-t dark:border-dark-800">
-                <button type="button" onClick={() => setShowCouponModal(false)} className="px-4 py-2 border dark:border-dark-800 rounded-xl font-bold hover:bg-slate-50 text-slate-500">Cancelar</button>
+              <div className="flex justify-end gap-3 pt-3 border-t ">
+                <button type="button" onClick={() => setShowCouponModal(false)} className="px-4 py-2 border  rounded-xl font-bold hover:bg-slate-50 text-slate-500">Cancelar</button>
                 <button type="submit" className="px-5 py-2 bg-primary-500 text-white rounded-xl font-bold active:scale-95">Crear Cupón</button>
               </div>
             </form>
@@ -1615,52 +1615,52 @@ const Dashboard = ({ notificationHandler }) => {
       {/* ─── MODAL ADD ADDRESS (CUSTOMER) ─── */}
       {/* ──────────────────────────────────────────────────────── */}
       {showAddressModal && (
-        <div className="fixed inset-0 bg-slate-900/60 dark:bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-200 text-xs">
-            <div className="flex justify-between items-center px-6 py-4 border-b dark:border-dark-800">
-              <h3 className="font-bold text-slate-855 dark:text-slate-100 uppercase tracking-wider">Agregar Nueva Dirección</h3>
+        <div className="fixed inset-0 bg-slate-900/60  backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white  border border-slate-200  rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-200 text-xs">
+            <div className="flex justify-between items-center px-6 py-4 border-b ">
+              <h3 className="font-bold text-slate-855  uppercase tracking-wider">Agregar Nueva Dirección</h3>
               <button onClick={() => setShowAddressModal(false)} className="text-slate-455 hover:text-slate-600"><X size={18} /></button>
             </div>
 
             <form onSubmit={handleAddAddress} className="p-6 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-650 dark:text-slate-355">Título Dirección</label>
-                  <input type="text" required placeholder="E.g. Mi Casa, Oficina" value={newAddress.title} onChange={(e) => setNewAddress({ ...newAddress, title: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 font-bold" />
+                  <label className="font-semibold text-slate-650 ">Título Dirección</label>
+                  <input type="text" required placeholder="E.g. Mi Casa, Oficina" value={newAddress.title} onChange={(e) => setNewAddress({ ...newAddress, title: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 font-bold" />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-655 dark:text-slate-355">Contacto Telefónico</label>
-                  <input type="text" required placeholder="Ej. +51 987654321" value={newAddress.phone} onChange={(e) => setNewAddress({ ...newAddress, phone: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500 font-mono" />
+                  <label className="font-semibold text-slate-655 ">Contacto Telefónico</label>
+                  <input type="text" required placeholder="Ej. +51 987654321" value={newAddress.phone} onChange={(e) => setNewAddress({ ...newAddress, phone: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 font-mono" />
                 </div>
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="font-semibold text-slate-655 dark:text-slate-355">Dirección y Número</label>
-                <input type="text" required placeholder="Ej. Av. Larco 740, Dpto. 402" value={newAddress.street_address} onChange={(e) => setNewAddress({ ...newAddress, street_address: e.target.value })} className="px-3.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500" />
+                <label className="font-semibold text-slate-655 ">Dirección y Número</label>
+                <input type="text" required placeholder="Ej. Av. Larco 740, Dpto. 402" value={newAddress.street_address} onChange={(e) => setNewAddress({ ...newAddress, street_address: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500" />
               </div>
 
               <div className="grid grid-cols-3 gap-2">
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-655 dark:text-slate-355">Distrito</label>
-                  <input type="text" required placeholder="Miraflores" value={newAddress.district} onChange={(e) => setNewAddress({ ...newAddress, district: e.target.value })} className="px-2.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500" />
+                  <label className="font-semibold text-slate-655 ">Distrito</label>
+                  <input type="text" required placeholder="Miraflores" value={newAddress.district} onChange={(e) => setNewAddress({ ...newAddress, district: e.target.value })} className="px-2.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500" />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-655 dark:text-slate-355">Provincia</label>
-                  <input type="text" required placeholder="Lima" value={newAddress.province} onChange={(e) => setNewAddress({ ...newAddress, province: e.target.value })} className="px-2.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500" />
+                  <label className="font-semibold text-slate-655 ">Provincia</label>
+                  <input type="text" required placeholder="Lima" value={newAddress.province} onChange={(e) => setNewAddress({ ...newAddress, province: e.target.value })} className="px-2.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500" />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="font-semibold text-slate-655 dark:text-slate-355">Departamento</label>
-                  <input type="text" required placeholder="Lima" value={newAddress.department} onChange={(e) => setNewAddress({ ...newAddress, department: e.target.value })} className="px-2.5 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-850 rounded-xl outline-none focus:border-primary-500" />
+                  <label className="font-semibold text-slate-655 ">Departamento</label>
+                  <input type="text" required placeholder="Lima" value={newAddress.department} onChange={(e) => setNewAddress({ ...newAddress, department: e.target.value })} className="px-2.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500" />
                 </div>
               </div>
 
               <div className="flex items-center gap-2 select-none py-1">
                 <input type="checkbox" id="addr_default" checked={newAddress.is_default} onChange={(e) => setNewAddress({ ...newAddress, is_default: e.target.checked })} className="w-4 h-4 accent-primary-500" />
-                <label htmlFor="addr_default" className="font-semibold text-slate-600 dark:text-slate-350 cursor-pointer">Definir como dirección de despacho por defecto</label>
+                <label htmlFor="addr_default" className="font-semibold text-slate-600  cursor-pointer">Definir como dirección de despacho por defecto</label>
               </div>
 
-              <div className="flex justify-end gap-3 pt-3 border-t dark:border-dark-800">
-                <button type="button" onClick={() => setShowAddressModal(false)} className="px-4 py-2 border dark:border-dark-800 rounded-xl font-bold hover:bg-slate-50 text-slate-500">Cancelar</button>
+              <div className="flex justify-end gap-3 pt-3 border-t ">
+                <button type="button" onClick={() => setShowAddressModal(false)} className="px-4 py-2 border  rounded-xl font-bold hover:bg-slate-50 text-slate-500">Cancelar</button>
                 <button type="submit" className="px-5 py-2 bg-primary-500 text-white rounded-xl font-bold active:scale-95">Guardar Dirección</button>
               </div>
             </form>
@@ -1673,3 +1673,4 @@ const Dashboard = ({ notificationHandler }) => {
 };
 
 export default Dashboard;
+
