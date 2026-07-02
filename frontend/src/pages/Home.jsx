@@ -243,7 +243,7 @@ const Home = ({ notificationHandler }) => {
           </div>
 
           {/* 2. Overlapping Card Grid (Classic Amazon) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-30 -mt-16 sm:-mt-44 max-w-7xl mx-auto px-1 sm:px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-30 -mt-16 sm:-mt-44 max-w-7xl mx-auto px-1 sm:px-4">
             
             {/* Card 1: Laptops */}
             <div className="bg-white p-5 shadow-sm rounded-none border border-slate-200/50 flex flex-col justify-between h-[360px]">
@@ -302,6 +302,26 @@ const Home = ({ notificationHandler }) => {
                 className="text-xs font-bold text-blue-600 hover:text-blue-700 text-left hover:underline cursor-pointer"
               >
                 Ver videojuegos y consolas
+              </button>
+            </div>
+
+            {/* Card 4: Ropa */}
+            <div className="bg-white p-5 shadow-sm rounded-none border border-slate-200/50 flex flex-col justify-between h-[360px]">
+              <h3 className="font-extrabold text-base text-slate-900 leading-tight">
+                Moda y Ropa Nova
+              </h3>
+              <div className="my-3 h-52 w-full bg-slate-50 overflow-hidden flex items-center justify-center">
+                <img 
+                  src={products.find(p => p.category_slug === 'ropa' || p.category?.toLowerCase() === 'ropa' || p.category_slug === 'moda' || p.category?.toLowerCase() === 'moda')?.primary_image || 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500'} 
+                  alt="Moda y Ropa" 
+                  className="w-full h-full object-cover hover:scale-102 transition-transform duration-300"
+                />
+              </div>
+              <button 
+                onClick={() => setSelectedCategory('ropa')}
+                className="text-xs font-bold text-blue-600 hover:text-blue-700 text-left hover:underline cursor-pointer"
+              >
+                Explorar moda y ropa
               </button>
             </div>
           </div>
