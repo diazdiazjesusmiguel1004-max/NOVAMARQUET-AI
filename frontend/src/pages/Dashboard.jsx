@@ -1071,10 +1071,13 @@ const Dashboard = ({ notificationHandler }) => {
 
             {/* Account Quick Stats Chips */}
             <div className="grid grid-cols-2 gap-2 text-left pt-2 border-t border-slate-100 dark:border-dark-800">
-              <div className="bg-slate-50 dark:bg-dark-950 p-3 rounded-2xl border border-slate-100 dark:border-dark-850">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Compras</span>
+              <button 
+                onClick={() => navigate('/orders')}
+                className="bg-slate-50 dark:bg-dark-950 p-3 rounded-2xl border border-slate-100 dark:border-dark-850 text-left hover:border-indigo-500/30 transition-all cursor-pointer group"
+              >
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block group-hover:text-indigo-500 transition-colors">Compras</span>
                 <span className="text-sm font-extrabold text-slate-800 dark:text-slate-100">{orders.length}</span>
-              </div>
+              </button>
               <button 
                 onClick={() => navigate('/wishlist')}
                 className="bg-slate-50 dark:bg-dark-950 p-3 rounded-2xl border border-slate-100 dark:border-dark-850 text-left hover:border-red-500/30 transition-all cursor-pointer group"
@@ -1097,6 +1100,8 @@ const Dashboard = ({ notificationHandler }) => {
                   onClick={() => {
                     if (tab.id === 'customer_wishlist') {
                       navigate('/wishlist');
+                    } else if (tab.id === 'customer_orders') {
+                      navigate('/orders');
                     } else {
                       setActiveTab(tab.id);
                     }
