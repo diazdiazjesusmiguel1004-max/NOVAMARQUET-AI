@@ -12,7 +12,8 @@ const Navbar = ({ onSearchChange }) => {
   const navigate = useNavigate();
   const { 
     user, isAuthenticated, logout, theme, toggleTheme,
-    cart, notifications, notificationsCount, fetchNotifications, markAllNotificationsRead
+    cart, notifications, notificationsCount, fetchNotifications, markAllNotificationsRead,
+    wishlist
   } = useStore();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -185,10 +186,15 @@ const Navbar = ({ onSearchChange }) => {
             {/* Wishlist Link */}
             <Link
               to="/wishlist"
-              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-dark-800 text-slate-600 dark:text-slate-300 relative transition-all active:scale-95"
+              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-dark-800 text-slate-600 dark:text-slate-300 relative transition-all active:scale-95 inline-flex items-center justify-center"
               title="Favoritos"
             >
               <Heart size={20} />
+              {wishlist?.products?.length > 0 && (
+                <span className="absolute top-0 right-0 w-4 h-4 text-[9px] font-bold text-white bg-red-500 rounded-full flex items-center justify-center border border-white dark:border-dark-900 pointer-events-none">
+                  {wishlist.products.length}
+                </span>
+              )}
             </Link>
 
             {/* Shopping Cart Link */}

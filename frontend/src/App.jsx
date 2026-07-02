@@ -11,6 +11,7 @@ import OrderTracking from './pages/OrderTracking';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Compare from './pages/Compare';
+import Wishlist from './pages/Wishlist';
 import CompareShelf from './components/CompareShelf';
 import { useStore } from './store/useStore';
 import { AlertCircle, CheckCircle, Info, X } from 'lucide-react';
@@ -78,6 +79,7 @@ function App() {
             <Route path="/order-tracking" element={<OrderTracking notificationHandler={showToast} />} />
             <Route path="/order-tracking/:tracking_number" element={<OrderTracking notificationHandler={showToast} />} />
             <Route path="/comparar" element={<Compare notificationHandler={showToast} />} />
+            <Route path="/wishlist" element={<Wishlist notificationHandler={showToast} />} />
             
             {/* Admin/Seller Dashboard */}
             <Route path="/dashboard" element={<Dashboard notificationHandler={showToast} />} />
