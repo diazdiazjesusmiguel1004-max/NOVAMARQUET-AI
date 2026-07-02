@@ -1079,7 +1079,7 @@ const Dashboard = ({ notificationHandler }) => {
                 <span className="text-sm font-extrabold text-slate-800 dark:text-slate-100">{orders.length}</span>
               </button>
               <button 
-                onClick={() => navigate('/wishlist')}
+                onClick={() => navigate('/wishlist', { state: { fromDashboard: true } })}
                 className="bg-slate-50 dark:bg-dark-950 p-3 rounded-2xl border border-slate-100 dark:border-dark-850 text-left hover:border-red-500/30 transition-all cursor-pointer group"
               >
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block group-hover:text-red-500 transition-colors">Favoritos</span>
@@ -1099,7 +1099,7 @@ const Dashboard = ({ notificationHandler }) => {
                   key={tab.id}
                   onClick={() => {
                     if (tab.id === 'customer_wishlist') {
-                      navigate('/wishlist');
+                      navigate('/wishlist', { state: { fromDashboard: true } });
                     } else if (tab.id === 'customer_orders') {
                       navigate('/orders');
                     } else {
