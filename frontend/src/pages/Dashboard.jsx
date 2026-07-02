@@ -1379,56 +1379,51 @@ const Dashboard = ({ notificationHandler }) => {
 
             {/* Tab: Customer Profile (Mi Perfil) */}
             {activeTab === 'customer_profile' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                {/* Profile Form */}
-                <div className="bg-white  border border-slate-200  p-5 rounded-3xl shadow-sm space-y-4">
-                  <h3 className="text-xs font-bold text-slate-450  uppercase tracking-widest pb-2 border-b">Datos Personales</h3>
+              <div className="max-w-xl mx-auto w-full bg-white border border-slate-200 p-6 rounded-3xl shadow-sm space-y-6">
+                <div>
+                  <h3 className="text-xs font-bold text-slate-450 uppercase tracking-widest pb-2 border-b">Datos Personales</h3>
                   
-                  <form onSubmit={handleUpdateProfile} className="space-y-3.5 text-xs">
+                  <form onSubmit={handleUpdateProfile} className="space-y-3.5 text-xs mt-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex flex-col gap-1.5">
-                        <label className="font-semibold text-slate-650 ">Nombre</label>
-                        <input type="text" value={profileForm.first_name} onChange={(e) => setProfileForm({ ...profileForm, first_name: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800  font-bold" />
+                        <label className="font-semibold text-slate-650">Nombre</label>
+                        <input type="text" value={profileForm.first_name} onChange={(e) => setProfileForm({ ...profileForm, first_name: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-primary-500 text-slate-800 font-bold" />
                       </div>
                       <div className="flex flex-col gap-1.5">
-                        <label className="font-semibold text-slate-650 ">Apellido</label>
-                        <input type="text" value={profileForm.last_name} onChange={(e) => setProfileForm({ ...profileForm, last_name: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800  font-bold" />
+                        <label className="font-semibold text-slate-650">Apellido</label>
+                        <input type="text" value={profileForm.last_name} onChange={(e) => setProfileForm({ ...profileForm, last_name: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-primary-500 text-slate-800 font-bold" />
                       </div>
                     </div>
                     
                     <div className="flex flex-col gap-1.5">
-                      <label className="font-semibold text-slate-650 ">Correo Electrónico</label>
-                      <input type="email" value={profileForm.email} onChange={(e) => setProfileForm({ ...profileForm, email: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800  font-bold" />
+                      <label className="font-semibold text-slate-650">Correo Electrónico</label>
+                      <input type="email" value={profileForm.email} onChange={(e) => setProfileForm({ ...profileForm, email: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-primary-500 text-slate-800 font-bold" />
                     </div>
 
                     <div className="flex flex-col gap-1.5">
-                      <label className="font-semibold text-slate-650 ">Teléfono Movil</label>
-                      <input type="text" value={profileForm.phone} onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800  font-bold" />
+                      <label className="font-semibold text-slate-650">Teléfono Movil</label>
+                      <input type="text" value={profileForm.phone} onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-primary-500 text-slate-800 font-bold" />
                     </div>
 
-                    <button type="submit" className="w-full py-2.5 text-xs font-bold text-white bg-primary-500 hover:bg-primary-600 rounded-xl shadow-md transition-all active:scale-95">
+                    <button type="submit" className="w-full py-2.5 text-xs font-bold text-white bg-primary-500 hover:bg-primary-600 rounded-xl shadow-md transition-all active:scale-95 cursor-pointer">
                       Guardar Datos
                     </button>
                   </form>
                 </div>
 
-                {/* Password Form */}
-                <div className="bg-white border border-slate-200 p-5 rounded-3xl shadow-sm space-y-4">
-                  <h3 className="text-xs font-bold text-slate-450 uppercase tracking-widest pb-2 border-b">Seguridad de Acceso</h3>
-                  
+                <div className="border-t border-slate-100 pt-4">
                   {!showPasswordForm ? (
-                    <div className="text-center py-4">
-                      <button
-                        type="button"
-                        onClick={() => setShowPasswordForm(true)}
-                        className="text-xs font-black text-[#007185] hover:underline hover:text-[#004b57] flex items-center justify-center gap-1.5 mx-auto transition-all cursor-pointer"
-                      >
-                        ¿Olvidaste tu contraseña? / Cambiar contraseña
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowPasswordForm(true)}
+                      className="text-xs font-black text-[#007185] hover:underline hover:text-[#004b57] flex items-center justify-center gap-1.5 mx-auto transition-all cursor-pointer"
+                    >
+                      ¿Olvidaste tu contraseña? / Cambiar contraseña
+                    </button>
                   ) : (
-                    <form onSubmit={handleUpdatePassword} className="space-y-3.5 text-xs">
+                    <form onSubmit={handleUpdatePassword} className="space-y-3.5 text-xs pt-2">
+                      <h4 className="font-bold text-slate-700 mb-2">Seguridad de Acceso (Cambiar Contraseña)</h4>
+                      
                       <div className="flex flex-col gap-1.5">
                         <label className="font-semibold text-slate-650">Contraseña Actual</label>
                         <input type="password" required value={passwordForm.current} onChange={(e) => setPasswordForm({ ...passwordForm, current: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-primary-500 text-slate-800" />
@@ -1462,7 +1457,6 @@ const Dashboard = ({ notificationHandler }) => {
                     </form>
                   )}
                 </div>
-
               </div>
             )}
 
