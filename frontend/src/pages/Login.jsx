@@ -43,7 +43,7 @@ const Login = ({ notificationHandler }) => {
       {/* Brand logo title inside login */}
       <div className="text-center mb-8 flex flex-col items-center justify-center">
         <div className="mb-4">
-          <BrandLogo size="lg" />
+          <BrandLogo size="lg" darkText={true} />
         </div>
         <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Iniciar Sesión</h2>
         <p className="text-xs text-slate-400 mt-1">Accede a NOVAMARQUET-AI para realizar compras seguras.</p>

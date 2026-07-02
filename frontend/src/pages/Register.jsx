@@ -58,7 +58,7 @@ const Register = ({ notificationHandler }) => {
       {/* Logo banner */}
       <div className="text-center mb-8 flex flex-col items-center justify-center">
         <div className="mb-4">
-          <BrandLogo size="lg" />
+          <BrandLogo size="lg" darkText={true} />
         </div>
         <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Crear Cuenta</h2>
         <p className="text-xs text-slate-400 mt-1">Regístrate en NOVAMARQUET-AI y comienza tu experiencia de compra.</p>
