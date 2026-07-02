@@ -180,7 +180,7 @@ const Home = ({ notificationHandler }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#eaeded] dark:bg-dark-950 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-0 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-dark-950 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-0 transition-colors duration-300">
       
       {/* ─── CASE A: DEFAULT HOMEPAGE (AMAZON STYLE) ─── */}
       {!isBrowsingCatalog && (
@@ -203,7 +203,7 @@ const Home = ({ notificationHandler }) => {
                 )}
                 
                 {/* Bottom gradient overlay to transition to light gray bg */}
-                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#eaeded] dark:from-dark-955 to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white dark:from-dark-950 to-transparent z-10 pointer-events-none" />
 
                 <div className="max-w-xl z-20 space-y-3">
                   <span className="bg-amber-500 text-slate-950 font-black text-[9px] uppercase tracking-widest px-2.5 py-0.5 rounded">
