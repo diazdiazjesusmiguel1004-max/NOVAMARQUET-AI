@@ -29,6 +29,17 @@ const Home = ({ notificationHandler }) => {
   // Home Page slider state
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const offersScrollRef = React.useRef(null);
+  const scrollOffers = (direction) => {
+    if (offersScrollRef.current) {
+      const scrollAmount = 300;
+      offersScrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   // Sync category parameter from URL
   useEffect(() => {
     if (categorySlug) {
@@ -281,14 +292,32 @@ const Home = ({ notificationHandler }) => {
                   Super Ofertas del Día
                 </h2>
               </div>
-              <span className="text-[10px] font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded uppercase tracking-wider">
-                Descuentos del 10% al 30%
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="text-[10px] font-bold text-red-500 bg-red-500/10 px-2 py-0.5 rounded uppercase tracking-wider hidden sm:inline-block">
+                  Descuentos del 10% al 30%
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={() => scrollOffers('left')}
+                    className="p-1.5 rounded-lg bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 text-slate-600 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-500 transition-colors shadow-sm hover:shadow active:scale-95 cursor-pointer"
+                    title="Deslizar izquierda"
+                  >
+                    <ChevronLeft size={15} />
+                  </button>
+                  <button
+                    onClick={() => scrollOffers('right')}
+                    className="p-1.5 rounded-lg bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 text-slate-600 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-500 transition-colors shadow-sm hover:shadow active:scale-95 cursor-pointer"
+                    title="Deslizar derecha"
+                  >
+                    <ChevronRight size={15} />
+                  </button>
+                </div>
+              </div>
             </div>
             {discountProducts.length === 0 ? (
               <div className="p-8 text-center text-xs text-slate-400">No hay ofertas disponibles.</div>
             ) : (
-              <div className="flex overflow-x-auto gap-6 pb-4 pt-1 snap-x no-scrollbar select-none">
+              <div ref={offersScrollRef} className="flex overflow-x-auto gap-6 pb-4 pt-1 snap-x no-scrollbar select-none scroll-smooth">
                 {discountProducts.map((product) => (
                   <div key={product.id} className="w-[280px] flex-shrink-0 snap-start">
                     <ProductCard product={product} onNotify={notificationHandler} />
