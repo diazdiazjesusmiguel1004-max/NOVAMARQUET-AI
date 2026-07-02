@@ -148,13 +148,17 @@ const Dashboard = ({ notificationHandler }) => {
       return;
     }
 
-    // Assign default tabs depending on role
+    // Assign default tabs depending on role and pathname
     if (user?.role === 'admin') {
       setActiveTab('analytics');
     } else if (user?.role === 'seller') {
       setActiveTab('seller_analytics');
     } else {
-      setActiveTab('customer_orders');
+      if (window.location.pathname === '/mi-cuenta') {
+        setActiveTab('customer_profile');
+      } else {
+        setActiveTab('customer_orders');
+      }
     }
 
     if (user) {
