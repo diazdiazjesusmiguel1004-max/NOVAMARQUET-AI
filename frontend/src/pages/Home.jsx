@@ -465,10 +465,10 @@ const Home = ({ notificationHandler }) => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 max-w-7xl mx-auto py-8">
           
           {/* FILTERS SIDEBAR */}
-          <div className="bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 p-5 shadow-sm h-fit space-y-6">
+          <div className="bg-white border border-slate-200/80 p-5 shadow-sm h-fit space-y-6">
             
-            <div className="flex justify-between items-center border-b border-slate-100 dark:border-dark-800 pb-3">
-              <span className="font-extrabold text-sm text-slate-800 dark:text-slate-100 flex items-center gap-1.5 uppercase tracking-wider">
+            <div className="flex justify-between items-center border-b border-slate-100 pb-3">
+              <span className="font-extrabold text-sm text-slate-800 flex items-center gap-1.5 uppercase tracking-wider">
                 <Filter size={16} /> Filtros de Búsqueda
               </span>
               <button
@@ -489,13 +489,13 @@ const Home = ({ notificationHandler }) => {
                 </span>
               )}
               {selectedBrand && (
-                <span className="px-2 py-0.5 text-[9px] font-bold bg-indigo-500/10 text-indigo-500 border border-indigo-500/20 rounded-full flex items-center gap-1">
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-[#007185]/10 text-[#007185] border border-[#007185]/20 rounded-full flex items-center gap-1">
                   Brand: {selectedBrand}
                   <button onClick={() => setSelectedBrand('')} className="hover:text-red-500 font-black">×</button>
                 </span>
               )}
               {searchQuery && (
-                <span className="px-2 py-0.5 text-[9px] font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full flex items-center gap-1">
+                <span className="px-2 py-0.5 text-[9px] font-bold bg-amber-500/10 text-[#b12704] border border-amber-500/20 rounded-full flex items-center gap-1">
                   Búsqueda: {searchQuery}
                   <button onClick={() => setSearchQuery('')} className="hover:text-red-500 font-black">×</button>
                 </span>
@@ -513,7 +513,7 @@ const Home = ({ notificationHandler }) => {
                     className={`flex items-center justify-between text-left py-1 px-2 rounded-lg transition-colors ${
                       selectedCategory === c.slug 
                         ? 'bg-primary-500/10 text-primary-500 font-bold' 
-                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-dark-950'
+                        : 'text-slate-650 hover:bg-slate-50'
                     }`}
                   >
                     <span className="flex items-center gap-2">
@@ -525,7 +525,7 @@ const Home = ({ notificationHandler }) => {
             </div>
 
             {/* Brands filter list */}
-            <div className="space-y-2.5 pt-4 border-t border-slate-100 dark:border-dark-800">
+            <div className="space-y-2.5 pt-4 border-t border-slate-100">
               <h4 className="text-xs font-black uppercase text-slate-400 tracking-wider">Marcas</h4>
               <div className="flex flex-wrap gap-1.5">
                 {brands.map((b) => (
@@ -534,8 +534,8 @@ const Home = ({ notificationHandler }) => {
                     onClick={() => setSelectedBrand(b.slug)}
                     className={`text-[10px] font-bold px-3 py-1.5 rounded-xl border transition-all ${
                       selectedBrand === b.slug
-                        ? 'bg-slate-800 dark:bg-white text-white dark:text-slate-900 border-transparent shadow'
-                        : 'border-slate-200 dark:border-dark-800 text-slate-600 dark:text-slate-400 hover:border-slate-300'
+                        ? 'bg-slate-800 text-white border-transparent shadow'
+                        : 'border-slate-200 text-slate-600 hover:border-slate-350'
                     }`}
                   >
                     {b.name}
@@ -545,7 +545,7 @@ const Home = ({ notificationHandler }) => {
             </div>
 
             {/* Price Ranges filter */}
-            <div className="space-y-3 pt-4 border-t border-slate-100 dark:border-dark-800">
+            <div className="space-y-3 pt-4 border-t border-slate-100">
               <h4 className="text-xs font-black uppercase text-slate-400 tracking-wider">Rangos de Precio</h4>
               <div className="flex items-center gap-2 text-xs">
                 <input
@@ -553,7 +553,7 @@ const Home = ({ notificationHandler }) => {
                   placeholder="Min S/"
                   value={priceMin}
                   onChange={(e) => setPriceMin(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-xl outline-none focus:border-primary-500"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded outline-none focus:border-[#007185]"
                 />
                 <span className="text-slate-400">-</span>
                 <input
@@ -561,18 +561,18 @@ const Home = ({ notificationHandler }) => {
                   placeholder="Max S/"
                   value={priceMax}
                   onChange={(e) => setPriceMax(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 rounded-xl outline-none focus:border-primary-500"
+                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded outline-none focus:border-[#007185]"
                 />
               </div>
             </div>
 
             {/* Toggle Special Features */}
-            <div className="pt-4 border-t border-slate-100 dark:border-dark-800 flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-650 dark:text-slate-350">Solo destacados</span>
+            <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span className="text-xs font-bold text-slate-650">Solo destacados</span>
               <button
                 onClick={() => setIsFeatured(!isFeatured)}
                 className={`w-10 h-6 rounded-full transition-colors relative flex items-center ${
-                  isFeatured ? 'bg-primary-500' : 'bg-slate-200 dark:bg-dark-800'
+                  isFeatured ? 'bg-primary-500' : 'bg-slate-250'
                 }`}
               >
                 <span className={`w-4 h-4 rounded-full bg-white absolute transition-transform shadow ${
@@ -586,14 +586,14 @@ const Home = ({ notificationHandler }) => {
           {/* PRODUCTS CATALOG LIST */}
           <div className="lg:col-span-3 space-y-6">
             
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 px-5 py-4 rounded-2xl shadow-sm">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white border border-slate-200/80 px-5 py-4 rounded shadow-sm">
               <div className="space-y-1">
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Catálogo de Productos</span>
-                <h2 className="text-base font-extrabold text-slate-800 dark:text-slate-100 leading-none">
+                <h2 className="text-base font-extrabold text-slate-800 leading-none">
                   {searchQuery ? `Resultados para "${searchQuery}"` : selectedCategory ? `Categoría: ${selectedCategory}` : 'Todos los Productos'}
                 </h2>
               </div>
-              <span className="text-xs font-bold text-slate-500 dark:text-slate-400 font-mono bg-slate-50 dark:bg-dark-950 border dark:border-dark-850 px-3 py-1.5 rounded-xl">
+              <span className="text-xs font-bold text-slate-600 font-mono bg-slate-50 border px-3 py-1.5 rounded">
                 {products.length} {products.length === 1 ? 'producto encontrado' : 'productos encontrados'}
               </span>
             </div>
@@ -603,17 +603,17 @@ const Home = ({ notificationHandler }) => {
                 Buscando productos en catálogo...
               </div>
             ) : products.length === 0 ? (
-              <div className="bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 rounded-3xl p-16 text-center space-y-4 shadow-sm">
-                <div className="w-16 h-16 bg-slate-50 dark:bg-dark-955 rounded-full flex items-center justify-center mx-auto text-slate-400">
+              <div className="bg-white border border-slate-200/80 rounded p-16 text-center space-y-4 shadow-sm">
+                <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto text-slate-450">
                   <HelpCircle size={28} />
                 </div>
-                <h3 className="text-base font-bold text-slate-800 dark:text-slate-200">No encontramos coincidencias</h3>
+                <h3 className="text-base font-bold text-slate-800">No encontramos coincidencias</h3>
                 <p className="text-xs text-slate-450 max-w-xs mx-auto leading-relaxed">
                   Prueba cambiando los términos de búsqueda o eliminando los filtros seleccionados para ampliar la búsqueda.
                 </p>
                 <button
                   onClick={handleResetFilters}
-                  className="px-6 py-2.5 text-xs font-bold text-white bg-primary-500 hover:bg-primary-655 rounded-xl shadow-md transition-all active:scale-95"
+                  className="px-6 py-2.5 text-xs font-bold text-white bg-primary-500 hover:bg-primary-655 rounded shadow transition-all active:scale-95 cursor-pointer"
                 >
                   Limpiar Filtros
                 </button>
