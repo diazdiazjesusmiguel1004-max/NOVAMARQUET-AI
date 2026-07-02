@@ -340,36 +340,7 @@ const Navbar = ({ onSearchChange }) => {
         </div>
       </div>
 
-      {/* ROW 2: Amazon Sub-navigation Bar */}
-      <div className="bg-[#232f3e] text-slate-100 px-4 py-1.5 flex items-center justify-between text-xs font-semibold select-none shadow-sm">
-        <div className="flex items-center gap-4 flex-wrap">
-          <button className="flex items-center gap-1 text-white font-bold hover:outline hover:outline-1 hover:outline-white/50 px-2 py-1 rounded cursor-pointer">
-            <Menu size={16} /> Todo
-          </button>
-          
-          <Link to="/" className="hover:outline hover:outline-1 hover:outline-white/50 px-2 py-1 rounded transition-all">
-            Ofertas del Día
-          </Link>
-          {isAuthenticated && (user?.role === 'admin' || user?.role === 'seller') && (
-            <Link to="/dashboard" className="hover:outline hover:outline-1 hover:outline-white/50 px-2 py-1 rounded transition-all text-purple-400">
-              Vendedor
-            </Link>
-          )}
-          <Link to="/orders" className="hover:outline hover:outline-1 hover:outline-white/50 px-2 py-1 rounded transition-all">
-            Servicio al Cliente
-          </Link>
-          <Link to="/comparar" className="hover:outline hover:outline-1 hover:outline-white/50 px-2 py-1 rounded transition-all">
-            Comparar
-          </Link>
-          <Link to="/wishlist" className="hover:outline hover:outline-1 hover:outline-white/50 px-2 py-1 rounded transition-all">
-            Listas
-          </Link>
-        </div>
 
-        <div className="hidden lg:block text-slate-300 font-bold hover:underline cursor-pointer">
-          Descarga la app de Novamarquet
-        </div>
-      </div>
 
       {/* Mobile Drawer Menu */}
       {isOpen && (
