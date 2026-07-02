@@ -1273,47 +1273,84 @@ const Dashboard = ({ notificationHandler }) => {
 
             {/* Tab: Customer Wishlist (Favoritos) */}
             {activeTab === 'customer_wishlist' && (
-              <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-5 shadow-sm space-y-6">
-                <h3 className="text-sm font-bold text-slate-850 dark:text-slate-200 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-dark-800">
-                  Mi Lista de Favoritos ({wishlist?.products?.length || 0})
+              <div className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-850 rounded-3xl p-6 shadow-sm space-y-6">
+                <h3 className="text-sm font-bold text-slate-850 dark:text-slate-200 uppercase tracking-wider pb-3 border-b border-slate-100 dark:border-dark-800 flex items-center justify-between">
+                  <span>Mi Lista de Favoritos</span>
+                  <span className="text-xs font-mono text-slate-400">({wishlist?.products?.length || 0} guardados)</span>
                 </h3>
 
-                {wishlist?.products?.length === 0 ? (
-                  <div className="p-8 text-center text-slate-400 text-xs">
-                    No tienes ningún producto en tu lista de favoritos.
+                {(!wishlist?.products || wishlist.products.length === 0) ? (
+                  <div className="py-12 px-6 text-center space-y-5 bg-gradient-to-b from-slate-50/50 to-white dark:from-dark-950/30 dark:to-dark-900 rounded-3xl border border-dashed border-slate-200 dark:border-dark-800">
+                    <div className="w-16 h-16 rounded-3xl bg-red-500/10 text-red-500 flex items-center justify-center mx-auto shadow-inner">
+                      <Heart size={32} className="fill-red-100 dark:fill-red-950/20 text-red-500 animate-pulse" />
+                    </div>
+                    <div className="max-w-md mx-auto space-y-2">
+                      <h4 className="text-base font-extrabold text-slate-800 dark:text-slate-100">
+                        Tu lista está esperando
+                      </h4>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                        No has añadido ningún producto como favorito todavía. Explora la tienda y dale click al corazón en cualquier producto para guardarlo aquí.
+                      </p>
+                    </div>
+
+                    <div className="pt-2">
+                      <button
+                        onClick={() => navigate('/')}
+                        className="px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-600 hover:shadow-lg hover:shadow-primary-500/20 text-white text-xs font-extrabold rounded-2xl transition-all shadow-md active:scale-95 inline-flex items-center gap-2"
+                      >
+                        <ShoppingBag size={15} /> Explorar Catálogo de Tienda
+                      </button>
+                    </div>
                   </div>
                 ) : (
-                  <div className="divide-y divide-slate-100 dark:divide-dark-850/60">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {wishlist.products.map((p) => (
-                      <div key={p.id} className="py-4 flex flex-col sm:flex-row items-center justify-between gap-4 first:pt-0 last:pb-0">
-                        <div className="flex items-center gap-3 w-full sm:w-auto">
-                          <img src={p.primary_image || '/placeholder.jpg'} alt={p.name} className="w-14 h-14 object-contain rounded bg-slate-50 dark:bg-dark-950 p-1 border" />
-                          <div className="min-w-0">
-                            <Link to={`/product/${p.slug}`} className="font-bold text-slate-800 dark:text-white hover:underline text-xs sm:text-sm line-clamp-1">
-                              {p.name}
-                            </Link>
-                            <p className="text-[10px] text-slate-400 mt-0.5">{p.brand?.name} · {p.category}</p>
-                            <span className="font-extrabold text-sm text-slate-800 dark:text-slate-200 mt-1 block">S/ {p.current_price}</span>
-                          </div>
+                      <div key={p.id} className="p-4 rounded-2xl border border-slate-150 dark:border-dark-800 bg-slate-50/30 dark:bg-dark-950/10 flex gap-4 hover:shadow-md transition-all duration-300 relative group">
+                        
+                        {/* Image Preview Container */}
+                        <div className="w-20 h-20 bg-white dark:bg-dark-950 rounded-xl overflow-hidden flex-shrink-0 border dark:border-dark-800 relative">
+                          <img src={p.primary_image || '/placeholder.jpg'} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                         </div>
-                        <div className="flex gap-2 w-full sm:w-auto justify-end">
-                          <button
-                            onClick={async () => {
-                              const res = await addToCart(p.id, 1);
-                              if (res.success) notificationHandler?.('¡Agregado al carrito!', 'success');
-                              else notificationHandler?.(res.error, 'error');
-                            }}
-                            className="px-4 py-2 text-xs font-bold text-white bg-primary-500 hover:bg-primary-600 rounded-xl transition-all shadow-md flex items-center gap-1 cursor-pointer"
-                          >
-                            Añadir al Carrito
-                          </button>
-                          <button
-                            onClick={() => toggleWishlist(p.id)}
-                            className="p-2 text-slate-400 hover:text-red-500 hover:bg-slate-50 dark:hover:bg-dark-900 border rounded-xl transition-all"
-                            title="Eliminar de favoritos"
-                          >
-                            <Trash2 size={15} />
-                          </button>
+
+                        {/* Details and Actions Column */}
+                        <div className="flex-1 flex flex-col justify-between min-w-0">
+                          <div>
+                            <div className="flex justify-between items-start gap-1">
+                              <Link to={`/product/${p.slug}`} className="font-bold text-slate-800 dark:text-white hover:text-primary-500 text-xs line-clamp-1">
+                                {p.name}
+                              </Link>
+                              
+                              {/* Trash Delete button */}
+                              <button
+                                onClick={() => toggleWishlist(p.id)}
+                                className="text-slate-400 hover:text-red-500 p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-dark-900 transition-colors flex-shrink-0 cursor-pointer"
+                                title="Eliminar de favoritos"
+                              >
+                                <Trash2 size={13} />
+                              </button>
+                            </div>
+                            
+                            <p className="text-[10px] text-slate-400 mt-0.5">{p.brand_name || p.brand?.name || 'Genérico'} · {p.category}</p>
+                          </div>
+
+                          <div className="flex items-center justify-between pt-2 mt-2 border-t dark:border-dark-850">
+                            <span className="font-extrabold text-xs text-slate-800 dark:text-slate-100">S/ {Number(p.current_price || p.price).toFixed(2)}</span>
+                            
+                            {/* Add to Cart Trigger */}
+                            <button
+                              onClick={async () => {
+                                const res = await addToCart(p.id, 1, p.colors?.[0], p.sizes?.[0]);
+                                if (res.success) {
+                                  notificationHandler?.('¡Añadido al carrito!', 'success');
+                                } else {
+                                  notificationHandler?.(res.error || 'Inicia sesión para comprar.', 'error');
+                                }
+                              }}
+                              className="px-3.5 py-1.5 text-[10px] font-black text-white bg-primary-500 hover:bg-primary-600 rounded-lg shadow-sm transition-all active:scale-95 cursor-pointer uppercase tracking-wider flex items-center gap-1"
+                            >
+                              Agregar <ArrowRight size={10} />
+                            </button>
+                          </div>
                         </div>
                       </div>
                     ))}
