@@ -130,34 +130,34 @@ const Home = ({ notificationHandler }) => {
   const bestSellers = products.filter(p => p.is_featured).slice(0, 8);
   const recommendedProducts = products.slice(10, 22);
 
-  // Hero slides data
+  // Hero slides data using real pre-seeded products
   const slides = [
     {
       badge: "Lanzamiento Exclusivo",
-      title: "Juguetes para los más pequeños",
-      desc: "Descubre una amplia variedad de juguetes educativos, figuras de acción y juegos de mesa con envíos rápidos a todo el Perú.",
-      bg: "from-teal-800 via-emerald-900 to-teal-850",
-      image: "https://images.unsplash.com/photo-1566856411475-47e24249a0f4?w=1200",
-      action: "Explorar Juguetes",
-      link: "/"
+      title: "Samsung Galaxy S25 Ultra",
+      desc: "Revolución móvil con procesador Snapdragon 8 Gen 5 y cámara de 200MP con IA. El smartphone del año ya está disponible.",
+      bg: "from-slate-900 via-indigo-950 to-slate-900",
+      image: products.find(p => p.slug === 'samsung-galaxy-s25-ultra')?.primary_image || 'samsung_s25.jpg',
+      action: "Ver Celular",
+      link: "/product/samsung-galaxy-s25-ultra"
     },
     {
       badge: "Edición Profesional",
-      title: "Tecnología de Punta en Casa",
-      desc: "Laptops M4 Max, celulares con IA integrada y consolas de última generación oficiales con garantía total.",
-      bg: "from-slate-900 via-indigo-950 to-slate-900",
-      image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200",
-      action: "Ver Tecnología",
-      link: "/"
+      title: "MacBook Pro 16\" M4 Max",
+      desc: "Rendimiento bestial con chip M4 Max, 48GB de RAM unificada y pantalla Liquid Retina XDR para creadores.",
+      bg: "from-slate-900 via-purple-950 to-slate-900",
+      image: products.find(p => p.slug === 'macbook-pro-16-m4-max')?.primary_image || 'macbook_pro.jpg',
+      action: "Ver Laptop",
+      link: "/product/macbook-pro-16-m4-max"
     },
     {
-      badge: "Ofertas Especiales",
-      title: "Descuentos Increíbles de Temporada",
-      desc: "Aprovecha cupones de descuento activos y hasta 30% de rebaja en productos seleccionados.",
+      badge: "Nueva Consola Slim",
+      title: "PlayStation 5 Pro Slim",
+      desc: "Gráficos en 4K nativos a 120 FPS y retrocompatibilidad completa. Disfruta del mejor gaming oficial.",
       bg: "from-[#1d2731] via-[#2d3b48] to-[#1d2731]",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200",
-      action: "Ver Ofertas",
-      link: "/"
+      image: products.find(p => p.slug === 'sony-playstation-5-pro-slim')?.primary_image || 'ps5_console.jpg',
+      action: "Ver Consola",
+      link: "/product/sony-playstation-5-pro-slim"
     }
   ];
 
@@ -245,55 +245,15 @@ const Home = ({ notificationHandler }) => {
           {/* 2. Overlapping Card Grid (Classic Amazon) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-30 -mt-16 sm:-mt-44 max-w-7xl mx-auto px-1 sm:px-4">
             
-            {/* Card 1: Mejora tu juego */}
+            {/* Card 1: Laptops */}
             <div className="bg-white dark:bg-dark-900 p-5 shadow-sm rounded-none border border-slate-200/50 dark:border-dark-800 flex flex-col justify-between h-[360px]">
               <h3 className="font-extrabold text-base text-slate-900 dark:text-white leading-tight">
-                Mejora tu juego
+                Laptops de Alto Rendimiento
               </h3>
               <div className="my-3 h-52 w-full bg-slate-50 dark:bg-dark-950 overflow-hidden flex items-center justify-center">
                 <img 
-                  src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=500" 
-                  alt="Gaming" 
-                  className="w-full h-full object-cover hover:scale-102 transition-transform duration-300"
-                />
-              </div>
-              <button 
-                onClick={() => setSelectedCategory('consolas')}
-                className="text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 text-left hover:underline cursor-pointer"
-              >
-                Ver consolas de juego
-              </button>
-            </div>
-
-            {/* Card 2: Envío Gratis */}
-            <div className="bg-white dark:bg-dark-900 p-5 shadow-sm rounded-none border border-slate-200/50 dark:border-dark-800 flex flex-col justify-between h-[360px]">
-              <h3 className="font-extrabold text-base text-slate-900 dark:text-white leading-tight">
-                Envío gratis a todo el Perú
-              </h3>
-              <div className="my-3 h-52 w-full bg-slate-50 dark:bg-dark-955 overflow-hidden flex items-center justify-center">
-                <img 
-                  src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" 
-                  alt="Shipping" 
-                  className="w-full h-full object-cover hover:scale-102 transition-transform duration-300"
-                />
-              </div>
-              <button 
-                onClick={() => setSelectedCategory('celulares')}
-                className="text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 text-left hover:underline cursor-pointer"
-              >
-                Explorar ofertas
-              </button>
-            </div>
-
-            {/* Card 3: Tech essentials */}
-            <div className="bg-white dark:bg-dark-900 p-5 shadow-sm rounded-none border border-slate-200/50 dark:border-dark-800 flex flex-col justify-between h-[360px]">
-              <h3 className="font-extrabold text-base text-slate-900 dark:text-white leading-tight">
-                Laptops y Computación
-              </h3>
-              <div className="my-3 h-52 w-full bg-slate-50 dark:bg-dark-950 overflow-hidden flex items-center justify-center">
-                <img 
-                  src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=500" 
-                  alt="Computers" 
+                  src={products.find(p => p.category_slug === 'laptops' || p.category?.toLowerCase() === 'laptops')?.primary_image || 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=500'} 
+                  alt="Laptops" 
                   className="w-full h-full object-cover hover:scale-102 transition-transform duration-300"
                 />
               </div>
@@ -301,7 +261,47 @@ const Home = ({ notificationHandler }) => {
                 onClick={() => setSelectedCategory('laptops')}
                 className="text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 text-left hover:underline cursor-pointer"
               >
-                Ver laptops profesionales
+                Ver todas las laptops
+              </button>
+            </div>
+
+            {/* Card 2: Celulares */}
+            <div className="bg-white dark:bg-dark-900 p-5 shadow-sm rounded-none border border-slate-200/50 dark:border-dark-800 flex flex-col justify-between h-[360px]">
+              <h3 className="font-extrabold text-base text-slate-900 dark:text-white leading-tight">
+                Celulares Inteligentes
+              </h3>
+              <div className="my-3 h-52 w-full bg-slate-50 dark:bg-dark-955 overflow-hidden flex items-center justify-center">
+                <img 
+                  src={products.find(p => p.category_slug === 'celulares' || p.category?.toLowerCase() === 'celulares')?.primary_image || 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500'} 
+                  alt="Celulares" 
+                  className="w-full h-full object-cover hover:scale-102 transition-transform duration-300"
+                />
+              </div>
+              <button 
+                onClick={() => setSelectedCategory('celulares')}
+                className="text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 text-left hover:underline cursor-pointer"
+              >
+                Explorar celulares
+              </button>
+            </div>
+
+            {/* Card 3: Consolas */}
+            <div className="bg-white dark:bg-dark-900 p-5 shadow-sm rounded-none border border-slate-200/50 dark:border-dark-800 flex flex-col justify-between h-[360px]">
+              <h3 className="font-extrabold text-base text-slate-900 dark:text-white leading-tight">
+                Consolas y Gaming
+              </h3>
+              <div className="my-3 h-52 w-full bg-slate-50 dark:bg-dark-950 overflow-hidden flex items-center justify-center">
+                <img 
+                  src={products.find(p => p.category_slug === 'consolas' || p.category?.toLowerCase() === 'consolas')?.primary_image || 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=500'} 
+                  alt="Consolas" 
+                  className="w-full h-full object-cover hover:scale-102 transition-transform duration-300"
+                />
+              </div>
+              <button 
+                onClick={() => setSelectedCategory('consolas')}
+                className="text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 text-left hover:underline cursor-pointer"
+              >
+                Ver videojuegos y consolas
               </button>
             </div>
 
@@ -312,8 +312,8 @@ const Home = ({ notificationHandler }) => {
               </h3>
               <div className="my-3 h-52 w-full bg-slate-50 dark:bg-dark-950 overflow-hidden flex items-center justify-center">
                 <img 
-                  src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500" 
-                  alt="Home Decor" 
+                  src={products.find(p => p.category_slug === 'hogar' || p.category?.toLowerCase() === 'hogar')?.primary_image || 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500'} 
+                  alt="Hogar" 
                   className="w-full h-full object-cover hover:scale-102 transition-transform duration-300"
                 />
               </div>
@@ -324,7 +324,6 @@ const Home = ({ notificationHandler }) => {
                 Explorar Hogar Nova
               </button>
             </div>
-
           </div>
 
           <div className="max-w-7xl mx-auto space-y-6 px-1 sm:px-4">
