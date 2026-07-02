@@ -148,16 +148,18 @@ const Dashboard = ({ notificationHandler }) => {
       return;
     }
 
-    // Assign default tabs depending on role and pathname
-    if (user?.role === 'admin') {
-      setActiveTab('analytics');
-    } else if (user?.role === 'seller') {
-      setActiveTab('seller_analytics');
-    } else {
-      if (window.location.pathname === '/mi-cuenta') {
-        setActiveTab('customer_profile');
+    // Assign default tabs depending on role and pathname only if activeTab is not set yet
+    if (!activeTab) {
+      if (user?.role === 'admin') {
+        setActiveTab('analytics');
+      } else if (user?.role === 'seller') {
+        setActiveTab('seller_analytics');
       } else {
-        setActiveTab('customer_orders');
+        if (window.location.pathname === '/mi-cuenta') {
+          setActiveTab('customer_profile');
+        } else {
+          setActiveTab('customer_orders');
+        }
       }
     }
 
