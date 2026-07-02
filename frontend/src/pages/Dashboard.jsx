@@ -33,6 +33,7 @@ const Dashboard = ({ notificationHandler }) => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showCouponModal, setShowCouponModal] = useState(false);
   const [showAddressModal, setShowAddressModal] = useState(false);
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
 
   // Forms states
   const [editingProduct, setEditingProduct] = useState({});
@@ -382,6 +383,7 @@ const Dashboard = ({ notificationHandler }) => {
     }
     notificationHandler?.('Simulación: Contraseña cambiada correctamente.', 'success');
     setPasswordForm({ current: '', new: '', confirm: '' });
+    setShowPasswordForm(false);
   };
 
   // 7. Seller specific calculations (frontend simulated from overall orders data)
@@ -1412,29 +1414,53 @@ const Dashboard = ({ notificationHandler }) => {
                 </div>
 
                 {/* Password Form */}
-                <div className="bg-white  border border-slate-200  p-5 rounded-3xl shadow-sm space-y-4">
-                  <h3 className="text-xs font-bold text-slate-450  uppercase tracking-widest pb-2 border-b">Seguridad de Acceso</h3>
+                <div className="bg-white border border-slate-200 p-5 rounded-3xl shadow-sm space-y-4">
+                  <h3 className="text-xs font-bold text-slate-450 uppercase tracking-widest pb-2 border-b">Seguridad de Acceso</h3>
                   
-                  <form onSubmit={handleUpdatePassword} className="space-y-3.5 text-xs">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="font-semibold text-slate-650 ">Contraseña Actual</label>
-                      <input type="password" required value={passwordForm.current} onChange={(e) => setPasswordForm({ ...passwordForm, current: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800 " />
+                  {!showPasswordForm ? (
+                    <div className="text-center py-4">
+                      <button
+                        type="button"
+                        onClick={() => setShowPasswordForm(true)}
+                        className="text-xs font-black text-[#007185] hover:underline hover:text-[#004b57] flex items-center justify-center gap-1.5 mx-auto transition-all cursor-pointer"
+                      >
+                        ¿Olvidaste tu contraseña? / Cambiar contraseña
+                      </button>
                     </div>
+                  ) : (
+                    <form onSubmit={handleUpdatePassword} className="space-y-3.5 text-xs">
+                      <div className="flex flex-col gap-1.5">
+                        <label className="font-semibold text-slate-650">Contraseña Actual</label>
+                        <input type="password" required value={passwordForm.current} onChange={(e) => setPasswordForm({ ...passwordForm, current: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-primary-500 text-slate-800" />
+                      </div>
 
-                    <div className="flex flex-col gap-1.5">
-                      <label className="font-semibold text-slate-650 ">Nueva Contraseña</label>
-                      <input type="password" required value={passwordForm.new} onChange={(e) => setPasswordForm({ ...passwordForm, new: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800 " />
-                    </div>
+                      <div className="flex flex-col gap-1.5">
+                        <label className="font-semibold text-slate-650">Nueva Contraseña</label>
+                        <input type="password" required value={passwordForm.new} onChange={(e) => setPasswordForm({ ...passwordForm, new: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-primary-500 text-slate-800" />
+                      </div>
 
-                    <div className="flex flex-col gap-1.5">
-                      <label className="font-semibold text-slate-650 ">Confirmar Nueva Contraseña</label>
-                      <input type="password" required value={passwordForm.confirm} onChange={(e) => setPasswordForm({ ...passwordForm, confirm: e.target.value })} className="px-3.5 py-2.5 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500 text-slate-800 " />
-                    </div>
+                      <div className="flex flex-col gap-1.5">
+                        <label className="font-semibold text-slate-650">Confirmar Nueva Contraseña</label>
+                        <input type="password" required value={passwordForm.confirm} onChange={(e) => setPasswordForm({ ...passwordForm, confirm: e.target.value })} className="px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-primary-500 text-slate-800" />
+                      </div>
 
-                    <button type="submit" className="w-full py-2.5 text-xs font-bold text-white bg-indigo-500 hover:bg-indigo-650 rounded-xl shadow-md transition-all active:scale-95">
-                      Actualizar Contraseña
-                    </button>
-                  </form>
+                      <div className="flex gap-3 pt-1">
+                        <button
+                          type="button"
+                          onClick={() => setShowPasswordForm(false)}
+                          className="w-1/2 py-2 border border-slate-300 rounded hover:bg-slate-50 text-slate-700 font-bold transition-all cursor-pointer"
+                        >
+                          Cancelar
+                        </button>
+                        <button 
+                          type="submit" 
+                          className="w-1/2 py-2 text-slate-900 font-bold bg-gradient-to-b from-[#f7dfa5] to-[#f0c14b] border border-[#a88734] hover:bg-[#ddb347] hover:from-[#f5c75a] hover:to-[#ebbc3d] rounded shadow transition-all active:scale-95 cursor-pointer"
+                        >
+                          Actualizar
+                        </button>
+                      </div>
+                    </form>
+                  )}
                 </div>
 
               </div>
