@@ -1075,10 +1075,13 @@ const Dashboard = ({ notificationHandler }) => {
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Compras</span>
                 <span className="text-sm font-extrabold text-slate-800 dark:text-slate-100">{orders.length}</span>
               </div>
-              <div className="bg-slate-50 dark:bg-dark-950 p-3 rounded-2xl border border-slate-100 dark:border-dark-850">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Favoritos</span>
+              <button 
+                onClick={() => navigate('/wishlist')}
+                className="bg-slate-50 dark:bg-dark-950 p-3 rounded-2xl border border-slate-100 dark:border-dark-850 text-left hover:border-red-500/30 transition-all cursor-pointer group"
+              >
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block group-hover:text-red-500 transition-colors">Favoritos</span>
                 <span className="text-sm font-extrabold text-primary-500">{wishlist?.products?.length || 0}</span>
-              </div>
+              </button>
             </div>
 
             <div className="border-t border-slate-100 dark:border-dark-800 pt-4 flex flex-col gap-1.5">
@@ -1091,7 +1094,13 @@ const Dashboard = ({ notificationHandler }) => {
               ].map(tab => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => {
+                    if (tab.id === 'customer_wishlist') {
+                      navigate('/wishlist');
+                    } else {
+                      setActiveTab(tab.id);
+                    }
+                  }}
                   className={`flex items-center gap-3 px-4 py-2.5 text-xs font-semibold rounded-xl text-left transition-all ${
                     activeTab === tab.id
                       ? 'bg-primary-500 text-white shadow-md shadow-primary-500/15'
