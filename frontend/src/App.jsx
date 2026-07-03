@@ -24,6 +24,11 @@ function ScrollToTop() {
   return null;
 }
 
+function ProtectedRoute({ children }) {
+  const { isAuthenticated } = useStore();
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+}
+
 function App() {
   const { initializeTheme, fetchCart, fetchWishlist, fetchNotifications, isAuthenticated } = useStore();
   
@@ -70,20 +75,20 @@ function App() {
         {/* Core Pages Content view */}
         <main className="flex-grow pb-16">
           <Routes>
-            <Route path="/" element={<Home notificationHandler={showToast} />} />
-            <Route path="/categoria/:categorySlug" element={<Home notificationHandler={showToast} />} />
-            <Route path="/product/:slug" element={<ProductDetail notificationHandler={showToast} />} />
-            <Route path="/cart" element={<Cart notificationHandler={showToast} />} />
-            <Route path="/checkout" element={<Checkout notificationHandler={showToast} />} />
-            <Route path="/orders" element={<Orders notificationHandler={showToast} />} />
-            <Route path="/order-tracking" element={<OrderTracking notificationHandler={showToast} />} />
-            <Route path="/order-tracking/:tracking_number" element={<OrderTracking notificationHandler={showToast} />} />
-            <Route path="/comparar" element={<Compare notificationHandler={showToast} />} />
-            <Route path="/wishlist" element={<Wishlist notificationHandler={showToast} />} />
+            <Route path="/" element={<ProtectedRoute><Home notificationHandler={showToast} /></ProtectedRoute>} />
+            <Route path="/categoria/:categorySlug" element={<ProtectedRoute><Home notificationHandler={showToast} /></ProtectedRoute>} />
+            <Route path="/product/:slug" element={<ProtectedRoute><ProductDetail notificationHandler={showToast} /></ProtectedRoute>} />
+            <Route path="/cart" element={<ProtectedRoute><Cart notificationHandler={showToast} /></ProtectedRoute>} />
+            <Route path="/checkout" element={<ProtectedRoute><Checkout notificationHandler={showToast} /></ProtectedRoute>} />
+            <Route path="/orders" element={<ProtectedRoute><Orders notificationHandler={showToast} /></ProtectedRoute>} />
+            <Route path="/order-tracking" element={<ProtectedRoute><OrderTracking notificationHandler={showToast} /></ProtectedRoute>} />
+            <Route path="/order-tracking/:tracking_number" element={<ProtectedRoute><OrderTracking notificationHandler={showToast} /></ProtectedRoute>} />
+            <Route path="/comparar" element={<ProtectedRoute><Compare notificationHandler={showToast} /></ProtectedRoute>} />
+            <Route path="/wishlist" element={<ProtectedRoute><Wishlist notificationHandler={showToast} /></ProtectedRoute>} />
             
             {/* Admin/Seller Dashboard */}
-            <Route path="/dashboard" element={<Dashboard notificationHandler={showToast} />} />
-            <Route path="/mi-cuenta" element={<Dashboard notificationHandler={showToast} />} />
+            <Route path="/dashboard" element={<ProtectedRoute><Dashboard notificationHandler={showToast} /></ProtectedRoute>} />
+            <Route path="/mi-cuenta" element={<ProtectedRoute><Dashboard notificationHandler={showToast} /></ProtectedRoute>} />
             
             {/* Auth */}
             <Route path="/login" element={<Login notificationHandler={showToast} />} />
