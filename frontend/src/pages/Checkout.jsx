@@ -150,7 +150,6 @@ const Checkout = ({ notificationHandler }) => {
       });
       notificationHandler('Simulación de pago aprobada. Pedido procesando.', 'success');
       setCreatedOrder(res.data.order);
-      // Navigate to order tracker page after short delay
       setTimeout(() => {
         navigate(`/order-tracking/${res.data.order.tracking_number}`);
       }, 3000);
@@ -183,40 +182,40 @@ const Checkout = ({ notificationHandler }) => {
         <ChevronRight size={12} />
         <span>Carrito</span>
         <ChevronRight size={12} />
-        <span className="text-slate-650 dark:text-slate-200">Checkout Final</span>
+        <span className="text-slate-700">Checkout Final</span>
       </div>
 
-      <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-800 dark:text-slate-100 mb-8 tracking-tight">
+      <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-800 mb-8 tracking-tight">
         Checkout de Pago
       </h1>
 
       {/* SUCCESS ORDER AND PAYMENT GATEWAY HUD PANEL */}
       {createdOrder ? (
-        <div className="max-w-2xl mx-auto bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 rounded-3xl p-6 sm:p-8 text-center space-y-6 shadow-xl animate-in zoom-in-95 duration-300">
+        <div className="max-w-2xl mx-auto bg-white border border-slate-200 rounded p-6 sm:p-8 text-center space-y-6 shadow animate-in zoom-in-95 duration-300">
           
           <div className="w-16 h-16 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center mx-auto">
             <CheckCircle2 size={32} />
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-xl font-extrabold text-slate-850 dark:text-slate-150">¡Orden Registrada Correctamente!</h2>
-            <p className="text-xs text-slate-400">Código de Seguimiento: <span className="font-mono font-bold text-slate-700 dark:text-slate-200">{createdOrder.tracking_number}</span></p>
+            <h2 className="text-xl font-extrabold text-slate-800">¡Orden Registrada Correctamente!</h2>
+            <p className="text-xs text-slate-550">Código de Seguimiento: <span className="font-mono font-bold text-[#b12704]">{createdOrder.tracking_number}</span></p>
           </div>
 
           {/* Logistics Summary Details */}
-          <div className="bg-slate-50 dark:bg-dark-950/40 rounded-2xl p-4 text-xs space-y-2 text-left border border-slate-100 dark:border-dark-800">
+          <div className="bg-slate-50 rounded p-4 text-xs space-y-2 text-left border border-slate-100">
             <div className="flex justify-between">
-              <span className="text-slate-400">Total a Pagar:</span>
-              <span className="font-bold text-slate-800 dark:text-slate-200">S/ {Number(createdOrder.total).toFixed(2)}</span>
+              <span className="text-slate-500">Total a Pagar:</span>
+              <span className="font-bold text-[#b12704]">S/ {Number(createdOrder.total).toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-slate-400">Método Elegido:</span>
-              <span className="font-bold text-slate-850 dark:text-slate-250 uppercase">{createdOrder.payment_method}</span>
+              <span className="text-slate-500">Método Elegido:</span>
+              <span className="font-bold text-slate-800 uppercase">{createdOrder.payment_method}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-slate-400">Estado del Pago:</span>
+              <span className="text-slate-500">Estado del Pago:</span>
               <span className={`font-bold px-2 py-0.5 rounded text-[10px] uppercase ${
-                createdOrder.payment_status === 'paid' ? 'bg-green-500/10 text-green-500' : 'bg-orange-500/10 text-orange-500 animate-pulse'
+                createdOrder.payment_status === 'paid' ? 'bg-green-500/10 text-green-600' : 'bg-orange-500/10 text-orange-600 animate-pulse'
               }`}>
                 {createdOrder.payment_status === 'paid' ? 'PAGADO' : 'PENDIENTE'}
               </span>
@@ -226,36 +225,36 @@ const Checkout = ({ notificationHandler }) => {
           {/* Payment simulation buttons */}
           {createdOrder.payment_status !== 'paid' ? (
             <div className="space-y-3">
-              <div className="text-xs text-slate-400 flex items-center gap-1.5 justify-center">
-                <Smartphone size={14} className="text-primary-500 animate-bounce" /> Escanea el código QR o simula el pago
+              <div className="text-xs text-slate-500 flex items-center gap-1.5 justify-center">
+                <Smartphone size={14} className="text-[#007185] animate-bounce" /> Escanea el código QR o simula el pago
               </div>
 
               {/* Yape plin simulated QR image */}
               {(createdOrder.payment_method === 'yape' || createdOrder.payment_method === 'plin') && (
-                <div className="w-48 h-48 bg-slate-100 dark:bg-dark-950 border border-slate-200 dark:border-dark-800 p-3 mx-auto rounded-xl flex flex-col items-center justify-center gap-1.5 shadow-inner">
-                  <div className="w-40 h-40 bg-slate-200 dark:bg-dark-800 rounded flex items-center justify-center font-bold text-xs text-slate-400">
+                <div className="w-48 h-48 bg-slate-50 border border-slate-200 p-3 mx-auto rounded flex flex-col items-center justify-center gap-1.5 shadow-inner">
+                  <div className="w-40 h-40 bg-slate-200 rounded flex items-center justify-center font-bold text-xs text-slate-400">
                     MOCK QR CODE
                   </div>
-                  <span className="text-[10px] font-extrabold uppercase tracking-wide text-primary-500">{createdOrder.payment_method}</span>
+                  <span className="text-[10px] font-extrabold uppercase tracking-wide text-[#007185]">{createdOrder.payment_method}</span>
                 </div>
               )}
 
               <button
                 onClick={handleSimulatePayment}
                 disabled={simulatingPayment}
-                className="w-full py-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:shadow-lg hover:shadow-green-500/20 text-white font-bold text-xs rounded-xl shadow-md transition-all active:scale-95 uppercase tracking-wider"
+                className="w-full py-3 bg-gradient-to-b from-[#f7dfa5] to-[#f0c14b] border border-[#a88734] hover:bg-[#ddb347] hover:from-[#f5c75a] hover:to-[#ebbc3d] text-slate-900 font-bold text-xs rounded shadow transition-all active:scale-95 uppercase tracking-wider cursor-pointer"
               >
                 {simulatingPayment ? 'Procesando simulación...' : 'Pagar / Simular Pago Exitoso'}
               </button>
             </div>
           ) : (
             <div className="space-y-4">
-              <div className="p-3 bg-green-500/5 text-green-600 rounded-xl text-xs font-bold flex items-center gap-1.5 justify-center border border-green-200">
+              <div className="p-3 bg-green-50 text-green-600 rounded text-xs font-bold flex items-center gap-1.5 justify-center border border-green-200">
                 ✓ Transacción Aprobada. Redireccionando a tu tracking logístico...
               </div>
               <button
                 onClick={() => navigate(`/order-tracking/${createdOrder.tracking_number}`)}
-                className="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 dark:bg-dark-800 dark:hover:bg-dark-750 text-slate-700 dark:text-slate-200 text-xs font-bold rounded-xl transition-all"
+                className="px-6 py-2.5 bg-gradient-to-b from-[#f5f7f9] to-[#e7e9ec] border border-slate-350 hover:bg-slate-100 text-slate-800 text-xs font-bold rounded shadow transition-all cursor-pointer"
               >
                 Ir a Seguimiento Manual
               </button>
@@ -269,14 +268,14 @@ const Checkout = ({ notificationHandler }) => {
           <div className="lg:col-span-8 space-y-6">
             
             {/* 1. Address selection block */}
-            <div className="bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 rounded-3xl p-5 shadow-sm space-y-4">
-              <div className="flex justify-between items-center border-b border-slate-100 dark:border-dark-800 pb-3">
-                <span className="font-extrabold text-sm text-slate-800 dark:text-slate-100 flex items-center gap-1.5 uppercase tracking-wider">
+            <div className="bg-white border border-slate-200/80 rounded p-5 shadow-sm space-y-4">
+              <div className="flex justify-between items-center border-b border-slate-100 pb-3">
+                <span className="font-extrabold text-sm text-slate-800 flex items-center gap-1.5 uppercase tracking-wider">
                   <MapPin size={16} /> 1. Dirección de Entrega
                 </span>
                 <button
                   onClick={() => setShowAddressForm(!showAddressForm)}
-                  className="px-3 py-1.5 bg-slate-100 dark:bg-dark-800 hover:bg-slate-200 dark:hover:bg-dark-700 text-slate-700 dark:text-slate-350 text-[10px] font-bold rounded-xl flex items-center gap-1 transition-all"
+                  className="px-3 py-1.5 bg-gradient-to-b from-[#f5f7f9] to-[#e7e9ec] border border-slate-350 hover:bg-slate-100 text-slate-800 text-[10px] font-bold rounded shadow flex items-center gap-1 transition-all cursor-pointer"
                 >
                   <Plus size={12} /> Nueva Dirección
                 </button>
@@ -284,66 +283,66 @@ const Checkout = ({ notificationHandler }) => {
 
               {/* Dynamic Add Address Form */}
               {showAddressForm && (
-                <form onSubmit={handleCreateAddress} className="bg-slate-50 dark:bg-dark-955/50 border border-slate-200 dark:border-dark-850 p-4 rounded-2xl space-y-3">
-                  <h4 className="text-xs font-bold text-slate-550 dark:text-slate-300 uppercase tracking-widest mb-1">Registrar Dirección</h4>
+                <form onSubmit={handleCreateAddress} className="bg-slate-50 border border-slate-200 p-4 rounded space-y-3">
+                  <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Registrar Dirección</h4>
                   
                   <div className="grid grid-cols-2 gap-3">
                     <div className="flex flex-col gap-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase">Etiqueta (Casa, Oficina)</label>
+                      <label className="text-[10px] font-bold text-slate-550 uppercase">Etiqueta (Casa, Oficina)</label>
                       <input 
                         type="text" 
                         value={newAddress.title} 
                         onChange={(e) => setNewAddress({...newAddress, title: e.target.value})}
-                        className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-xl px-3 py-2 text-xs text-slate-800 dark:text-slate-250 outline-none"
+                        className="bg-white border border-slate-250 rounded px-3 py-2 text-xs text-slate-850 outline-none focus:border-[#007185] font-semibold"
                       />
                     </div>
                     <div className="flex flex-col gap-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase">Teléfono de contacto</label>
+                      <label className="text-[10px] font-bold text-slate-550 uppercase">Teléfono de contacto</label>
                       <input 
                         type="text" 
                         placeholder="+51..."
                         value={newAddress.phone} 
                         onChange={(e) => setNewAddress({...newAddress, phone: e.target.value})}
-                        className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-xl px-3 py-2 text-xs text-slate-800 dark:text-slate-250 outline-none"
+                        className="bg-white border border-slate-250 rounded px-3 py-2 text-xs text-slate-850 outline-none focus:border-[#007185] font-semibold"
                       />
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-1">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase">Dirección Completa (Calle, Av., Dpto.)</label>
+                    <label className="text-[10px] font-bold text-slate-550 uppercase">Dirección Completa (Calle, Av., Dpto.)</label>
                     <input 
                       type="text" 
                       value={newAddress.street_address} 
                       onChange={(e) => setNewAddress({...newAddress, street_address: e.target.value})}
-                      className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-xl px-3 py-2 text-xs text-slate-800 dark:text-slate-250 outline-none"
+                      className="bg-white border border-slate-250 rounded px-3 py-2 text-xs text-slate-850 outline-none focus:border-[#007185] font-semibold"
                     />
                   </div>
 
                   <div className="grid grid-cols-3 gap-2">
                     <div className="flex flex-col gap-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase">Distrito</label>
+                      <label className="text-[10px] font-bold text-slate-555 uppercase">Distrito</label>
                       <input 
                         type="text" 
                         value={newAddress.district} 
                         onChange={(e) => setNewAddress({...newAddress, district: e.target.value})}
-                        className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-xl px-3 py-2 text-xs text-slate-800 dark:text-slate-250 outline-none"
+                        className="bg-white border border-slate-250 rounded px-3 py-2 text-xs text-slate-850 outline-none focus:border-[#007185] font-semibold"
                       />
                     </div>
                     <div className="flex flex-col gap-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase">Provincia</label>
+                      <label className="text-[10px] font-bold text-slate-555 uppercase">Provincia</label>
                       <input 
                         type="text" 
                         value={newAddress.province} 
                         onChange={(e) => setNewAddress({...newAddress, province: e.target.value})}
-                        className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-xl px-3 py-2 text-xs text-slate-800 dark:text-slate-250 outline-none"
+                        className="bg-white border border-slate-250 rounded px-3 py-2 text-xs text-slate-855 outline-none focus:border-[#007185] font-semibold"
                       />
                     </div>
                     <div className="flex flex-col gap-1">
-                      <label className="text-[10px] font-bold text-slate-400 uppercase">Departamento</label>
+                      <label className="text-[10px] font-bold text-slate-555 uppercase">Departamento</label>
                       <select 
                         value={newAddress.department} 
                         onChange={(e) => setNewAddress({...newAddress, department: e.target.value})}
-                        className="bg-white dark:bg-dark-900 border border-slate-200 dark:border-dark-800 rounded-xl px-3 py-2 text-xs text-slate-800 dark:text-slate-250 outline-none"
+                        className="bg-white border border-slate-250 rounded px-3 py-2 text-xs text-slate-855 outline-none focus:border-[#007185] font-bold cursor-pointer"
                       >
                         <option value="Lima">Lima</option>
                         <option value="Arequipa">Arequipa</option>
@@ -358,13 +357,13 @@ const Checkout = ({ notificationHandler }) => {
                     <button
                       type="button"
                       onClick={() => setShowAddressForm(false)}
-                      className="px-4 py-2 text-xs font-bold text-slate-500 dark:text-slate-400"
+                      className="px-4 py-2 text-xs font-bold text-slate-500 hover:underline cursor-pointer"
                     >
                       Cancelar
                     </button>
                     <button
                       type="submit"
-                      className="px-4 py-2 text-xs font-bold text-white bg-primary-500 hover:bg-primary-600 rounded-xl"
+                      className="px-4 py-2 text-xs font-bold text-slate-900 bg-gradient-to-b from-[#f7dfa5] to-[#f0c14b] border border-[#a88734] hover:bg-[#ddb347] hover:from-[#f5c75a] hover:to-[#ebbc3d] rounded shadow transition-all cursor-pointer"
                     >
                       Guardar Dirección
                     </button>
@@ -374,7 +373,7 @@ const Checkout = ({ notificationHandler }) => {
 
               {/* Addresses checklist grid */}
               {addresses.length === 0 ? (
-                <div className="p-6 text-center text-xs text-slate-400 italic border border-dashed border-slate-200 dark:border-dark-800 rounded-2xl">
+                <div className="p-6 text-center text-xs text-slate-400 italic border border-dashed border-slate-200 rounded">
                   No hay direcciones registradas. Registra una dirección para continuar.
                 </div>
               ) : (
@@ -383,15 +382,15 @@ const Checkout = ({ notificationHandler }) => {
                     <div 
                       key={a.id}
                       onClick={() => setSelectedAddress(a.id)}
-                      className={`p-4 border rounded-2xl cursor-pointer relative flex flex-col justify-between transition-all ${
+                      className={`p-4 border rounded cursor-pointer relative flex flex-col justify-between transition-all ${
                         selectedAddress === a.id
-                          ? 'border-primary-500 bg-primary-500/5 shadow-md shadow-primary-500/5 ring-1 ring-primary-500'
-                          : 'border-slate-200 dark:border-dark-800 hover:bg-slate-50/50 dark:hover:bg-dark-955'
+                          ? 'border-[#007185] bg-[#007185]/5 shadow shadow-[#007185]/5 ring-1 ring-[#007185]'
+                          : 'border-slate-200 hover:bg-slate-50/50'
                       }`}
                     >
                       <div>
                         <div className="flex justify-between items-center mb-2">
-                          <span className="px-2 py-0.5 text-[9px] font-extrabold bg-slate-100 dark:bg-dark-800 text-slate-600 dark:text-slate-350 rounded uppercase">
+                          <span className="px-2 py-0.5 text-[9px] font-extrabold bg-slate-100 text-slate-600 rounded uppercase">
                             {a.title}
                           </span>
                           <button
@@ -399,15 +398,15 @@ const Checkout = ({ notificationHandler }) => {
                               e.stopPropagation();
                               handleDeleteAddress(a.id);
                             }}
-                            className="text-slate-400 hover:text-red-500 transition-colors"
+                            className="text-slate-400 hover:text-red-500 transition-colors cursor-pointer"
                           >
                             <Trash2 size={13} />
                           </button>
                         </div>
-                        <p className="text-xs font-bold text-slate-800 dark:text-slate-200">{a.street_address}</p>
-                        <p className="text-[10px] text-slate-405 dark:text-slate-400 mt-0.5">{a.district}, {a.province} - {a.department}</p>
+                        <p className="text-xs font-bold text-slate-800">{a.street_address}</p>
+                        <p className="text-[10px] text-slate-500 mt-0.5">{a.district}, {a.province} - {a.department}</p>
                       </div>
-                      <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono mt-3">📞 {a.phone}</span>
+                      <span className="text-[10px] text-slate-500 font-mono mt-3">📞 {a.phone}</span>
                     </div>
                   ))}
                 </div>
@@ -415,8 +414,8 @@ const Checkout = ({ notificationHandler }) => {
             </div>
 
             {/* 2. Payment selector box */}
-            <div className="bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 rounded-3xl p-5 shadow-sm space-y-4">
-              <span className="font-extrabold text-sm text-slate-800 dark:text-slate-100 flex items-center gap-1.5 uppercase tracking-wider border-b border-slate-100 dark:border-dark-800 pb-3">
+            <div className="bg-white border border-slate-200/80 rounded p-5 shadow-sm space-y-4">
+              <span className="font-extrabold text-sm text-slate-800 flex items-center gap-1.5 uppercase tracking-wider border-b border-slate-100 pb-3">
                 <CreditCard size={16} /> 2. Método de Pago
               </span>
 
@@ -431,14 +430,14 @@ const Checkout = ({ notificationHandler }) => {
                   <button
                     key={pm.id}
                     onClick={() => setPaymentMethod(pm.id)}
-                    className={`p-3.5 border rounded-2xl flex flex-col items-center gap-1.5 text-center transition-all ${
+                    className={`p-3.5 border rounded flex flex-col items-center gap-1.5 text-center transition-all cursor-pointer ${
                       paymentMethod === pm.id
-                        ? 'border-primary-500 bg-primary-500/5 shadow-md shadow-primary-500/5 ring-1 ring-primary-500'
-                        : 'border-slate-200 dark:border-dark-800 hover:bg-slate-50 dark:hover:bg-dark-955'
+                        ? 'border-[#007185] bg-[#007185]/5 shadow shadow-[#007185]/5 ring-1 ring-[#007185]'
+                        : 'border-slate-200 hover:bg-slate-50'
                     }`}
                   >
                     <span className="text-xl">{pm.icon}</span>
-                    <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300">{pm.name}</span>
+                    <span className="text-[10px] font-bold text-slate-700">{pm.name}</span>
                   </button>
                 ))}
               </div>
@@ -447,8 +446,8 @@ const Checkout = ({ notificationHandler }) => {
           </div>
 
           {/* Checkout Order Summary sidebar */}
-          <div className="lg:col-span-4 bg-white dark:bg-dark-900 border border-slate-200/80 dark:border-dark-850 rounded-3xl p-5 shadow-sm space-y-6">
-            <h3 className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-dark-800 pb-3">
+          <div className="lg:col-span-4 bg-white border border-slate-200/80 rounded p-5 shadow-sm space-y-6">
+            <h3 className="text-sm font-bold text-slate-450 uppercase tracking-widest border-b border-slate-100 pb-3">
               Resumen Final
             </h3>
 
@@ -457,23 +456,23 @@ const Checkout = ({ notificationHandler }) => {
               {cart.items.map(item => (
                 <div key={item.id} className="flex justify-between items-center gap-2 text-xs">
                   <div className="truncate flex-1">
-                    <span className="font-bold text-slate-800 dark:text-slate-200">{item.product?.name}</span>
-                    <p className="text-[10px] text-slate-400">{item.quantity} x S/ {Number(item.product?.current_price).toFixed(2)}</p>
+                    <span className="font-bold text-slate-800">{item.product?.name}</span>
+                    <p className="text-[10px] text-slate-500">{item.quantity} x S/ {Number(item.product?.current_price).toFixed(2)}</p>
                   </div>
-                  <span className="font-bold text-slate-800 dark:text-slate-200">S/ {Number(item.item_total).toFixed(2)}</span>
+                  <span className="font-bold text-slate-800">S/ {Number(item.item_total).toFixed(2)}</span>
                 </div>
               ))}
             </div>
 
             {/* Calculations pricing breakdown */}
-            <div className="border-t border-slate-100 dark:border-dark-800 pt-4 space-y-3 text-xs text-slate-600 dark:text-slate-350">
+            <div className="border-t border-slate-100 pt-4 space-y-3 text-xs text-slate-600">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span className="font-bold text-slate-800 dark:text-slate-200">S/ {subtotal.toFixed(2)}</span>
+                <span className="font-bold text-slate-800">S/ {subtotal.toFixed(2)}</span>
               </div>
               
               {coupon && (
-                <div className="flex justify-between text-green-500 font-semibold">
+                <div className="flex justify-between text-green-600 font-bold">
                   <span>Descuento ({coupon.code})</span>
                   <span>- S/ {discount.toFixed(2)}</span>
                 </div>
@@ -481,12 +480,12 @@ const Checkout = ({ notificationHandler }) => {
 
               <div className="flex justify-between">
                 <span>Costo de Envío (Est.)</span>
-                <span className="font-bold text-slate-800 dark:text-slate-200">S/ {shipping.toFixed(2)}</span>
+                <span className="font-bold text-slate-800">S/ {shipping.toFixed(2)}</span>
               </div>
 
-              <div className="border-t border-slate-100 dark:border-dark-800 pt-3 flex justify-between text-sm font-extrabold">
-                <span className="text-slate-800 dark:text-slate-100">Total Neto</span>
-                <span className="text-base text-primary-500">S/ {total.toFixed(2)}</span>
+              <div className="border-t border-slate-100 pt-3 flex justify-between text-sm font-extrabold">
+                <span className="text-slate-850">Total Neto</span>
+                <span className="text-base text-[#b12704]">S/ {total.toFixed(2)}</span>
               </div>
             </div>
 
@@ -494,7 +493,7 @@ const Checkout = ({ notificationHandler }) => {
             <button
               onClick={handlePlaceOrder}
               disabled={placingOrder || cart.items.length === 0}
-              className="w-full py-3 bg-gradient-to-r from-primary-500 to-purple-600 hover:shadow-lg hover:shadow-primary-500/20 text-white font-bold text-xs rounded-xl shadow-md transition-all active:scale-95 uppercase tracking-wider"
+              className="w-full py-3 bg-gradient-to-b from-[#f7dfa5] to-[#f0c14b] border border-[#a88734] hover:bg-[#ddb347] hover:from-[#f5c75a] hover:to-[#ebbc3d] text-slate-900 font-bold text-xs rounded shadow transition-all active:scale-95 uppercase tracking-wider cursor-pointer"
             >
               {placingOrder ? 'Creando orden...' : 'Realizar Pedido'}
             </button>
