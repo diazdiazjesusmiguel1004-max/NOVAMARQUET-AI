@@ -20,6 +20,8 @@ const Navbar = ({ onSearchChange }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [searchVal, setSearchVal] = useState('');
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('ES');
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [loadingSuggestions, setLoadingSuggestions] = useState(false);
@@ -53,6 +55,10 @@ const Navbar = ({ onSearchChange }) => {
       const searchContainer = document.getElementById('search-container');
       if (searchContainer && !searchContainer.contains(e.target)) {
         setShowSuggestions(false);
+      }
+      const langContainer = document.getElementById('lang-container');
+      if (langContainer && !langContainer.contains(e.target)) {
+        setShowLanguageDropdown(false);
       }
     };
     document.addEventListener('click', handleOutsideClick);
@@ -177,10 +183,47 @@ const Navbar = ({ onSearchChange }) => {
         <div className="flex items-center gap-2 sm:gap-4">
           
           {/* Language ES */}
-          <div className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded border border-transparent hover:border-white transition-all cursor-pointer">
-            <Globe size={14} className="text-slate-300" />
-            <span className="text-[12px] font-bold text-white uppercase">ES</span>
-            <ChevronDown size={10} className="text-slate-350" />
+          <div id="lang-container" className="relative">
+            <button
+              onClick={() => {
+                setShowLanguageDropdown(!showLanguageDropdown);
+                setShowProfile(false);
+                setShowNotifications(false);
+              }}
+              className="hidden md:flex items-center gap-1 px-2 py-1.5 rounded border border-transparent hover:border-white transition-all cursor-pointer focus:outline-none bg-transparent"
+            >
+              <Globe size={14} className="text-slate-300" />
+              <span className="text-[12px] font-bold text-white uppercase">{currentLanguage}</span>
+              <ChevronDown size={10} className="text-slate-350" />
+            </button>
+
+            {showLanguageDropdown && (
+              <div className="absolute right-0 mt-2 w-44 bg-white border border-slate-200 rounded-lg shadow-2xl z-50 py-1.5 text-slate-800 animate-in fade-in duration-150">
+                <div className="px-3 py-1.5 text-[9px] font-bold text-slate-450 uppercase tracking-wider border-b border-slate-100">
+                  Seleccionar Idioma
+                </div>
+                <button
+                  onClick={() => {
+                    setCurrentLanguage('ES');
+                    setShowLanguageDropdown(false);
+                  }}
+                  className="w-full flex items-center justify-between px-3 py-2 text-xs hover:bg-slate-50 transition-colors text-left cursor-pointer font-semibold"
+                >
+                  <span>Español (ES)</span>
+                  {currentLanguage === 'ES' && <span className="text-amber-500 font-bold">✓</span>}
+                </button>
+                <button
+                  onClick={() => {
+                    setCurrentLanguage('EN');
+                    setShowLanguageDropdown(false);
+                  }}
+                  className="w-full flex items-center justify-between px-3 py-2 text-xs hover:bg-slate-50 transition-colors text-left cursor-pointer font-semibold"
+                >
+                  <span>English (EN)</span>
+                  {currentLanguage === 'EN' && <span className="text-amber-500 font-bold">✓</span>}
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Account & Lists popover trigger */}
