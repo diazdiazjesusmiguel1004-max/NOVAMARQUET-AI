@@ -223,7 +223,7 @@ export const useStore = create((set, get) => ({
   },
 
   // --- THEME STATE ---
-  theme: localStorage.getItem('app_theme') || 'dark', // Default to sleek dark mode
+  theme: localStorage.getItem('app_theme') || 'light', // Default to clean light mode
   
   toggleTheme: () => {
     const currentTheme = get().theme;

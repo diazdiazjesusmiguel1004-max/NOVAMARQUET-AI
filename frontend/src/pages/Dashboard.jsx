@@ -453,7 +453,7 @@ const Dashboard = ({ notificationHandler }) => {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
             <div>
               <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 text-[9px] font-black uppercase text-red-500 bg-red-500/10 border border-red-500/20 rounded">
+                <span className="px-2.5 py-0.5 text-[9px] font-black uppercase text-[#e77600] bg-amber-500/10 border border-amber-500/20 rounded">
                   Admin Console
                 </span>
               </div>
@@ -496,8 +496,8 @@ const Dashboard = ({ notificationHandler }) => {
 
           {/* Tab Content 2: Users */}
           {activeTab === 'users' && (
-            <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm overflow-x-auto">
-              <h3 className="text-sm font-bold text-slate-850  uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 ">
+            <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm overflow-x-auto">
+              <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-6 pb-3 border-b border-slate-100">
                 Gestión de Roles de Usuario
               </h3>
               <table className="w-full text-left text-xs min-w-[700px]">
@@ -528,7 +528,7 @@ const Dashboard = ({ notificationHandler }) => {
                         <select
                           value={u.role}
                           onChange={(e) => handleUserRoleChange(u.id, e.target.value)}
-                          className="bg-slate-50  border border-slate-200  text-[11px] rounded-xl px-2 py-1 outline-none font-semibold text-slate-700  focus:border-primary-500"
+                          className="bg-white border border-slate-200 text-[11px] rounded-xl px-2.5 py-1.5 outline-none font-bold text-slate-700 hover:border-slate-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/10 shadow-sm transition-all cursor-pointer"
                         >
                           <option value="client">Cliente</option>
                           <option value="seller">Vendedor (Socio)</option>
@@ -553,7 +553,7 @@ const Dashboard = ({ notificationHandler }) => {
                     placeholder="Buscar por nombre o SKU..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 text-xs bg-slate-50  border border-slate-200  rounded-2xl outline-none focus:border-primary-500 "
+                    className="w-full pl-10 pr-4 py-2.5 text-xs bg-white border border-slate-200 rounded-2xl outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/10 shadow-sm transition-all text-slate-800 font-medium"
                   />
                 </div>
                 <button
@@ -564,7 +564,7 @@ const Dashboard = ({ notificationHandler }) => {
                 </button>
               </div>
 
-              <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm overflow-x-auto">
+              <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm overflow-x-auto">
                 <table className="w-full text-left text-xs min-w-[800px]">
                   <thead>
                     <tr className="border-b border-slate-200  text-slate-400 font-semibold">
@@ -595,15 +595,15 @@ const Dashboard = ({ notificationHandler }) => {
                             <p className="font-bold text-slate-800  line-clamp-1 max-w-[200px]">{p.name}</p>
                             <span className="text-[10px] text-slate-400 font-mono">SKU: {p.sku}</span>
                           </td>
-                          <td className="py-3 text-indigo-500 font-semibold">{p.seller_name}</td>
+                          <td className="py-3 text-primary-600 font-semibold">{p.seller_name}</td>
                           <td className="py-3">
-                            <input type="number" step="0.01" value={priceVal} onChange={(e) => handleInlineChange(p.id, 'price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500" />
+                            <input type="number" step="0.01" value={priceVal} onChange={(e) => handleInlineChange(p.id, 'price', e.target.value)} className="w-20 px-2.5 py-1.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/10 font-bold text-slate-800 shadow-sm transition-all" />
                           </td>
                           <td className="py-3">
-                            <input type="number" step="0.01" value={offerVal} onChange={(e) => handleInlineChange(p.id, 'offer_price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500 text-purple-500" />
+                            <input type="number" step="0.01" value={offerVal} onChange={(e) => handleInlineChange(p.id, 'offer_price', e.target.value)} className="w-20 px-2.5 py-1.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/10 text-[#e77600] font-bold shadow-sm transition-all" />
                           </td>
                           <td className="py-3">
-                            <input type="number" value={stockVal} onChange={(e) => handleInlineChange(p.id, 'stock', e.target.value)} className="w-16 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500" />
+                            <input type="number" value={stockVal} onChange={(e) => handleInlineChange(p.id, 'stock', e.target.value)} className="w-16 px-2.5 py-1.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/10 font-bold text-slate-800 shadow-sm transition-all" />
                           </td>
                           <td className="py-3 text-center">
                             <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${Number(stockVal) > 0 ? 'bg-green-150 text-green-700' : 'bg-red-150 text-red-700'}`}>
@@ -612,7 +612,7 @@ const Dashboard = ({ notificationHandler }) => {
                           </td>
                           <td className="py-3 text-right">
                             <div className="flex justify-end gap-2">
-                              <button onClick={() => handleUpdateProduct(p)} disabled={!hasUnsaved} className={`p-2 rounded-xl transition-all ${hasUnsaved ? 'bg-purple-500 text-white hover:bg-purple-600' : 'bg-slate-105 text-slate-400   cursor-not-allowed'}`}><Save size={13} /></button>
+                              <button onClick={() => handleUpdateProduct(p)} disabled={!hasUnsaved} className={`p-2 rounded-xl transition-all ${hasUnsaved ? 'bg-primary-500 text-white hover:bg-primary-600' : 'bg-slate-105 text-slate-400   cursor-not-allowed'}`}><Save size={13} /></button>
                               <button onClick={() => handleDeleteProduct(p)} className="p-2 rounded-xl bg-red-50  text-red-500 hover:bg-red-100"><Trash2 size={13} /></button>
                             </div>
                           </td>
@@ -627,8 +627,8 @@ const Dashboard = ({ notificationHandler }) => {
 
           {/* Tab Content 4: Orders & Logistics */}
           {activeTab === 'orders' && (
-            <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm overflow-x-auto">
-              <h3 className="text-sm font-bold text-slate-850  uppercase tracking-wider mb-6 pb-3 border-b border-slate-100 ">
+            <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm overflow-x-auto">
+              <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-6 pb-3 border-b border-slate-100">
                 Logística Global de Envíos
               </h3>
               <table className="w-full text-left text-xs min-w-[750px]">
@@ -672,7 +672,7 @@ const Dashboard = ({ notificationHandler }) => {
                         <select
                           value={o.status}
                           onChange={(e) => handleUpdateLogistics(o.id, e.target.value)}
-                          className="bg-slate-50  border border-slate-200  text-[11px] rounded-xl px-2 py-1 outline-none font-semibold text-slate-700  focus:border-primary-500"
+                          className="bg-white border border-slate-200 text-[11px] rounded-xl px-2.5 py-1.5 outline-none font-bold text-slate-700 hover:border-slate-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/10 shadow-sm transition-all cursor-pointer"
                         >
                           <option value="pending">Pendiente</option>
                           <option value="processing">Procesando</option>
@@ -693,8 +693,8 @@ const Dashboard = ({ notificationHandler }) => {
           {/* Tab Content 5: Coupons */}
           {activeTab === 'coupons' && (
             <div className="space-y-6">
-              <div className="flex justify-between items-center bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm">
-                <span className="text-xs text-slate-450 font-bold">Cupones de Descuento Activos</span>
+              <div className="flex justify-between items-center bg-white border border-slate-200/60 rounded-3xl p-5 shadow-sm">
+                <span className="text-xs text-slate-500 font-bold">Cupones de Descuento Activos</span>
                 <button
                   onClick={() => setShowCouponModal(true)}
                   className="px-5 py-2.5 text-xs font-bold bg-primary-500 hover:bg-primary-600 text-white rounded-2xl shadow-md active:scale-95 transition-all flex items-center justify-center gap-2"
@@ -703,7 +703,7 @@ const Dashboard = ({ notificationHandler }) => {
                 </button>
               </div>
 
-              <div className="bg-white  border border-slate-200  rounded-3xl p-5 shadow-sm overflow-x-auto">
+              <div className="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm overflow-x-auto">
                 <table className="w-full text-left text-xs min-w-[650px]">
                   <thead>
                     <tr className="border-b border-slate-200  text-slate-400 font-semibold">
@@ -752,7 +752,7 @@ const Dashboard = ({ notificationHandler }) => {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
             <div>
               <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 text-[9px] font-black uppercase text-indigo-500 bg-indigo-500/10 border border-indigo-500/20 rounded">
+                <span className="px-2.5 py-0.5 text-[9px] font-black uppercase text-[#007185] bg-primary-500/10 border border-primary-500/20 rounded">
                   Seller Panel
                 </span>
                 <span className="text-xs font-bold text-slate-400">
@@ -813,11 +813,11 @@ const Dashboard = ({ notificationHandler }) => {
                 <div className="bg-white  border border-slate-200  p-5 rounded-2xl shadow-sm flex items-center justify-between">
                   <div>
                     <span className="text-[10px] font-bold text-slate-400  uppercase tracking-wider block">Ganancias Netas (90%)</span>
-                    <span className="text-2xl font-black text-slate-800  mt-1 block text-indigo-500">
+                    <span className="text-2xl font-black text-slate-800  mt-1 block text-primary-600">
                       S/ {sellerMetrics.netEarnings.toLocaleString('es-PE', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
-                  <div className="p-3 rounded-xl bg-indigo-500/10 text-indigo-500">
+                  <div className="p-3 rounded-xl bg-primary-500/10 text-primary-600">
                     <Wallet size={22} />
                   </div>
                 </div>
@@ -843,7 +843,7 @@ const Dashboard = ({ notificationHandler }) => {
                       {sellerMetrics.unitsSold} u.
                     </span>
                   </div>
-                  <div className="p-3 rounded-xl bg-purple-500/10 text-purple-500">
+                  <div className="p-3 rounded-xl bg-amber-500/10 text-[#e77600]">
                     <ShoppingBag size={22} />
                   </div>
                 </div>
@@ -950,7 +950,7 @@ const Dashboard = ({ notificationHandler }) => {
                             <input type="number" step="0.01" value={priceVal} onChange={(e) => handleInlineChange(product.id, 'price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500 font-semibold" />
                           </td>
                           <td className="py-3">
-                            <input type="number" step="0.01" value={offerVal} onChange={(e) => handleInlineChange(product.id, 'offer_price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500 font-semibold text-purple-650" />
+                            <input type="number" step="0.01" value={offerVal} onChange={(e) => handleInlineChange(product.id, 'offer_price', e.target.value)} className="w-20 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500 font-semibold" />
                           </td>
                           <td className="py-3">
                             <input type="number" value={stockVal} onChange={(e) => handleInlineChange(product.id, 'stock', e.target.value)} className="w-16 px-2 py-1 bg-slate-50  border border-slate-200  rounded-lg outline-none focus:border-primary-500 font-semibold" />
@@ -962,7 +962,7 @@ const Dashboard = ({ notificationHandler }) => {
                           </td>
                           <td className="py-3 text-right">
                             <div className="flex justify-end gap-2">
-                              <button onClick={() => handleUpdateProduct(product)} disabled={!hasChanges} className={`p-2 rounded-xl transition-all ${hasChanges ? 'bg-purple-500 text-white hover:bg-purple-600' : 'bg-slate-100 text-slate-400   cursor-not-allowed'}`}><Save size={13} /></button>
+                              <button onClick={() => handleUpdateProduct(product)} disabled={!hasChanges} className={`p-2 rounded-xl transition-all ${hasChanges ? 'bg-primary-500 text-white hover:bg-primary-600' : 'bg-slate-100 text-slate-400   cursor-not-allowed'}`}><Save size={13} /></button>
                               <button onClick={() => handleDeleteProduct(product)} className="p-2 rounded-xl bg-red-50  text-red-500 hover:bg-red-100"><Trash2 size={13} /></button>
                             </div>
                           </td>
@@ -1010,7 +1010,7 @@ const Dashboard = ({ notificationHandler }) => {
                         <p className="font-semibold text-slate-750 ">{o.address_details?.street_address}</p>
                         <p className="text-[10px] text-slate-400">{o.address_details?.district}, {o.address_details?.province}</p>
                       </td>
-                      <td className="py-4 font-bold text-indigo-500">S/ {o.seller_subtotal.toFixed(2)}</td>
+                      <td className="py-4 font-bold text-primary-600">S/ {o.seller_subtotal.toFixed(2)}</td>
                       <td className="py-4">
                         <span className={`px-2.5 py-0.5 rounded text-[9px] font-black ${o.payment_status === 'paid' ? 'bg-green-105 text-green-700' : 'bg-orange-105 text-orange-700'}`}>
                           {o.payment_status === 'paid' ? 'PAGADO' : 'PENDIENTE'}
@@ -1060,13 +1060,13 @@ const Dashboard = ({ notificationHandler }) => {
           {/* Left Column Profile Sidebar */}
           <div className="bg-white  border border-slate-200/80  p-6 rounded-3xl shadow-sm text-center space-y-6 h-fit">
             <div className="flex flex-col items-center">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-primary-500 via-purple-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-3xl shadow-lg shadow-primary-500/20 mb-3 ring-4 ring-primary-500/10">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-primary-600 via-primary-500 to-amber-500 flex items-center justify-center text-white font-extrabold text-3xl shadow-lg shadow-primary-500/20 mb-3 ring-4 ring-primary-500/10">
                 {user?.username ? user?.username[0].toUpperCase() : 'C'}
               </div>
               <h2 className="font-extrabold text-lg text-slate-800 ">
                 {user?.first_name || user?.username} {user?.last_name || ''}
               </h2>
-              <span className="text-[10px] font-black uppercase text-indigo-500 bg-indigo-500/10 px-3 py-1 border border-indigo-500/20 rounded-full mt-1.5 tracking-wider flex items-center gap-1">
+              <span className="text-[10px] font-black uppercase text-primary-600 bg-primary-500/10 px-3 py-1 border border-primary-500/20 rounded-full mt-1.5 tracking-wider flex items-center gap-1">
                 <Sparkles size={12} /> Cliente VIP Novamarquet
               </span>
             </div>
@@ -1075,17 +1075,17 @@ const Dashboard = ({ notificationHandler }) => {
             <div className="grid grid-cols-2 gap-2 text-left pt-2 border-t border-slate-100 ">
               <button 
                 onClick={() => navigate('/orders')}
-                className="bg-slate-50  p-3 rounded-2xl border border-slate-100  text-left hover:border-indigo-500/30 transition-all cursor-pointer group"
+                className="bg-slate-50  p-3 rounded-2xl border border-slate-100  text-left hover:border-primary-500/30 transition-all cursor-pointer group"
               >
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block group-hover:text-indigo-500 transition-colors">Compras</span>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block group-hover:text-primary-600 transition-colors">Compras</span>
                 <span className="text-sm font-extrabold text-slate-800 ">{orders.length}</span>
               </button>
               <button 
                 onClick={() => navigate('/wishlist', { state: { fromDashboard: true } })}
-                className="bg-slate-50  p-3 rounded-2xl border border-slate-100  text-left hover:border-red-500/30 transition-all cursor-pointer group"
+                className="bg-slate-50  p-3 rounded-2xl border border-slate-100  text-left hover:border-amber-500/30 transition-all cursor-pointer group"
               >
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block group-hover:text-red-500 transition-colors">Favoritos</span>
-                <span className="text-sm font-extrabold text-primary-500">{wishlist?.products?.length || 0}</span>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block group-hover:text-amber-500 transition-colors">Favoritos</span>
+                <span className="text-sm font-extrabold text-amber-500">{wishlist?.products?.length || 0}</span>
               </button>
             </div>
 
@@ -1149,7 +1149,7 @@ const Dashboard = ({ notificationHandler }) => {
                       <div className="pt-2 flex flex-wrap justify-center gap-3">
                         <button
                           onClick={() => navigate('/')}
-                          className="px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-600 hover:shadow-lg hover:shadow-primary-500/25 text-white text-xs font-extrabold rounded-2xl transition-all shadow-md active:scale-95 flex items-center gap-2"
+                          className="px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 hover:shadow-lg hover:shadow-primary-500/25 text-white text-xs font-extrabold rounded-2xl transition-all shadow-md active:scale-95 flex items-center gap-2"
                         >
                           <ShoppingBag size={15} /> Explorar Productos de la Tienda
                         </button>
@@ -1166,7 +1166,7 @@ const Dashboard = ({ notificationHandler }) => {
                           <span>Compra Protegida</span>
                         </div>
                         <div className="flex items-center gap-2 text-[10px] font-bold text-slate-600 ">
-                          <Tag size={14} className="text-purple-500 flex-shrink-0" />
+                          <Tag size={14} className="text-amber-500 flex-shrink-0" />
                           <span>Cupones de Descuento</span>
                         </div>
                       </div>
@@ -1189,7 +1189,7 @@ const Dashboard = ({ notificationHandler }) => {
                             <div>
                               <Link 
                                 to={`/order-tracking/${o.tracking_number}`}
-                                className="px-3.5 py-1.5 text-[11px] font-bold text-white bg-indigo-500 hover:bg-indigo-600 rounded-xl transition-colors inline-block"
+                                className="px-3.5 py-1.5 text-[11px] font-bold text-white bg-primary-500 hover:bg-primary-600 rounded-xl transition-colors inline-block"
                               >
                                 Ver Ruta en Mapa
                               </Link>
@@ -1246,7 +1246,7 @@ const Dashboard = ({ notificationHandler }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {addresses.length === 0 ? (
                     <div className="py-10 px-6 text-center space-y-4 bg-white  rounded-3xl border border-dashed border-slate-200  col-span-2">
-                      <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center mx-auto">
+                      <div className="w-12 h-12 rounded-2xl bg-primary-500/10 text-primary-500 flex items-center justify-center mx-auto">
                         <MapPin size={24} />
                       </div>
                       <div className="space-y-1 max-w-sm mx-auto">
@@ -1255,7 +1255,7 @@ const Dashboard = ({ notificationHandler }) => {
                       </div>
                       <button
                         onClick={() => setShowAddressModal(true)}
-                        className="px-5 py-2.5 bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-bold rounded-xl shadow-md active:scale-95 transition-all inline-flex items-center gap-1.5"
+                        className="px-5 py-2.5 bg-primary-500 hover:bg-primary-600 text-white text-xs font-bold rounded-xl shadow-md active:scale-95 transition-all inline-flex items-center gap-1.5"
                       >
                         <Plus size={14} /> Registrar mi Primera Dirección
                       </button>
@@ -1299,8 +1299,8 @@ const Dashboard = ({ notificationHandler }) => {
 
                 {(!wishlist?.products || wishlist.products.length === 0) ? (
                   <div className="py-12 px-6 text-center space-y-5 bg-gradient-to-b from-slate-50/50 to-white   rounded-3xl border border-dashed border-slate-200 ">
-                    <div className="w-16 h-16 rounded-3xl bg-red-500/10 text-red-500 flex items-center justify-center mx-auto shadow-inner">
-                      <Heart size={32} className="fill-red-100  text-red-500 animate-pulse" />
+                    <div className="w-16 h-16 rounded-3xl bg-amber-500/10 text-amber-500 flex items-center justify-center mx-auto shadow-inner">
+                      <Heart size={32} className="fill-amber-100  text-amber-500 animate-pulse" />
                     </div>
                     <div className="max-w-md mx-auto space-y-2">
                       <h4 className="text-base font-extrabold text-slate-800 ">
@@ -1314,7 +1314,7 @@ const Dashboard = ({ notificationHandler }) => {
                     <div className="pt-2">
                       <button
                         onClick={() => navigate('/')}
-                        className="px-6 py-3 bg-gradient-to-r from-primary-500 to-purple-600 hover:shadow-lg hover:shadow-primary-500/20 text-white text-xs font-extrabold rounded-2xl transition-all shadow-md active:scale-95 inline-flex items-center gap-2"
+                        className="px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 hover:shadow-lg hover:shadow-primary-500/20 text-white text-xs font-extrabold rounded-2xl transition-all shadow-md active:scale-95 inline-flex items-center gap-2"
                       >
                         <ShoppingBag size={15} /> Explorar Catálogo de Tienda
                       </button>
@@ -1341,7 +1341,7 @@ const Dashboard = ({ notificationHandler }) => {
                               {/* Trash Delete button */}
                               <button
                                 onClick={() => toggleWishlist(p.id)}
-                                className="text-slate-400 hover:text-red-500 p-1 rounded-lg hover:bg-slate-100  transition-colors flex-shrink-0 cursor-pointer"
+                                className="text-slate-400 hover:text-amber-500 p-1 rounded-lg hover:bg-slate-100  transition-colors flex-shrink-0 cursor-pointer"
                                 title="Eliminar de favoritos"
                               >
                                 <Trash2 size={13} />
@@ -1527,7 +1527,7 @@ const Dashboard = ({ notificationHandler }) => {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="font-semibold text-slate-650 ">Precio Promoción (S/)</label>
-                  <input type="number" step="0.01" placeholder="Opcional" value={newProduct.offer_price} onChange={(e) => setNewProduct({ ...newProduct, offer_price: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500  text-purple-500" />
+                  <input type="number" step="0.01" placeholder="Opcional" value={newProduct.offer_price} onChange={(e) => setNewProduct({ ...newProduct, offer_price: e.target.value })} className="px-3.5 py-2 bg-slate-50  border border-slate-200  rounded-xl outline-none focus:border-primary-500  text-[#e77600] font-bold" />
                 </div>
               </div>
 
